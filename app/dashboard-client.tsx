@@ -11,6 +11,17 @@ export default function DashboardClient({ kunden }: { kunden: Kunde[] }) {
     "alle"
   );
   const [suchbegriff, setSuchbegriff] = useState("");
+  const [sortKey, setSortKey] = useState<keyof Kunde | null>(null);
+  const [sortDir, setSortDir] = useState<"asc" | "desc">("asc");
+
+  function handleSort(key: keyof Kunde) {
+    if (sortKey === key) {
+      setSortDir(sortDir === "asc" ? "desc" : "asc");
+    } else {
+      setSortKey(key);
+      setSortDir("asc");
+    }
+  }
 
   const gesamt = kunden.length;
   const aktive = kunden.filter((k) => k.status === "aktiv").length;
@@ -24,6 +35,15 @@ export default function DashboardClient({ kunden }: { kunden: Kunde[] }) {
       k.firma.toLowerCase().includes(suchbegriff.toLowerCase()) ||
       k.ansprechpartner.toLowerCase().includes(suchbegriff.toLowerCase());
     return statusPasst && suchPasst;
+  });
+
+  const sortierteKunden = [...gefilterteKunden].sort((a, b) => {
+    if (!sortKey) return 0;
+    const dir = sortDir === "asc" ? 1 : -1;
+    const av = a[sortKey];
+    const bv = b[sortKey];
+    if (typeof av === "number" && typeof bv === "number") return (av - bv) * dir;
+    return String(av).localeCompare(String(bv), "de") * dir;
   });
 
   return (
@@ -86,22 +106,30 @@ export default function DashboardClient({ kunden }: { kunden: Kunde[] }) {
         <table className="w-full text-left text-sm">
           <thead className="border-b border-gray-200 bg-gray-50">
             <tr>
-              <th className="px-4 py-3 font-medium text-gray-600">Firma</th>
-              <th className="px-4 py-3 font-medium text-gray-600">
-                Ansprechpartner
-              </th>
-              <th className="px-4 py-3 font-medium text-gray-600">Branche</th>
-              <th className="px-4 py-3 font-medium text-gray-600">
-                Anlagengroesse (kWp)
-              </th>
-              <th className="px-4 py-3 font-medium text-gray-600">Status</th>
-              <th className="px-4 py-3 font-medium text-gray-600">
-                Letzter Kontakt
-              </th>
+              {([
+                ["firma", "Firma"],
+                ["ansprechpartner", "Ansprechpartner"],
+                ["branche", "Branche"],
+                ["anlagengroesse_kwp", "Anlagengroesse (kWp)"],
+                ["status", "Status"],
+                ["letzter_kontakt", "Letzter Kontakt"],
+              ] as [keyof Kunde, string][]).map(([key, label]) => (
+                <th key={key} className="px-4 py-3">
+                  <button
+                    onClick={() => handleSort(key)}
+                    className="flex items-center gap-1 font-medium text-gray-600 hover:text-gray-900"
+                  >
+                    {label}
+                    {sortKey === key && (
+                      <span className="text-blue-600">{sortDir === "asc" ? "▲" : "▼"}</span>
+                    )}
+                  </button>
+                </th>
+              ))}
             </tr>
           </thead>
           <tbody>
-            {gefilterteKunden.map((kunde) => (
+            {sortierteKunden.map((kunde) => (
               <tr
                 key={kunde.id}
                 onClick={() => router.push(`/kunden/${kunde.id}`)}
@@ -133,7 +161,7 @@ export default function DashboardClient({ kunden }: { kunden: Kunde[] }) {
             ))}
           </tbody>
         </table>
-        {gefilterteKunden.length === 0 && (
+        {sortierteKunden.length === 0 && (
           <p className="px-4 py-8 text-center text-gray-400">
             Keine Kunden gefunden.
           </p>
