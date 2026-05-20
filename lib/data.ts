@@ -3,9 +3,9 @@ import path from 'path';
 import Papa from 'papaparse';
 import { Kunde, PipelineEintrag } from '@/types';
 
-export function getKunden(): Kunde[] {
+export async function getKunden(): Promise<Kunde[]> {
   const filePath = path.join(process.cwd(), 'data', 'solarwerk_kunden.csv');
-  const csv = fs.readFileSync(filePath, 'utf-8');
+  const csv = await fs.promises.readFile(filePath, 'utf-8');
   const result = Papa.parse<Kunde>(csv, {
     header: true,
     dynamicTyping: true,
@@ -14,8 +14,8 @@ export function getKunden(): Kunde[] {
   return result.data;
 }
 
-export function getKunde(id: number): Kunde | null {
-  const kunden = getKunden();
+export async function getKunde(id: number): Promise<Kunde | null> {
+  const kunden = await getKunden();
   return kunden.find((k) => k.id === id) ?? null;
 }
 

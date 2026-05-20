@@ -7,7 +7,7 @@ export default async function KundenDetailPage({
   params: Promise<{ id: string }>;
 }) {
   const { id } = await params;
-  const kunde = getKunde(Number(id));
+  const kunde = await getKunde(Number(id));
 
   if (!kunde) {
     return <p>Kunde nicht gefunden</p>;

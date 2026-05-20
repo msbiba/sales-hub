@@ -3,18 +3,24 @@
 import { useState } from "react";
 import { useRouter } from "next/navigation";
 
+const initialFormData = {
+  firma: "",
+  ansprechpartner: "",
+  branche: "",
+  anlagengroesse_kwp: "",
+  status: "aktiv",
+  telefon: "",
+  email: "",
+  notiz: "",
+};
+
 export default function NeuerKundePage() {
   const router = useRouter();
-  const [formData, setFormData] = useState({
-    firma: "",
-    ansprechpartner: "",
-    branche: "",
-    anlagengroesse_kwp: "",
-    status: "aktiv",
-    telefon: "",
-    email: "",
-    notiz: "",
-  });
+  const [formData, setFormData] = useState(initialFormData);
+  const [fieldErrors, setFieldErrors] = useState<Record<string, string>>({});
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [error, setError] = useState<string | null>(null);
+  const [success, setSuccess] = useState(false);
 
   function handleChange(
     e: React.ChangeEvent<
@@ -22,16 +28,88 @@ export default function NeuerKundePage() {
     >
   ) {
     setFormData({ ...formData, [e.target.name]: e.target.value });
+    setFieldErrors((prev) => {
+      const next = { ...prev };
+      delete next[e.target.name];
+      return next;
+    });
   }
 
-  function handleSubmit(e: React.FormEvent) {
+  async function handleSubmit(e: React.FormEvent) {
     e.preventDefault();
-    router.push("/");
+    setError(null);
+    setSuccess(false);
+
+    const errors: Record<string, string> = {};
+    if (!formData.firma.trim()) {
+      errors.firma = "Firmenname ist erforderlich";
+    }
+    if (formData.anlagengroesse_kwp && isNaN(Number(formData.anlagengroesse_kwp))) {
+      errors.anlagengroesse_kwp = "Bitte eine gültige Zahl eingeben";
+    }
+    if (formData.email && !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(formData.email)) {
+      errors.email = "Bitte eine gültige E-Mail-Adresse eingeben";
+    }
+
+    if (Object.keys(errors).length > 0) {
+      setFieldErrors(errors);
+      return;
+    }
+
+    setIsSubmitting(true);
+
+    try {
+      const controller = new AbortController();
+      const timeout = setTimeout(() => controller.abort(), 10000);
+
+      const res = await fetch("/api/kunden", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(formData),
+        signal: controller.signal,
+      });
+      clearTimeout(timeout);
+
+      if (!res.ok) {
+        const data = await res.json();
+        throw new Error(data.error || "Speichern fehlgeschlagen");
+      }
+
+      setSuccess(true);
+      setFormData(initialFormData);
+      router.refresh();
+      setTimeout(() => router.push("/"), 2000);
+    } catch (err) {
+      if (err instanceof DOMException && err.name === "AbortError") {
+        setError("Speichern fehlgeschlagen, bitte erneut versuchen");
+      } else {
+        setError(err instanceof Error ? err.message : "Speichern fehlgeschlagen, bitte erneut versuchen");
+      }
+    } finally {
+      setIsSubmitting(false);
+    }
   }
+
+  const fieldClass = (name: string) =>
+    `w-full rounded-md border px-3 py-2 text-sm ${
+      fieldErrors[name] ? "border-red-500" : "border-gray-300"
+    }`;
 
   return (
     <div>
       <h1 className="mb-6 text-2xl font-bold">Neuen Kunden anlegen</h1>
+
+      {success && (
+        <div className="mb-4 rounded-md bg-green-50 border border-green-300 p-3 text-sm text-green-800">
+          Kunde wurde angelegt.
+        </div>
+      )}
+
+      {error && (
+        <div className="mb-4 rounded-md bg-red-50 border border-red-300 p-3 text-sm text-red-800">
+          {error}
+        </div>
+      )}
 
       <form
         onSubmit={handleSubmit}
@@ -40,15 +118,18 @@ export default function NeuerKundePage() {
         <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
           <div>
             <label className="mb-1 block text-sm font-medium text-gray-700">
-              Firma
+              Firma *
             </label>
             <input
               type="text"
               name="firma"
               value={formData.firma}
               onChange={handleChange}
-              className="w-full rounded-md border border-gray-300 px-3 py-2 text-sm"
+              className={fieldClass("firma")}
             />
+            {fieldErrors.firma && (
+              <p className="mt-1 text-xs text-red-600">{fieldErrors.firma}</p>
+            )}
           </div>
           <div>
             <label className="mb-1 block text-sm font-medium text-gray-700">
@@ -59,7 +140,7 @@ export default function NeuerKundePage() {
               name="ansprechpartner"
               value={formData.ansprechpartner}
               onChange={handleChange}
-              className="w-full rounded-md border border-gray-300 px-3 py-2 text-sm"
+              className={fieldClass("ansprechpartner")}
             />
           </div>
           <div>
@@ -71,7 +152,7 @@ export default function NeuerKundePage() {
               name="branche"
               value={formData.branche}
               onChange={handleChange}
-              className="w-full rounded-md border border-gray-300 px-3 py-2 text-sm"
+              className={fieldClass("branche")}
             />
           </div>
           <div>
@@ -79,12 +160,15 @@ export default function NeuerKundePage() {
               Anlagengroesse (kWp)
             </label>
             <input
-              type="number"
+              type="text"
               name="anlagengroesse_kwp"
               value={formData.anlagengroesse_kwp}
               onChange={handleChange}
-              className="w-full rounded-md border border-gray-300 px-3 py-2 text-sm"
+              className={fieldClass("anlagengroesse_kwp")}
             />
+            {fieldErrors.anlagengroesse_kwp && (
+              <p className="mt-1 text-xs text-red-600">{fieldErrors.anlagengroesse_kwp}</p>
+            )}
           </div>
           <div>
             <label className="mb-1 block text-sm font-medium text-gray-700">
@@ -110,7 +194,7 @@ export default function NeuerKundePage() {
               name="telefon"
               value={formData.telefon}
               onChange={handleChange}
-              className="w-full rounded-md border border-gray-300 px-3 py-2 text-sm"
+              className={fieldClass("telefon")}
             />
           </div>
           <div>
@@ -118,12 +202,15 @@ export default function NeuerKundePage() {
               E-Mail
             </label>
             <input
-              type="email"
+              type="text"
               name="email"
               value={formData.email}
               onChange={handleChange}
-              className="w-full rounded-md border border-gray-300 px-3 py-2 text-sm"
+              className={fieldClass("email")}
             />
+            {fieldErrors.email && (
+              <p className="mt-1 text-xs text-red-600">{fieldErrors.email}</p>
+            )}
           </div>
         </div>
         <div className="mt-4">
@@ -141,9 +228,10 @@ export default function NeuerKundePage() {
         <div className="mt-6">
           <button
             type="submit"
-            className="rounded-md bg-blue-600 px-4 py-2 text-sm font-medium text-white hover:bg-blue-700"
+            disabled={isSubmitting}
+            className="rounded-md bg-blue-600 px-4 py-2 text-sm font-medium text-white hover:bg-blue-700 disabled:opacity-50 disabled:cursor-not-allowed"
           >
-            Kunde anlegen
+            {isSubmitting ? "Wird gespeichert…" : "Kunde anlegen"}
           </button>
         </div>
       </form>
