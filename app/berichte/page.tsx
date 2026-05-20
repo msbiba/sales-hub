@@ -29,8 +29,8 @@ function countByStatus<T extends { status: string }>(
   }));
 }
 
-export default function BerichtePage() {
-  const kunden = getKunden();
+export default async function BerichtePage() {
+  const kunden = await getKunden();
   const pipeline = getPipeline();
 
   const kundenVerteilung = countByStatus(kunden, kundenLabels);
