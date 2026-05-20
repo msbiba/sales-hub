@@ -24,3 +24,13 @@ id,firma,ansprechpartner,branche,anlagengroesse_kwp,status,letzter_kontakt,telef
 23,Pension Alpenblick,Herbert Waldner,Gewerbe,48,aktiv,2026-01-10,08322-765-21,h.waldner@pension-alpenblick.de,Kleine Pension mit guter Suedausrichtung. Warmwasser solar.
 24,Schreinerei Wagner und Sohn,Thomas Wagner,Handwerk,86,aktiv,2026-03-30,08331-442-90,t.wagner@wagner-schreinerei.de,Referenzkunde fuer Solar-fuer-KMU-Paket. Sehr zufrieden.
 25,Landtechnik Baumgartner,Josef Baumgartner,Landwirtschaft,340,in_wartung,2026-05-05,08261-773-34,j.baumgartner@landtechnik-baumgartner.de,Grosse Maschinenhalle. Schneelast-Schaeden nach Winter. Reparatur laeuft.
+26,TEST,TEST,TEST,1000,beschwerde,2026-05-20,123,TEST@TEST.de,TESTTESTTESTTESTTESTTESTTESTTESTTESTTESTTESTTESTTEST
+27,A,A,A,10,in_wartung,2026-05-20,1,A@A.de,AAA
+28,CCC,CCC,CC,52,aktiv,2026-05-20,1651,C@d.de,CCCCC
+29,Testfirma Preview GmbH,,,,aktiv,2026-05-20,,,
+30,Connection Test GmbH,,,,aktiv,2026-05-20,,,
+
+31,E2E Test GmbH,,,,aktiv,2026-05-20,,,
+32,YYYYYY,YYYYYYYY,YYYYYY,55,beschwerde,2026-05-20,266,Y@Y.de,YYYYYYYYYYYYY
+33,Redirect Test Firma,,,,aktiv,2026-05-20,,,
+34,q,,,,aktiv,2026-05-20,,,
