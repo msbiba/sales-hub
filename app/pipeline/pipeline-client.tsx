@@ -3,6 +3,7 @@
 import { useMemo, useState } from "react";
 import Link from "next/link";
 import StatusBadge from "@/components/StatusBadge";
+import DualRangeSlider from "@/components/DualRangeSlider";
 import { PipelineEintrag, PipelineStatus } from "@/types";
 
 type SortKey = keyof Pick<
@@ -167,72 +168,22 @@ export default function PipelineClient({
           onChange={(e) => setSuchbegriff(e.target.value)}
           className="rounded-md border border-gray-300 px-3 py-2 text-sm sm:w-80"
         />
-        <div className="flex flex-col gap-1 sm:w-72">
-          <label className="text-xs text-gray-600">
-            Anlagengroesse: {kwpRange[0]}–{kwpRange[1]} kWp
-          </label>
-          <div className="flex items-center gap-2">
-            <input
-              type="range"
-              min={kwpMin}
-              max={kwpMax}
-              value={kwpRange[0]}
-              onChange={(e) =>
-                setKwpRange([
-                  Math.min(Number(e.target.value), kwpRange[1]),
-                  kwpRange[1],
-                ])
-              }
-              className="w-full"
-            />
-            <input
-              type="range"
-              min={kwpMin}
-              max={kwpMax}
-              value={kwpRange[1]}
-              onChange={(e) =>
-                setKwpRange([
-                  kwpRange[0],
-                  Math.max(Number(e.target.value), kwpRange[0]),
-                ])
-              }
-              className="w-full"
-            />
-          </div>
-        </div>
-        <div className="flex flex-col gap-1 sm:w-72">
-          <label className="text-xs text-gray-600">
-            Volumen: {formatEur(eurRange[0])}–{formatEur(eurRange[1])}
-          </label>
-          <div className="flex items-center gap-2">
-            <input
-              type="range"
-              min={eurMin}
-              max={eurMax}
-              value={eurRange[0]}
-              onChange={(e) =>
-                setEurRange([
-                  Math.min(Number(e.target.value), eurRange[1]),
-                  eurRange[1],
-                ])
-              }
-              className="w-full"
-            />
-            <input
-              type="range"
-              min={eurMin}
-              max={eurMax}
-              value={eurRange[1]}
-              onChange={(e) =>
-                setEurRange([
-                  eurRange[0],
-                  Math.max(Number(e.target.value), eurRange[0]),
-                ])
-              }
-              className="w-full"
-            />
-          </div>
-        </div>
+        <DualRangeSlider
+          min={kwpMin}
+          max={kwpMax}
+          value={kwpRange}
+          onChange={setKwpRange}
+          label="Anlagengroesse"
+          format={(n) => `${n} kWp`}
+        />
+        <DualRangeSlider
+          min={eurMin}
+          max={eurMax}
+          value={eurRange}
+          onChange={setEurRange}
+          label="Volumen"
+          format={formatEur}
+        />
         <button
           type="button"
           onClick={resetFilter}
