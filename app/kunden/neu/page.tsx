@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import { useRouter } from "next/navigation";
+import { validateKunde, type ValidationErrors } from "@/lib/validation";
 
 const initialFormData = {
   firma: "",
@@ -17,7 +18,7 @@ const initialFormData = {
 export default function NeuerKundePage() {
   const router = useRouter();
   const [formData, setFormData] = useState(initialFormData);
-  const [fieldErrors, setFieldErrors] = useState<Record<string, string>>({});
+  const [fieldErrors, setFieldErrors] = useState<ValidationErrors>({});
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [error, setError] = useState<string | null>(null);
   const [success, setSuccess] = useState(false);
@@ -30,7 +31,7 @@ export default function NeuerKundePage() {
     setFormData({ ...formData, [e.target.name]: e.target.value });
     setFieldErrors((prev) => {
       const next = { ...prev };
-      delete next[e.target.name];
+      delete next[e.target.name as keyof ValidationErrors];
       return next;
     });
   }
@@ -40,21 +41,12 @@ export default function NeuerKundePage() {
     setError(null);
     setSuccess(false);
 
-    const errors: Record<string, string> = {};
-    if (!formData.firma.trim()) {
-      errors.firma = "Firmenname ist erforderlich";
-    }
-    if (formData.anlagengroesse_kwp && isNaN(Number(formData.anlagengroesse_kwp))) {
-      errors.anlagengroesse_kwp = "Bitte eine gültige Zahl eingeben";
-    }
-    if (formData.email && !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(formData.email)) {
-      errors.email = "Bitte eine gültige E-Mail-Adresse eingeben";
-    }
-
-    if (Object.keys(errors).length > 0) {
-      setFieldErrors(errors);
+    const errs = validateKunde(formData);
+    if (Object.keys(errs).length > 0) {
+      setFieldErrors(errs);
       return;
     }
+    setFieldErrors({});
 
     setIsSubmitting(true);
 
@@ -83,14 +75,18 @@ export default function NeuerKundePage() {
       if (err instanceof DOMException && err.name === "AbortError") {
         setError("Speichern fehlgeschlagen, bitte erneut versuchen");
       } else {
-        setError(err instanceof Error ? err.message : "Speichern fehlgeschlagen, bitte erneut versuchen");
+        setError(
+          err instanceof Error
+            ? err.message
+            : "Speichern fehlgeschlagen, bitte erneut versuchen"
+        );
       }
     } finally {
       setIsSubmitting(false);
     }
   }
 
-  const fieldClass = (name: string) =>
+  const fieldClass = (name: keyof ValidationErrors) =>
     `w-full rounded-md border px-3 py-2 text-sm ${
       fieldErrors[name] ? "border-red-500" : "border-gray-300"
     }`;
@@ -113,6 +109,7 @@ export default function NeuerKundePage() {
 
       <form
         onSubmit={handleSubmit}
+        noValidate
         className="max-w-2xl rounded-lg border border-gray-200 bg-white p-6"
       >
         <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
@@ -133,7 +130,7 @@ export default function NeuerKundePage() {
           </div>
           <div>
             <label className="mb-1 block text-sm font-medium text-gray-700">
-              Ansprechpartner
+              Ansprechpartner *
             </label>
             <input
               type="text"
@@ -142,10 +139,15 @@ export default function NeuerKundePage() {
               onChange={handleChange}
               className={fieldClass("ansprechpartner")}
             />
+            {fieldErrors.ansprechpartner && (
+              <p className="mt-1 text-xs text-red-600">
+                {fieldErrors.ansprechpartner}
+              </p>
+            )}
           </div>
           <div>
             <label className="mb-1 block text-sm font-medium text-gray-700">
-              Branche
+              Branche *
             </label>
             <input
               type="text"
@@ -154,10 +156,13 @@ export default function NeuerKundePage() {
               onChange={handleChange}
               className={fieldClass("branche")}
             />
+            {fieldErrors.branche && (
+              <p className="mt-1 text-xs text-red-600">{fieldErrors.branche}</p>
+            )}
           </div>
           <div>
             <label className="mb-1 block text-sm font-medium text-gray-700">
-              Anlagengroesse (kWp)
+              Anlagengroesse (kWp) *
             </label>
             <input
               type="text"
@@ -167,7 +172,9 @@ export default function NeuerKundePage() {
               className={fieldClass("anlagengroesse_kwp")}
             />
             {fieldErrors.anlagengroesse_kwp && (
-              <p className="mt-1 text-xs text-red-600">{fieldErrors.anlagengroesse_kwp}</p>
+              <p className="mt-1 text-xs text-red-600">
+                {fieldErrors.anlagengroesse_kwp}
+              </p>
             )}
           </div>
           <div>
@@ -187,7 +194,7 @@ export default function NeuerKundePage() {
           </div>
           <div>
             <label className="mb-1 block text-sm font-medium text-gray-700">
-              Telefon
+              Telefon *
             </label>
             <input
               type="text"
@@ -196,10 +203,13 @@ export default function NeuerKundePage() {
               onChange={handleChange}
               className={fieldClass("telefon")}
             />
+            {fieldErrors.telefon && (
+              <p className="mt-1 text-xs text-red-600">{fieldErrors.telefon}</p>
+            )}
           </div>
           <div>
             <label className="mb-1 block text-sm font-medium text-gray-700">
-              E-Mail
+              E-Mail *
             </label>
             <input
               type="text"
