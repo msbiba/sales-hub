@@ -23,6 +23,4 @@ id,firma,ansprechpartner,branche,anlagengroesse_kwp,status,letzter_kontakt,telef
 22,Gaertnerei Blumenfeld,Ingrid Wieser,Landwirtschaft,55,aktiv,2026-02-01,08233-81-456,i.wieser@gaertnerei-blumenfeld.de,Gewaechshaeuser teilweise mit PV-Glas. Pilotprojekt erfolgreich.
 23,Pension Alpenblick,Herbert Waldner,Gewerbe,48,aktiv,2026-01-10,08322-765-21,h.waldner@pension-alpenblick.de,Kleine Pension mit guter Suedausrichtung. Warmwasser solar.
 24,Schreinerei Wagner und Sohn,Thomas Wagner,Handwerk,86,aktiv,2026-03-30,08331-442-90,t.wagner@wagner-schreinerei.de,Referenzkunde fuer Solar-fuer-KMU-Paket. Sehr zufrieden.
-25,Landtechnik Baumgartner,Josef Baumgartner,Landwirtschaft,340,in_wartung,2026-05-05,08261-773-34,j.baumgartner@landtechnik-baumgartner.de,Grosse Maschinenhalle. Schneelast-Schaeden nach Winter. Reparatur laeuft.
-26,TEST,TEST,TEST,1000,beschwerde,2026-05-20,123,TEST@TEST.de,TESTTESTTESTTESTTESTTESTTESTTESTTESTTESTTESTTESTTEST
-27,Validierungs-Test GmbH,Anna Tester,Industrie,120,aktiv,2026-05-22,+498912345,anna@validtest.de,
+25,Landtechnik Baumgartner,Josef Baumgartner,Landwirtschaft,340,beschwerde,2026-05-05,08261-773-34,j.baumgartner@landtechnik-baumgartner.de,Grosse Maschinenhalle. Schneelast-Schaeden nach Winter. Reparatur laeuft.
