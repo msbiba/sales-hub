@@ -39,3 +39,81 @@ export function validateKunde(data: KundeInput): ValidationErrors {
 
   return errors;
 }
+
+export type PipelineStatus =
+  | "erstkontakt"
+  | "angebot_raus"
+  | "verhandlung"
+  | "gewonnen"
+  | "verloren";
+
+export type PipelineInput = {
+  firma: string;
+  ansprechpartner: string;
+  branche: string;
+  anlagengroesse_kwp: string;
+  volumen_eur: string;
+  angebotsdatum: string;
+  status: string;
+  notiz: string;
+};
+
+export type PipelineErrors = Partial<Record<keyof PipelineInput, string>>;
+
+const PIPELINE_STATUSES: readonly PipelineStatus[] = [
+  "erstkontakt",
+  "angebot_raus",
+  "verhandlung",
+  "gewonnen",
+  "verloren",
+];
+
+export function validatePipeline(data: PipelineInput): PipelineErrors {
+  const errors: PipelineErrors = {};
+
+  if (!data.firma.trim()) {
+    errors.firma = "Firma darf nicht leer sein.";
+  }
+
+  if (data.ansprechpartner.trim().length < 4) {
+    errors.ansprechpartner =
+      "Ansprechpartner muss mindestens 4 Zeichen enthalten.";
+  }
+
+  if (data.branche.trim().length < 4) {
+    errors.branche = "Branche muss mindestens 4 Zeichen enthalten.";
+  }
+
+  const kwp = Number(data.anlagengroesse_kwp);
+  if (!Number.isFinite(kwp) || kwp < 10 || kwp > 10000) {
+    errors.anlagengroesse_kwp =
+      "Anlagengroesse muss zwischen 10 und 10000 liegen.";
+  }
+
+  const volumen = Number(data.volumen_eur);
+  if (!Number.isFinite(volumen) || volumen <= 0 || volumen > 10_000_000) {
+    errors.volumen_eur = "Volumen muss zwischen 1 und 10.000.000 EUR liegen.";
+  }
+
+  if (!data.angebotsdatum) {
+    errors.angebotsdatum = "Angebotsdatum ist erforderlich.";
+  } else {
+    const d = new Date(data.angebotsdatum);
+    if (Number.isNaN(d.getTime())) {
+      errors.angebotsdatum = "Ungueltiges Datum.";
+    } else {
+      const maxDate = new Date();
+      maxDate.setFullYear(maxDate.getFullYear() + 1);
+      if (d.getTime() > maxDate.getTime()) {
+        errors.angebotsdatum =
+          "Datum darf hoechstens 1 Jahr in der Zukunft liegen.";
+      }
+    }
+  }
+
+  if (!PIPELINE_STATUSES.includes(data.status as PipelineStatus)) {
+    errors.status = "Bitte Status auswaehlen.";
+  }
+
+  return errors;
+}

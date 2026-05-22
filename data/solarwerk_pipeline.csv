@@ -1,6 +1,6 @@
 id,firma,ansprechpartner,branche,anlagengroesse_kwp,volumen_eur,angebotsdatum,status,notiz
 1,Druckhaus Lindauer,Martin Lindauer,Industrie,95,89000,2026-04-20,erstkontakt,Anfrage ueber Website. Termin fuer Erstgespraech am 15.05.
-2,Obsthof Berger,Claudia Berger,Landwirtschaft,130,124000,2026-04-15,erstkontakt,Kuehlhalle fuer Obstlagerung. Hoher Sommerverbrauch.
+2,Obsthof Berger,Claudia Berger,Landwirtschaft,130,124000,2026-04-15,angebot_raus,Kuehlhalle fuer Obstlagerung. Hoher Sommerverbrauch.
 3,Sporthotel Weitblick,Juergen Hintermeier,Gewerbe,180,168000,2026-03-28,angebot_raus,Angebot versendet. Foerderberatung laeuft parallel.
 4,Baeckerei Kronenbrot,Stefanie Kronenberger,Handwerk,42,38500,2026-04-02,angebot_raus,Angebot fuer Backstube und Laden. Dachstatik geprueft.
 5,Metallwerk Donau GmbH,Karl-Heinz Riedl,Industrie,350,298000,2026-03-10,verhandlung,Verhandlung ueber Zahlungskonditionen. Foerderzusage erwartet.
@@ -12,3 +12,4 @@ id,firma,ansprechpartner,branche,anlagengroesse_kwp,volumen_eur,angebotsdatum,st
 11,Kaeserei Allgaeuer Gold,Anton Schmid,Landwirtschaft,200,185000,2026-03-20,angebot_raus,Kaesereifung braucht konstante Kuehlung. Speicher im Angebot.
 12,Stadtwerke Mering,Dr. Ulrich Fink,Gewerbe,650,580000,2026-01-18,gewonnen,Zuschlag erteilt. Projektstart Q3 2026. Groesstes Pipeline-Projekt.
 13,Stadtw,Dr. Fink,Gewerbe,650,5800,2026-05-18,gewonnen,Zuschlag erteilt. Projektstart Q3 2026. Groesstes Projekt.
+15,Pipeline Test,Pipe,Pipe,3000,250,2026-05-23,gewonnen,

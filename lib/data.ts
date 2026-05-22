@@ -29,3 +29,7 @@ export function getPipeline(): PipelineEintrag[] {
   });
   return result.data;
 }
+
+export function getPipelineEintrag(id: number): PipelineEintrag | null {
+  return getPipeline().find((e) => e.id === id) ?? null;
+}
