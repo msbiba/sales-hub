@@ -19,7 +19,18 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="de" className={`${geistSans.variable} h-full`}>
+    <html
+      lang="de"
+      className={`${geistSans.variable} h-full`}
+      suppressHydrationWarning
+    >
+      <head>
+        <script
+          dangerouslySetInnerHTML={{
+            __html: `(function(){try{var t=localStorage.getItem('theme');var m=window.matchMedia('(prefers-color-scheme: dark)').matches;if(t==='dark'||(!t&&m)){document.documentElement.classList.add('dark');}}catch(e){}})();`,
+          }}
+        />
+      </head>
       <body className="min-h-full flex flex-col bg-gray-50 font-[family-name:var(--font-geist-sans)] text-gray-900 antialiased">
         <Navigation />
         <main className="mx-auto w-full max-w-7xl flex-1 px-6 py-8">

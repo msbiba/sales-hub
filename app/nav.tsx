@@ -2,6 +2,7 @@
 
 import Link from "next/link";
 import { usePathname } from "next/navigation";
+import ThemeToggle from "./theme-toggle";
 
 export default function Navigation() {
   const pathname = usePathname();
@@ -36,9 +37,12 @@ export default function Navigation() {
           ))}
         </nav>
 
-        <span className="text-sm text-gray-500">
-          Eingeloggt als Felix Mustermann
-        </span>
+        <div className="flex items-center gap-4">
+          <span className="text-sm text-gray-500">
+            Eingeloggt als Felix Mustermann
+          </span>
+          <ThemeToggle />
+        </div>
       </div>
     </header>
   );
