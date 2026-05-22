@@ -1,5 +1,8 @@
+import Link from "next/link";
 import { getPipeline } from "@/lib/data";
 import StatusBadge from "@/components/StatusBadge";
+
+export const dynamic = "force-dynamic";
 
 export default function PipelinePage() {
   const eintraege = getPipeline();
@@ -37,6 +40,16 @@ export default function PipelinePage() {
         ))}
       </div>
 
+      <div className="flex items-center justify-between">
+        <h2 className="text-lg font-semibold text-gray-900">Pipeline-Eintraege</h2>
+        <Link
+          href="/pipeline/neu"
+          className="rounded-md bg-blue-600 px-4 py-2 text-sm font-medium text-white hover:bg-blue-700"
+        >
+          Neuen Pipeline-Eintrag anlegen
+        </Link>
+      </div>
+
       <div className="overflow-hidden rounded-lg border border-gray-200 bg-white">
         <table className="min-w-full divide-y divide-gray-200">
           <thead className="bg-gray-50">
@@ -51,7 +64,14 @@ export default function PipelinePage() {
           <tbody className="divide-y divide-gray-100">
             {eintraege.map((e) => (
               <tr key={e.id} className="hover:bg-gray-50">
-                <td className="px-6 py-4 text-sm font-medium text-gray-900">{e.firma}</td>
+                <td className="px-6 py-4 text-sm font-medium">
+                  <Link
+                    href={`/pipeline/${e.id}`}
+                    className="text-blue-600 hover:underline"
+                  >
+                    {e.firma}
+                  </Link>
+                </td>
                 <td className="px-6 py-4 text-sm text-gray-600">{e.anlagengroesse_kwp}</td>
                 <td className="px-6 py-4 text-sm text-gray-600">{formatEur(e.volumen_eur)}</td>
                 <td className="px-6 py-4 text-sm text-gray-600">{e.angebotsdatum}</td>
