@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useMemo, useState } from "react";
 import { useRouter } from "next/navigation";
 import { Users, CheckCircle, AlertTriangle } from "lucide-react";
 import { Kunde, KundenStatus } from "@/types";
@@ -11,8 +11,34 @@ export default function DashboardClient({ kunden }: { kunden: Kunde[] }) {
     "alle"
   );
   const [suchbegriff, setSuchbegriff] = useState("");
+  const [brancheFilter, setBrancheFilter] = useState<string>("alle");
   const [sortKey, setSortKey] = useState<keyof Kunde | null>(null);
   const [sortDir, setSortDir] = useState<"asc" | "desc">("asc");
+
+  const branchen = useMemo(
+    () =>
+      Array.from(new Set(kunden.map((k) => k.branche).filter(Boolean))).sort(
+        (a, b) => a.localeCompare(b, "de")
+      ),
+    [kunden]
+  );
+
+  const { kwpMin, kwpMax } = useMemo(() => {
+    const werte = kunden
+      .map((k) => Number(k.anlagengroesse_kwp))
+      .filter((n) => Number.isFinite(n));
+    if (werte.length === 0) return { kwpMin: 0, kwpMax: 0 };
+    return { kwpMin: Math.min(...werte), kwpMax: Math.max(...werte) };
+  }, [kunden]);
+
+  const [kwpRange, setKwpRange] = useState<[number, number]>([kwpMin, kwpMax]);
+
+  function resetFilter() {
+    setStatusFilter("alle");
+    setSuchbegriff("");
+    setBrancheFilter("alle");
+    setKwpRange([kwpMin, kwpMax]);
+  }
 
   function handleSort(key: keyof Kunde) {
     if (sortKey === key) {
@@ -34,7 +60,13 @@ export default function DashboardClient({ kunden }: { kunden: Kunde[] }) {
       suchbegriff === "" ||
       k.firma.toLowerCase().includes(suchbegriff.toLowerCase()) ||
       k.ansprechpartner.toLowerCase().includes(suchbegriff.toLowerCase());
-    return statusPasst && suchPasst;
+    const branchePasst =
+      brancheFilter === "alle" || k.branche === brancheFilter;
+    const kwp = Number(k.anlagengroesse_kwp);
+    const kwpPasst =
+      !Number.isFinite(kwp) ||
+      (kwp >= kwpRange[0] && kwp <= kwpRange[1]);
+    return statusPasst && suchPasst && branchePasst && kwpPasst;
   });
 
   const sortierteKunden = [...gefilterteKunden].sort((a, b) => {
@@ -80,7 +112,7 @@ export default function DashboardClient({ kunden }: { kunden: Kunde[] }) {
         </div>
       </div>
 
-      <div className="mb-4 flex flex-col gap-4 sm:flex-row">
+      <div className="mb-4 flex flex-col gap-4 sm:flex-row sm:flex-wrap sm:items-end">
         <select
           value={statusFilter}
           onChange={(e) =>
@@ -100,6 +132,58 @@ export default function DashboardClient({ kunden }: { kunden: Kunde[] }) {
           onChange={(e) => setSuchbegriff(e.target.value)}
           className="rounded-md border border-gray-300 px-3 py-2 text-sm sm:w-80"
         />
+        <select
+          value={brancheFilter}
+          onChange={(e) => setBrancheFilter(e.target.value)}
+          className="rounded-md border border-gray-300 bg-white px-3 py-2 text-sm"
+        >
+          <option value="alle">Alle Branchen</option>
+          {branchen.map((b) => (
+            <option key={b} value={b}>
+              {b}
+            </option>
+          ))}
+        </select>
+        <div className="flex flex-col gap-1 sm:w-72">
+          <label className="text-xs text-gray-600">
+            Anlagengroesse: {kwpRange[0]}–{kwpRange[1]} kWp
+          </label>
+          <div className="flex items-center gap-2">
+            <input
+              type="range"
+              min={kwpMin}
+              max={kwpMax}
+              value={kwpRange[0]}
+              onChange={(e) =>
+                setKwpRange([
+                  Math.min(Number(e.target.value), kwpRange[1]),
+                  kwpRange[1],
+                ])
+              }
+              className="w-full"
+            />
+            <input
+              type="range"
+              min={kwpMin}
+              max={kwpMax}
+              value={kwpRange[1]}
+              onChange={(e) =>
+                setKwpRange([
+                  kwpRange[0],
+                  Math.max(Number(e.target.value), kwpRange[0]),
+                ])
+              }
+              className="w-full"
+            />
+          </div>
+        </div>
+        <button
+          type="button"
+          onClick={resetFilter}
+          className="rounded-md border border-gray-300 bg-white px-3 py-2 text-sm font-medium text-gray-700 hover:bg-gray-50"
+        >
+          Filter zurücksetzen
+        </button>
       </div>
 
       <div className="overflow-x-auto rounded-lg border border-gray-200 bg-white">
