@@ -5,6 +5,8 @@ import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { ArrowLeft } from "lucide-react";
 import { Kunde, KundenStatus } from "@/types";
+import KundeStatusBadge from "@/components/KundeStatusBadge";
+import ConfirmDialog from "@/components/ConfirmDialog";
 
 type FormState = {
   firma: string;
@@ -31,18 +33,6 @@ function toForm(k: Kunde): FormState {
     email: k.email ?? "",
     notiz: k.notiz ?? "",
   };
-}
-
-function statusLabel(s: KundenStatus) {
-  return s === "aktiv" ? "Aktiv" : s === "in_wartung" ? "In Wartung" : "Beschwerde";
-}
-
-function statusClass(s: KundenStatus) {
-  return s === "aktiv"
-    ? "bg-green-100 text-green-700"
-    : s === "in_wartung"
-      ? "bg-orange-100 text-orange-700"
-      : "bg-red-100 text-red-700";
 }
 
 export default function KundeDetailClient({ kunde }: { kunde: Kunde }) {
@@ -135,13 +125,7 @@ export default function KundeDetailClient({ kunde }: { kunde: Kunde }) {
         <div className="mb-4 flex items-center justify-between">
           <h1 className="text-2xl font-bold">{kunde.firma}</h1>
           <div className="flex items-center gap-3">
-            <span
-              className={`inline-block rounded-full px-3 py-1 text-sm font-medium ${statusClass(
-                kunde.status,
-              )}`}
-            >
-              {statusLabel(kunde.status)}
-            </span>
+            <KundeStatusBadge status={kunde.status} size="md" />
             {!editing && (
               <button
                 type="button"
@@ -321,43 +305,16 @@ export default function KundeDetailClient({ kunde }: { kunde: Kunde }) {
         </button>
       </div>
 
-      {confirmDelete && (
-        <div
-          className="fixed inset-0 z-50 flex items-center justify-center bg-black/40 p-4"
-          role="dialog"
-          aria-modal="true"
-        >
-          <div className="w-full max-w-md rounded-lg bg-white p-6 shadow-lg">
-            <h2 className="mb-2 text-lg font-semibold text-gray-900">
-              Kunde loeschen
-            </h2>
-            <p className="mb-6 text-sm text-gray-700">
-              Bist du sicher, dass dieser Kunde geloescht werden soll?
-            </p>
-            {deleteError && (
-              <p className="mb-3 text-sm text-red-600">{deleteError}</p>
-            )}
-            <div className="flex justify-end gap-3">
-              <button
-                type="button"
-                onClick={() => setConfirmDelete(false)}
-                disabled={deleting}
-                className="rounded-md bg-gray-200 px-4 py-2 text-sm font-medium text-gray-800 hover:bg-gray-300"
-              >
-                Zurueck
-              </button>
-              <button
-                type="button"
-                onClick={handleDelete}
-                disabled={deleting}
-                className="rounded-md bg-red-600 px-4 py-2 text-sm font-medium text-white hover:bg-red-700 disabled:opacity-60"
-              >
-                {deleting ? "Loesche..." : "Endgueltig loeschen"}
-              </button>
-            </div>
-          </div>
-        </div>
-      )}
+      <ConfirmDialog
+        open={confirmDelete}
+        title="Kunde loeschen"
+        body="Bist du sicher, dass dieser Kunde geloescht werden soll?"
+        confirmLabel="Endgueltig loeschen"
+        onCancel={() => setConfirmDelete(false)}
+        onConfirm={handleDelete}
+        loading={deleting}
+        errorText={deleteError}
+      />
     </div>
   );
 }

@@ -4,6 +4,8 @@ import { useMemo, useState } from "react";
 import { useRouter } from "next/navigation";
 import { Users, CheckCircle, AlertTriangle } from "lucide-react";
 import { Kunde, KundenStatus } from "@/types";
+import KundeStatusBadge from "@/components/KundeStatusBadge";
+import DualRangeSlider from "@/components/DualRangeSlider";
 
 export default function DashboardClient({ kunden }: { kunden: Kunde[] }) {
   const router = useRouter();
@@ -144,39 +146,14 @@ export default function DashboardClient({ kunden }: { kunden: Kunde[] }) {
             </option>
           ))}
         </select>
-        <div className="flex flex-col gap-1 sm:w-72">
-          <label className="text-xs text-gray-600">
-            Anlagengroesse: {kwpRange[0]}–{kwpRange[1]} kWp
-          </label>
-          <div className="flex items-center gap-2">
-            <input
-              type="range"
-              min={kwpMin}
-              max={kwpMax}
-              value={kwpRange[0]}
-              onChange={(e) =>
-                setKwpRange([
-                  Math.min(Number(e.target.value), kwpRange[1]),
-                  kwpRange[1],
-                ])
-              }
-              className="w-full"
-            />
-            <input
-              type="range"
-              min={kwpMin}
-              max={kwpMax}
-              value={kwpRange[1]}
-              onChange={(e) =>
-                setKwpRange([
-                  kwpRange[0],
-                  Math.max(Number(e.target.value), kwpRange[0]),
-                ])
-              }
-              className="w-full"
-            />
-          </div>
-        </div>
+        <DualRangeSlider
+          min={kwpMin}
+          max={kwpMax}
+          value={kwpRange}
+          onChange={setKwpRange}
+          label="Anlagengroesse"
+          format={(n) => `${n} kWp`}
+        />
         <button
           type="button"
           onClick={resetFilter}
@@ -224,21 +201,7 @@ export default function DashboardClient({ kunden }: { kunden: Kunde[] }) {
                 <td className="px-4 py-3">{kunde.branche}</td>
                 <td className="px-4 py-3">{kunde.anlagengroesse_kwp}</td>
                 <td className="px-4 py-3">
-                  <span
-                    className={`inline-block rounded-full px-2 py-1 text-xs font-medium ${
-                      kunde.status === "aktiv"
-                        ? "bg-green-100 text-green-700"
-                        : kunde.status === "in_wartung"
-                          ? "bg-orange-100 text-orange-700"
-                          : "bg-red-100 text-red-700"
-                    }`}
-                  >
-                    {kunde.status === "aktiv"
-                      ? "Aktiv"
-                      : kunde.status === "in_wartung"
-                        ? "In Wartung"
-                        : "Beschwerde"}
-                  </span>
+                  <KundeStatusBadge status={kunde.status} />
                 </td>
                 <td className="px-4 py-3">{kunde.letzter_kontakt}</td>
               </tr>

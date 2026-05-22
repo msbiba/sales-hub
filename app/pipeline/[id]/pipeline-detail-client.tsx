@@ -5,6 +5,7 @@ import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { ArrowLeft } from "lucide-react";
 import { PipelineEintrag, PipelineStatus } from "@/types";
+import ConfirmDialog from "@/components/ConfirmDialog";
 
 type FormState = {
   firma: string;
@@ -336,43 +337,16 @@ export default function PipelineDetailClient({
         </button>
       </div>
 
-      {confirmDelete && (
-        <div
-          className="fixed inset-0 z-50 flex items-center justify-center bg-black/40 p-4"
-          role="dialog"
-          aria-modal="true"
-        >
-          <div className="w-full max-w-md rounded-lg bg-white p-6 shadow-lg">
-            <h2 className="mb-2 text-lg font-semibold text-gray-900">
-              Pipeline-Eintrag loeschen
-            </h2>
-            <p className="mb-6 text-sm text-gray-700">
-              Bist du sicher, dass dieser Pipeline-Eintrag geloescht werden soll?
-            </p>
-            {deleteError && (
-              <p className="mb-3 text-sm text-red-600">{deleteError}</p>
-            )}
-            <div className="flex justify-end gap-3">
-              <button
-                type="button"
-                onClick={() => setConfirmDelete(false)}
-                disabled={deleting}
-                className="rounded-md bg-gray-200 px-4 py-2 text-sm font-medium text-gray-800 hover:bg-gray-300"
-              >
-                Zurueck
-              </button>
-              <button
-                type="button"
-                onClick={handleDelete}
-                disabled={deleting}
-                className="rounded-md bg-red-600 px-4 py-2 text-sm font-medium text-white hover:bg-red-700 disabled:opacity-60"
-              >
-                {deleting ? "Loesche..." : "Endgueltig loeschen"}
-              </button>
-            </div>
-          </div>
-        </div>
-      )}
+      <ConfirmDialog
+        open={confirmDelete}
+        title="Pipeline-Eintrag loeschen"
+        body="Bist du sicher, dass dieser Pipeline-Eintrag geloescht werden soll?"
+        confirmLabel="Endgueltig loeschen"
+        onCancel={() => setConfirmDelete(false)}
+        onConfirm={handleDelete}
+        loading={deleting}
+        errorText={deleteError}
+      />
     </div>
   );
 }
