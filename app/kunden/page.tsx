@@ -3,8 +3,14 @@ import { getKunden } from "@/lib/data";
 
 export const dynamic = "force-dynamic";
 
-export default async function KundenPage() {
-  const kunden = await getKunden();
+export default async function KundenPage({
+  searchParams,
+}: {
+  searchParams: Promise<{ mock?: string }>;
+}) {
+  const params = await searchParams;
+  const mockMode = params.mock ?? 'normal';
+  const kunden = await getKunden(mockMode);
 
   return (
     <div>

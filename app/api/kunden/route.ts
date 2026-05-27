@@ -1,10 +1,6 @@
 import { NextRequest, NextResponse } from "next/server";
 import { revalidatePath } from "next/cache";
-import fs from "fs";
-import path from "path";
-
-const CSV_PATH = path.join(process.cwd(), "data", "solarwerk_kunden.csv");
-
+import { supabase } from "@/lib/supabase";
 
 export async function POST(request: NextRequest) {
   try {
@@ -39,43 +35,37 @@ export async function POST(request: NextRequest) {
       );
     }
 
-    const csvContent = fs.readFileSync(CSV_PATH, "utf-8");
-    const lines = csvContent.trimEnd().split("\n");
-
-    let maxId = 0;
-    for (let i = 1; i < lines.length; i++) {
-      const id = parseInt(lines[i].split(",")[0], 10);
-      if (id > maxId) maxId = id;
-    }
-
     const today = new Date().toISOString().split("T")[0];
 
-    const escapeCsv = (val: string) => {
-      if (val.includes(",") || val.includes('"') || val.includes("\n")) {
-        return `"${val.replace(/"/g, '""')}"`;
-      }
-      return val;
-    };
+    const { data, error } = await supabase
+      .from("kunden")
+      .insert({
+        firma: body.firma.trim(),
+        ansprechpartner: (body.ansprechpartner || "").trim(),
+        branche: (body.branche || "").trim(),
+        anlagengroesse_kwp: body.anlagengroesse_kwp
+          ? Number(body.anlagengroesse_kwp)
+          : 0,
+        status: body.status || "aktiv",
+        letzter_kontakt: today,
+        telefon: (body.telefon || "").trim(),
+        email: (body.email || "").trim(),
+        notiz: (body.notiz || "").trim(),
+      })
+      .select("id")
+      .single();
 
-    const newRow = [
-      maxId + 1,
-      escapeCsv(body.firma.trim()),
-      escapeCsv((body.ansprechpartner || "").trim()),
-      escapeCsv((body.branche || "").trim()),
-      body.anlagengroesse_kwp || "",
-      body.status || "aktiv",
-      today,
-      escapeCsv((body.telefon || "").trim()),
-      escapeCsv((body.email || "").trim()),
-      escapeCsv((body.notiz || "").trim()),
-    ].join(",");
-
-    fs.appendFileSync(CSV_PATH, "\r\n" + newRow);
+    if (error) {
+      return NextResponse.json(
+        { error: `Supabase-Fehler: ${error.message}` },
+        { status: 500 }
+      );
+    }
 
     revalidatePath("/");
     revalidatePath("/kunden");
 
-    return NextResponse.json({ success: true, id: maxId + 1 });
+    return NextResponse.json({ success: true, id: data.id });
   } catch {
     return NextResponse.json(
       { error: "Speichern fehlgeschlagen, bitte erneut versuchen" },

@@ -1,22 +1,13 @@
 import { NextRequest, NextResponse } from "next/server";
 import { revalidatePath } from "next/cache";
-import fs from "fs";
-import path from "path";
-import Papa from "papaparse";
-import { Kunde } from "@/types";
-
-const CSV_PATH = path.join(process.cwd(), "data", "solarwerk_kunden.csv");
+import { supabase } from "@/lib/supabase";
 
 export async function PUT(
   request: NextRequest,
   { params }: { params: Promise<{ id: string }> }
 ) {
   try {
-    const { id: idParam } = await params;
-    const id = Number(idParam);
-    if (!Number.isFinite(id)) {
-      return NextResponse.json({ error: "Ungueltige Id" }, { status: 400 });
-    }
+    const { id } = await params;
 
     const body = await request.json();
 
@@ -65,52 +56,32 @@ export async function PUT(
       );
     }
 
-    const csvContent = fs.readFileSync(CSV_PATH, "utf-8");
-    const parsed = Papa.parse<Kunde>(csvContent, {
-      header: true,
-      dynamicTyping: true,
-      skipEmptyLines: true,
-    });
-
-    const rows = parsed.data;
-    const idx = rows.findIndex((r) => Number(r.id) === id);
-    if (idx === -1) {
-      return NextResponse.json({ error: "Kunde nicht gefunden" }, { status: 404 });
-    }
-
-    rows[idx] = {
-      ...rows[idx],
+    const updateData = {
       firma: String(body.firma).trim(),
       ansprechpartner: String(body.ansprechpartner ?? "").trim(),
       branche: String(body.branche ?? "").trim(),
       anlagengroesse_kwp:
         body.anlagengroesse_kwp === "" || body.anlagengroesse_kwp == null
-          ? (0 as number)
+          ? 0
           : Number(body.anlagengroesse_kwp),
-      status: body.status ?? rows[idx].status,
-      letzter_kontakt: body.letzter_kontakt ?? rows[idx].letzter_kontakt,
+      status: body.status,
+      letzter_kontakt: body.letzter_kontakt || null,
       telefon: String(body.telefon ?? "").trim(),
       email: String(body.email ?? "").trim(),
       notiz: String(body.notiz ?? "").trim(),
     };
 
-    const csv = Papa.unparse(rows, {
-      columns: [
-        "id",
-        "firma",
-        "ansprechpartner",
-        "branche",
-        "anlagengroesse_kwp",
-        "status",
-        "letzter_kontakt",
-        "telefon",
-        "email",
-        "notiz",
-      ],
-      newline: "\r\n",
-    });
+    const { error } = await supabase
+      .from("kunden")
+      .update(updateData)
+      .eq("id", id);
 
-    fs.writeFileSync(CSV_PATH, csv);
+    if (error) {
+      return NextResponse.json(
+        { error: `Supabase-Fehler: ${error.message}` },
+        { status: 500 }
+      );
+    }
 
     revalidatePath("/");
     revalidatePath(`/kunden/${id}`);
@@ -130,44 +101,19 @@ export async function DELETE(
   { params }: { params: Promise<{ id: string }> }
 ) {
   try {
-    const { id: idParam } = await params;
-    const id = Number(idParam);
-    if (!Number.isFinite(id)) {
-      return NextResponse.json({ error: "Ungueltige Id" }, { status: 400 });
+    const { id } = await params;
+
+    const { error } = await supabase
+      .from("kunden")
+      .delete()
+      .eq("id", id);
+
+    if (error) {
+      return NextResponse.json(
+        { error: `Supabase-Fehler: ${error.message}` },
+        { status: 500 }
+      );
     }
-
-    const csvContent = fs.readFileSync(CSV_PATH, "utf-8");
-    const parsed = Papa.parse<Kunde>(csvContent, {
-      header: true,
-      dynamicTyping: true,
-      skipEmptyLines: true,
-    });
-
-    const rows = parsed.data;
-    const idx = rows.findIndex((r) => Number(r.id) === id);
-    if (idx === -1) {
-      return NextResponse.json({ error: "Kunde nicht gefunden" }, { status: 404 });
-    }
-
-    rows.splice(idx, 1);
-
-    const csv = Papa.unparse(rows, {
-      columns: [
-        "id",
-        "firma",
-        "ansprechpartner",
-        "branche",
-        "anlagengroesse_kwp",
-        "status",
-        "letzter_kontakt",
-        "telefon",
-        "email",
-        "notiz",
-      ],
-      newline: "\r\n",
-    });
-
-    fs.writeFileSync(CSV_PATH, csv);
 
     revalidatePath("/");
     revalidatePath(`/kunden/${id}`);

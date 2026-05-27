@@ -3,8 +3,14 @@ import DashboardClient from "./dashboard-client";
 
 export const dynamic = "force-dynamic";
 
-export default async function DashboardPage() {
-  const kunden = await getKunden();
+export default async function DashboardPage({
+  searchParams,
+}: {
+  searchParams: Promise<{ mock?: string }>;
+}) {
+  const params = await searchParams;
+  const mockMode = params.mock ?? 'normal';
+  const kunden = await getKunden(mockMode);
 
   return <DashboardClient kunden={kunden} />;
 }

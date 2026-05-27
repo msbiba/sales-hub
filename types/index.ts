@@ -3,7 +3,7 @@ export type KundenStatus = 'aktiv' | 'in_wartung' | 'beschwerde';
 export type PipelineStatus = 'erstkontakt' | 'angebot_raus' | 'verhandlung' | 'gewonnen' | 'verloren';
 
 export interface Kunde {
-  id: number;
+  id: string;
   firma: string;
   ansprechpartner: string;
   branche: string;
