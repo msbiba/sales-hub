@@ -29,9 +29,15 @@ function countByStatus<T extends { status: string }>(
   }));
 }
 
-export default async function BerichtePage() {
-  const kunden = await getKunden();
-  const pipeline = getPipeline();
+export default async function BerichtePage({
+  searchParams,
+}: {
+  searchParams: Promise<{ mock?: string }>;
+}) {
+  const params = await searchParams;
+  const mockMode = params.mock ?? 'normal';
+  const kunden = await getKunden(mockMode);
+  const pipeline = await getPipeline(mockMode);
 
   const kundenVerteilung = countByStatus(kunden, kundenLabels);
   const pipelineVerteilung = countByStatus(pipeline, pipelineLabels);
