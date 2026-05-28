@@ -1,6 +1,6 @@
 export type KundenStatus = 'aktiv' | 'in_wartung' | 'beschwerde';
 
-export type PipelineStatus = 'erstkontakt' | 'angebot_raus' | 'verhandlung' | 'gewonnen' | 'verloren';
+export type PipelineStatus = 'erstkontakt' | 'angebot_raus' | 'verhandlung' | 'gewonnen' | 'verloren' | 'loeschbar';
 
 export interface Kunde {
   id: string;
@@ -16,13 +16,15 @@ export interface Kunde {
 }
 
 export interface PipelineEintrag {
-  id: number;
+  id: string;
+  customer_id: string;
   firma: string;
-  ansprechpartner: string;
-  branche: string;
-  anlagengroesse_kwp: number;
   volumen_eur: number;
   angebotsdatum: string;
   status: PipelineStatus;
   notiz: string;
+  // Felder via JOIN aus kunden (optional, koennen null sein wenn Kunde-Daten fehlen)
+  ansprechpartner?: string;
+  branche?: string;
+  anlagengroesse_kwp?: number;
 }

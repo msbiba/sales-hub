@@ -44,6 +44,8 @@ function statusLabel(s: PipelineStatus) {
       return "Gewonnen";
     case "verloren":
       return "Verloren";
+    case "loeschbar":
+      return "Loeschbar";
   }
 }
 
@@ -59,6 +61,8 @@ function statusClass(s: PipelineStatus) {
       return "bg-green-100 text-green-700";
     case "verloren":
       return "bg-red-100 text-red-700";
+    case "loeschbar":
+      return "bg-yellow-100 text-yellow-700";
   }
 }
 
@@ -251,6 +255,7 @@ export default function PipelineDetailClient({
                 <option value="verhandlung">Verhandlung</option>
                 <option value="gewonnen">Gewonnen</option>
                 <option value="verloren">Verloren</option>
+                <option value="loeschbar">Loeschbar</option>
               </select>
             </div>
             <div className="sm:col-span-2">

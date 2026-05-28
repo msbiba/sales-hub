@@ -160,6 +160,7 @@ export default function PipelineClient({
           <option value="verhandlung">Verhandlung</option>
           <option value="gewonnen">Gewonnen</option>
           <option value="verloren">Verloren</option>
+          <option value="loeschbar">Loeschbar</option>
         </select>
         <input
           type="text"

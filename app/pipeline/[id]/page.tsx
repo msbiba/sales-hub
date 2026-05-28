@@ -13,7 +13,7 @@ export default async function PipelineDetailPage({
   const { id } = await params;
   const sp = await searchParams;
   const mockMode = sp.mock ?? 'normal';
-  const eintrag = await getPipelineEintrag(Number(id), mockMode);
+  const eintrag = await getPipelineEintrag(id, mockMode);
 
   if (!eintrag) {
     return <p>Pipeline-Eintrag nicht gefunden</p>;

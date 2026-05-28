@@ -6,6 +6,7 @@ const config: Record<PipelineStatus, { label: string; className: string }> = {
   verhandlung: { label: "Verhandlung", className: "bg-purple-100 text-purple-700" },
   gewonnen: { label: "Gewonnen", className: "bg-green-100 text-green-700" },
   verloren: { label: "Verloren", className: "bg-red-100 text-red-700" },
+  loeschbar: { label: "Loeschbar", className: "bg-yellow-100 text-yellow-700" },
 };
 
 export default function StatusBadge({ status }: { status: PipelineStatus }) {
