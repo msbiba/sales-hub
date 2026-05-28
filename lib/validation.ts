@@ -55,7 +55,11 @@ export type PipelineInput = {
   angebotsdatum: string;
   status: string;
   notiz: string;
+  bearbeiter: string;
 };
+
+export const BEARBEITER_LISTE = ["Anna", "Ben", "Clara"] as const;
+export type BearbeiterName = (typeof BEARBEITER_LISTE)[number];
 
 export type PipelineErrors = Partial<Record<keyof PipelineInput, string>>;
 
@@ -102,6 +106,10 @@ export function validatePipeline(data: PipelineInput): PipelineErrors {
 
   if (!PIPELINE_STATUSES.includes(data.status as PipelineStatus)) {
     errors.status = "Bitte Status auswaehlen.";
+  }
+
+  if (!data.bearbeiter || !BEARBEITER_LISTE.includes(data.bearbeiter as BearbeiterName)) {
+    errors.bearbeiter = "Bearbeiter ist erforderlich (Anna, Ben oder Clara).";
   }
 
   return errors;

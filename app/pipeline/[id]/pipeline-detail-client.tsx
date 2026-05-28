@@ -5,6 +5,7 @@ import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { ArrowLeft } from "lucide-react";
 import { PipelineEintrag, PipelineStatus } from "@/types";
+import { BEARBEITER_LISTE } from "@/lib/validation";
 import ConfirmDialog from "@/components/ConfirmDialog";
 
 type FormState = {
@@ -16,6 +17,7 @@ type FormState = {
   angebotsdatum: string;
   status: PipelineStatus | "";
   notiz: string;
+  bearbeiter: string;
 };
 
 function toForm(e: PipelineEintrag): FormState {
@@ -29,6 +31,7 @@ function toForm(e: PipelineEintrag): FormState {
     angebotsdatum: e.angebotsdatum ?? "",
     status: e.status ?? "",
     notiz: e.notiz ?? "",
+    bearbeiter: e.bearbeiter ?? "",
   };
 }
 
@@ -258,6 +261,21 @@ export default function PipelineDetailClient({
                 <option value="loeschbar">Loeschbar</option>
               </select>
             </div>
+            <div>
+              <label className={labelCls}>Bearbeiter</label>
+              <select
+                value={form.bearbeiter}
+                onChange={(e) => update("bearbeiter", e.target.value)}
+                className={inputCls}
+              >
+                <option value="">Bitte waehlen…</option>
+                {BEARBEITER_LISTE.map((b) => (
+                  <option key={b} value={b}>
+                    {b}
+                  </option>
+                ))}
+              </select>
+            </div>
             <div className="sm:col-span-2">
               <label className={labelCls}>Notiz</label>
               <textarea
@@ -310,6 +328,10 @@ export default function PipelineDetailClient({
               <div>
                 <p className="text-sm text-gray-500">Angebotsdatum</p>
                 <p className="font-medium">{eintrag.angebotsdatum}</p>
+              </div>
+              <div>
+                <p className="text-sm text-gray-500">Bearbeiter</p>
+                <p className="font-medium">{eintrag.bearbeiter}</p>
               </div>
             </div>
 

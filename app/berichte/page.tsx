@@ -1,53 +1,67 @@
 import { getKunden, getPipeline } from "@/lib/data";
+import { parseFilter } from "@/lib/berichte-filter";
+import {
+  filterKunden,
+  filterPipeline,
+  countByStatus,
+  berechneAuftragsvolumenTTM,
+  berechneBearbeiterVolumen,
+  kundenStatusLabels,
+  pipelineStatusLabels,
+} from "@/lib/berichte-aggregate";
 import BerichteClient from "./berichte-client";
 
-const kundenLabels: Record<string, string> = {
-  aktiv: "Aktiv",
-  in_wartung: "In Wartung",
-  beschwerde: "Beschwerde",
-};
-
-const pipelineLabels: Record<string, string> = {
-  erstkontakt: "Erstkontakt",
-  angebot_raus: "Angebot raus",
-  verhandlung: "Verhandlung",
-  gewonnen: "Gewonnen",
-  verloren: "Verloren",
-};
-
-function countByStatus<T extends { status: string }>(
-  items: T[],
-  labels: Record<string, string>,
-) {
-  const counts: Record<string, number> = {};
-  for (const item of items) {
-    counts[item.status] = (counts[item.status] || 0) + 1;
-  }
-  return Object.entries(labels).map(([key, name]) => ({
-    name,
-    value: counts[key] || 0,
-  }));
-}
+export const dynamic = "force-dynamic";
 
 export default async function BerichtePage({
   searchParams,
 }: {
-  searchParams: Promise<{ mock?: string }>;
+  searchParams: Promise<{
+    ks?: string;
+    ps?: string;
+    bs?: string;
+    mock?: string;
+  }>;
 }) {
   const params = await searchParams;
-  const mockMode = params.mock ?? 'normal';
-  const kunden = await getKunden(mockMode);
-  const pipeline = await getPipeline(mockMode);
+  const mockMode = params.mock ?? "normal";
+  const filter = parseFilter(params);
 
-  const kundenVerteilung = countByStatus(kunden, kundenLabels);
-  const pipelineVerteilung = countByStatus(pipeline, pipelineLabels);
+  const [kunden, pipeline] = await Promise.all([
+    getKunden(mockMode),
+    getPipeline(mockMode),
+  ]);
+
+  const kundenGefiltert = filterKunden(kunden, pipeline, filter);
+  const pipelineGefiltert = filterPipeline(pipeline, kunden, filter);
+
+  const anzahlKunden = kundenGefiltert.length;
+  const auftragsvolumen = berechneAuftragsvolumenTTM(
+    pipelineGefiltert,
+    filter.ps
+  );
+  const kundenVerteilung = countByStatus(kundenGefiltert, kundenStatusLabels);
+  const pipelineVerteilung = countByStatus(
+    pipelineGefiltert,
+    pipelineStatusLabels
+  );
+  const bearbeiterVerteilung = berechneBearbeiterVolumen(
+    pipelineGefiltert,
+    filter.ps
+  );
 
   return (
-    <div className="space-y-8">
-      <h1 className="text-2xl font-semibold text-gray-900">Berichte</h1>
+    <div className="space-y-6">
+      <h1 className="text-2xl font-semibold text-gray-900 dark:text-gray-100">
+        Berichte
+      </h1>
       <BerichteClient
+        filter={filter}
+        anzahlKunden={anzahlKunden}
+        auftragsvolumen={auftragsvolumen}
         kundenVerteilung={kundenVerteilung}
         pipelineVerteilung={pipelineVerteilung}
+        bearbeiterVerteilung={bearbeiterVerteilung}
       />
     </div>
   );

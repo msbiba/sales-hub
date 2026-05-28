@@ -2,7 +2,7 @@
 
 import { useState } from "react";
 import { useRouter } from "next/navigation";
-import { validatePipeline, type PipelineErrors } from "@/lib/validation";
+import { validatePipeline, type PipelineErrors, BEARBEITER_LISTE } from "@/lib/validation";
 
 type KundeOption = { id: string; firma: string };
 
@@ -13,6 +13,7 @@ const initialFormData = {
   angebotsdatum: "",
   status: "",
   notiz: "",
+  bearbeiter: "",
 };
 
 export default function PipelineNeuClient({ kunden }: { kunden: KundeOption[] }) {
@@ -177,7 +178,7 @@ export default function PipelineNeuClient({ kunden }: { kunden: KundeOption[] })
               </p>
             )}
           </div>
-          <div className="sm:col-span-2">
+          <div>
             <label className="mb-1 block text-sm font-medium text-gray-700">
               Status *
             </label>
@@ -197,6 +198,27 @@ export default function PipelineNeuClient({ kunden }: { kunden: KundeOption[] })
             </select>
             {fieldErrors.status && (
               <p className="mt-1 text-xs text-red-600">{fieldErrors.status}</p>
+            )}
+          </div>
+          <div>
+            <label className="mb-1 block text-sm font-medium text-gray-700">
+              Bearbeiter *
+            </label>
+            <select
+              name="bearbeiter"
+              value={formData.bearbeiter}
+              onChange={handleChange}
+              className={fieldClass("bearbeiter")}
+            >
+              <option value="">Bitte waehlen…</option>
+              {BEARBEITER_LISTE.map((b) => (
+                <option key={b} value={b}>
+                  {b}
+                </option>
+              ))}
+            </select>
+            {fieldErrors.bearbeiter && (
+              <p className="mt-1 text-xs text-red-600">{fieldErrors.bearbeiter}</p>
             )}
           </div>
         </div>

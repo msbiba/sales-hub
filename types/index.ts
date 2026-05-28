@@ -15,6 +15,8 @@ export interface Kunde {
   notiz: string;
 }
 
+export type Bearbeiter = 'Anna' | 'Ben' | 'Clara';
+
 export interface PipelineEintrag {
   id: string;
   customer_id: string;
@@ -23,6 +25,7 @@ export interface PipelineEintrag {
   angebotsdatum: string;
   status: PipelineStatus;
   notiz: string;
+  bearbeiter: string; // freitext in DB, UI dropdown beschraenkt auf Anna/Ben/Clara
   // Felder via JOIN aus kunden (optional, koennen null sein wenn Kunde-Daten fehlen)
   ansprechpartner?: string;
   branche?: string;

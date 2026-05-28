@@ -48,17 +48,19 @@ type PipelineRow = {
   angebotsdatum: string;
   status: PipelineEintrag['status'];
   notiz: string | null;
+  bearbeiter: string;
   kunden: {
     ansprechpartner: string | null;
     branche: string | null;
     anlagengroesse_kwp: number | null;
+    status: string | null;
   } | null;
 };
 
 async function ladePipelineAusSupabase(): Promise<PipelineEintrag[]> {
   const { data, error } = await supabase
     .from('pipeline')
-    .select('id, customer_id, firma, volumen_eur, angebotsdatum, status, notiz, kunden(ansprechpartner, branche, anlagengroesse_kwp)');
+    .select('id, customer_id, firma, volumen_eur, angebotsdatum, status, notiz, bearbeiter, kunden(ansprechpartner, branche, anlagengroesse_kwp, status)');
 
   if (error) throw new Error(`Supabase-Fehler: ${error.message}`);
 
@@ -70,6 +72,7 @@ async function ladePipelineAusSupabase(): Promise<PipelineEintrag[]> {
     angebotsdatum: row.angebotsdatum,
     status: row.status,
     notiz: row.notiz ?? '',
+    bearbeiter: row.bearbeiter,
     ansprechpartner: row.kunden?.ansprechpartner ?? undefined,
     branche: row.kunden?.branche ?? undefined,
     anlagengroesse_kwp: row.kunden?.anlagengroesse_kwp ?? undefined,
@@ -92,7 +95,7 @@ export async function getPipelineEintrag(id: string, mode: string = mockMode): P
 
   const { data, error } = await supabase
     .from('pipeline')
-    .select('id, customer_id, firma, volumen_eur, angebotsdatum, status, notiz, kunden(ansprechpartner, branche, anlagengroesse_kwp)')
+    .select('id, customer_id, firma, volumen_eur, angebotsdatum, status, notiz, bearbeiter, kunden(ansprechpartner, branche, anlagengroesse_kwp, status)')
     .eq('id', id)
     .single();
 
@@ -106,6 +109,7 @@ export async function getPipelineEintrag(id: string, mode: string = mockMode): P
     angebotsdatum: row.angebotsdatum,
     status: row.status,
     notiz: row.notiz ?? '',
+    bearbeiter: row.bearbeiter,
     ansprechpartner: row.kunden?.ansprechpartner ?? undefined,
     branche: row.kunden?.branche ?? undefined,
     anlagengroesse_kwp: row.kunden?.anlagengroesse_kwp ?? undefined,
