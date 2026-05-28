@@ -45,13 +45,12 @@ export type PipelineStatus =
   | "angebot_raus"
   | "verhandlung"
   | "gewonnen"
-  | "verloren";
+  | "verloren"
+  | "loeschbar";
 
 export type PipelineInput = {
+  customer_id: string;
   firma: string;
-  ansprechpartner: string;
-  branche: string;
-  anlagengroesse_kwp: string;
   volumen_eur: string;
   angebotsdatum: string;
   status: string;
@@ -66,28 +65,18 @@ const PIPELINE_STATUSES: readonly PipelineStatus[] = [
   "verhandlung",
   "gewonnen",
   "verloren",
+  "loeschbar",
 ];
 
 export function validatePipeline(data: PipelineInput): PipelineErrors {
   const errors: PipelineErrors = {};
 
+  if (!data.customer_id || !data.customer_id.trim()) {
+    errors.customer_id = "Kunde ist erforderlich.";
+  }
+
   if (!data.firma.trim()) {
     errors.firma = "Firma darf nicht leer sein.";
-  }
-
-  if (data.ansprechpartner.trim().length < 4) {
-    errors.ansprechpartner =
-      "Ansprechpartner muss mindestens 4 Zeichen enthalten.";
-  }
-
-  if (data.branche.trim().length < 4) {
-    errors.branche = "Branche muss mindestens 4 Zeichen enthalten.";
-  }
-
-  const kwp = Number(data.anlagengroesse_kwp);
-  if (!Number.isFinite(kwp) || kwp < 10 || kwp > 10000) {
-    errors.anlagengroesse_kwp =
-      "Anlagengroesse muss zwischen 10 und 10000 liegen.";
   }
 
   const volumen = Number(data.volumen_eur);

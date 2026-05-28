@@ -1,6 +1,3 @@
-import fs from 'fs';
-import path from 'path';
-import Papa from 'papaparse';
 import { Kunde, PipelineEintrag } from '@/types';
 import { supabase } from './supabase';
 
@@ -41,17 +38,42 @@ export async function getKunde(id: string, mode: string = mockMode): Promise<Kun
   return data as Kunde;
 }
 
-// --- Pipeline: CSV (unveraendert) ---
+// --- Pipeline: Supabase mit JOIN auf kunden ---
 
-function ladePipelineAusCsv(): PipelineEintrag[] {
-  const filePath = path.join(process.cwd(), 'data', 'solarwerk_pipeline.csv');
-  const csv = fs.readFileSync(filePath, 'utf-8');
-  const result = Papa.parse<PipelineEintrag>(csv, {
-    header: true,
-    dynamicTyping: true,
-    skipEmptyLines: true,
-  });
-  return result.data;
+type PipelineRow = {
+  id: string;
+  customer_id: string;
+  firma: string;
+  volumen_eur: number;
+  angebotsdatum: string;
+  status: PipelineEintrag['status'];
+  notiz: string | null;
+  kunden: {
+    ansprechpartner: string | null;
+    branche: string | null;
+    anlagengroesse_kwp: number | null;
+  } | null;
+};
+
+async function ladePipelineAusSupabase(): Promise<PipelineEintrag[]> {
+  const { data, error } = await supabase
+    .from('pipeline')
+    .select('id, customer_id, firma, volumen_eur, angebotsdatum, status, notiz, kunden(ansprechpartner, branche, anlagengroesse_kwp)');
+
+  if (error) throw new Error(`Supabase-Fehler: ${error.message}`);
+
+  return (data as unknown as PipelineRow[]).map((row) => ({
+    id: row.id,
+    customer_id: row.customer_id,
+    firma: row.firma,
+    volumen_eur: row.volumen_eur,
+    angebotsdatum: row.angebotsdatum,
+    status: row.status,
+    notiz: row.notiz ?? '',
+    ansprechpartner: row.kunden?.ansprechpartner ?? undefined,
+    branche: row.kunden?.branche ?? undefined,
+    anlagengroesse_kwp: row.kunden?.anlagengroesse_kwp ?? undefined,
+  }));
 }
 
 export async function getPipeline(mode: string = mockMode): Promise<PipelineEintrag[]> {
@@ -59,10 +81,33 @@ export async function getPipeline(mode: string = mockMode): Promise<PipelineEint
   if (mode === 'loading') await new Promise(() => {}) // never resolves
   if (mode === 'error') throw new Error('Mock-Fehler: Pipeline')
   if (mode === 'empty') return []
-  return ladePipelineAusCsv()
+  return ladePipelineAusSupabase()
 }
 
-export async function getPipelineEintrag(id: number, mode: string = mockMode): Promise<PipelineEintrag | null> {
-  const pipeline = await getPipeline(mode);
-  return pipeline.find((e) => e.id === id) ?? null;
+export async function getPipelineEintrag(id: string, mode: string = mockMode): Promise<PipelineEintrag | null> {
+  await new Promise(r => setTimeout(r, 1500))
+  if (mode === 'loading') await new Promise(() => {}) // never resolves
+  if (mode === 'error') throw new Error('Mock-Fehler: Pipeline')
+  if (mode === 'empty') return null
+
+  const { data, error } = await supabase
+    .from('pipeline')
+    .select('id, customer_id, firma, volumen_eur, angebotsdatum, status, notiz, kunden(ansprechpartner, branche, anlagengroesse_kwp)')
+    .eq('id', id)
+    .single();
+
+  if (error) return null;
+  const row = data as unknown as PipelineRow;
+  return {
+    id: row.id,
+    customer_id: row.customer_id,
+    firma: row.firma,
+    volumen_eur: row.volumen_eur,
+    angebotsdatum: row.angebotsdatum,
+    status: row.status,
+    notiz: row.notiz ?? '',
+    ansprechpartner: row.kunden?.ansprechpartner ?? undefined,
+    branche: row.kunden?.branche ?? undefined,
+    anlagengroesse_kwp: row.kunden?.anlagengroesse_kwp ?? undefined,
+  };
 }
