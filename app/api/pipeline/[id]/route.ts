@@ -19,6 +19,7 @@ export async function PUT(
       angebotsdatum: String(body.angebotsdatum ?? ""),
       status: String(body.status ?? ""),
       notiz: String(body.notiz ?? ""),
+      bearbeiter: String(body.bearbeiter ?? ""),
     };
 
     const errors = validatePipeline(input);
@@ -38,6 +39,7 @@ export async function PUT(
         angebotsdatum: input.angebotsdatum,
         status: input.status,
         notiz: input.notiz.trim(),
+        bearbeiter: input.bearbeiter,
       })
       .eq("id", id);
 

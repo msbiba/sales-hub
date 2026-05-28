@@ -14,6 +14,7 @@ export async function POST(request: NextRequest) {
       angebotsdatum: String(body.angebotsdatum ?? ""),
       status: String(body.status ?? ""),
       notiz: String(body.notiz ?? ""),
+      bearbeiter: String(body.bearbeiter ?? ""),
     };
 
     const errors = validatePipeline(input);
@@ -34,6 +35,7 @@ export async function POST(request: NextRequest) {
         angebotsdatum: input.angebotsdatum,
         status: input.status,
         notiz: input.notiz.trim(),
+        bearbeiter: input.bearbeiter,
       })
       .select("id")
       .single();
