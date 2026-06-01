@@ -1,7 +1,7 @@
 import { Kunde, PipelineEintrag } from '@/types';
 import { createSupabaseServerClient } from './supabase/server';
 
-let mockMode = 'normal' // 'normal'|'loading'|'error'|'empty'
+const mockMode = 'normal' // 'normal'|'loading'|'error'|'empty'
 
 // --- Kunden: Supabase ---
 
