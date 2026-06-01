@@ -1,11 +1,12 @@
 import { Kunde, PipelineEintrag } from '@/types';
-import { supabase } from './supabase';
+import { createSupabaseServerClient } from './supabase/server';
 
 let mockMode = 'normal' // 'normal'|'loading'|'error'|'empty'
 
 // --- Kunden: Supabase ---
 
 async function ladeKundenAusSupabase(): Promise<Kunde[]> {
+  const supabase = await createSupabaseServerClient();
   const { data, error } = await supabase
     .from('kunden')
     .select('id, firma, ansprechpartner, branche, anlagengroesse_kwp, status, letzter_kontakt, telefon, email, notiz');
@@ -28,6 +29,7 @@ export async function getKunde(id: string, mode: string = mockMode): Promise<Kun
   if (mode === 'error') throw new Error('Mock-Fehler')
   if (mode === 'empty') return null
 
+  const supabase = await createSupabaseServerClient();
   const { data, error } = await supabase
     .from('kunden')
     .select('id, firma, ansprechpartner, branche, anlagengroesse_kwp, status, letzter_kontakt, telefon, email, notiz')
@@ -58,6 +60,7 @@ type PipelineRow = {
 };
 
 async function ladePipelineAusSupabase(): Promise<PipelineEintrag[]> {
+  const supabase = await createSupabaseServerClient();
   const { data, error } = await supabase
     .from('pipeline')
     .select('id, customer_id, firma, volumen_eur, angebotsdatum, status, notiz, bearbeiter, kunden(ansprechpartner, branche, anlagengroesse_kwp, status)');
@@ -93,6 +96,7 @@ export async function getPipelineEintrag(id: string, mode: string = mockMode): P
   if (mode === 'error') throw new Error('Mock-Fehler: Pipeline')
   if (mode === 'empty') return null
 
+  const supabase = await createSupabaseServerClient();
   const { data, error } = await supabase
     .from('pipeline')
     .select('id, customer_id, firma, volumen_eur, angebotsdatum, status, notiz, bearbeiter, kunden(ansprechpartner, branche, anlagengroesse_kwp, status)')

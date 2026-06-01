@@ -4,7 +4,7 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 import ThemeToggle from "./theme-toggle";
 
-export default function Navigation() {
+export default function Navigation({ userEmail }: { userEmail: string | null }) {
   const pathname = usePathname();
 
   const links = [
@@ -21,26 +21,45 @@ export default function Navigation() {
           Solarwerk Sued &middot; Sales-Hub
         </Link>
 
-        <nav className="flex gap-6">
-          {links.map((link) => (
-            <Link
-              key={link.href}
-              href={link.href}
-              className={`text-sm font-medium ${
-                pathname === link.href
-                  ? "text-blue-600"
-                  : "text-gray-600 hover:text-gray-900"
-              }`}
-            >
-              {link.label}
-            </Link>
-          ))}
-        </nav>
+        {userEmail && (
+          <nav className="flex gap-6">
+            {links.map((link) => (
+              <Link
+                key={link.href}
+                href={link.href}
+                className={`text-sm font-medium ${
+                  pathname === link.href
+                    ? "text-blue-600"
+                    : "text-gray-600 hover:text-gray-900"
+                }`}
+              >
+                {link.label}
+              </Link>
+            ))}
+          </nav>
+        )}
 
         <div className="flex items-center gap-4">
-          <span className="text-sm text-gray-500">
-            Eingeloggt als Felix Mustermann
-          </span>
+          {userEmail ? (
+            <>
+              <span className="text-sm text-gray-500">{userEmail}</span>
+              <form action="/logout" method="post">
+                <button
+                  type="submit"
+                  className="text-sm font-medium text-gray-600 hover:text-gray-900"
+                >
+                  Logout
+                </button>
+              </form>
+            </>
+          ) : (
+            <Link
+              href="/login"
+              className="text-sm font-medium text-blue-600 hover:underline"
+            >
+              Anmelden
+            </Link>
+          )}
           <ThemeToggle />
         </div>
       </div>
