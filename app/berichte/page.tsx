@@ -1,5 +1,6 @@
 import { getKunden, getPipeline } from "@/lib/data";
 import { parseFilter } from "@/lib/berichte-filter";
+import { requireRole } from "@/lib/auth/role";
 import {
   filterKunden,
   filterPipeline,
@@ -23,6 +24,7 @@ export default async function BerichtePage({
     mock?: string;
   }>;
 }) {
+  await requireRole(["admin", "buchhaltung"]);
   const params = await searchParams;
   const mockMode = params.mock ?? "normal";
   const filter = parseFilter(params);

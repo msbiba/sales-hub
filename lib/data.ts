@@ -51,6 +51,7 @@ type PipelineRow = {
   status: PipelineEintrag['status'];
   notiz: string | null;
   bearbeiter: string;
+  bearbeiter_id: string | null;
   kunden: {
     ansprechpartner: string | null;
     branche: string | null;
@@ -63,7 +64,7 @@ async function ladePipelineAusSupabase(): Promise<PipelineEintrag[]> {
   const supabase = await createSupabaseServerClient();
   const { data, error } = await supabase
     .from('pipeline')
-    .select('id, customer_id, firma, volumen_eur, angebotsdatum, status, notiz, bearbeiter, kunden(ansprechpartner, branche, anlagengroesse_kwp, status)');
+    .select('id, customer_id, firma, volumen_eur, angebotsdatum, status, notiz, bearbeiter, bearbeiter_id, kunden(ansprechpartner, branche, anlagengroesse_kwp, status)');
 
   if (error) throw new Error(`Supabase-Fehler: ${error.message}`);
 
@@ -76,6 +77,7 @@ async function ladePipelineAusSupabase(): Promise<PipelineEintrag[]> {
     status: row.status,
     notiz: row.notiz ?? '',
     bearbeiter: row.bearbeiter,
+    bearbeiter_id: row.bearbeiter_id ?? null,
     ansprechpartner: row.kunden?.ansprechpartner ?? undefined,
     branche: row.kunden?.branche ?? undefined,
     anlagengroesse_kwp: row.kunden?.anlagengroesse_kwp ?? undefined,
@@ -99,7 +101,7 @@ export async function getPipelineEintrag(id: string, mode: string = mockMode): P
   const supabase = await createSupabaseServerClient();
   const { data, error } = await supabase
     .from('pipeline')
-    .select('id, customer_id, firma, volumen_eur, angebotsdatum, status, notiz, bearbeiter, kunden(ansprechpartner, branche, anlagengroesse_kwp, status)')
+    .select('id, customer_id, firma, volumen_eur, angebotsdatum, status, notiz, bearbeiter, bearbeiter_id, kunden(ansprechpartner, branche, anlagengroesse_kwp, status)')
     .eq('id', id)
     .single();
 
@@ -114,6 +116,7 @@ export async function getPipelineEintrag(id: string, mode: string = mockMode): P
     status: row.status,
     notiz: row.notiz ?? '',
     bearbeiter: row.bearbeiter,
+    bearbeiter_id: row.bearbeiter_id ?? null,
     ansprechpartner: row.kunden?.ansprechpartner ?? undefined,
     branche: row.kunden?.branche ?? undefined,
     anlagengroesse_kwp: row.kunden?.anlagengroesse_kwp ?? undefined,

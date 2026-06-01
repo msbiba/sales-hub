@@ -2,6 +2,19 @@ export type KundenStatus = 'aktiv' | 'in_wartung' | 'beschwerde';
 
 export type PipelineStatus = 'erstkontakt' | 'angebot_raus' | 'verhandlung' | 'gewonnen' | 'verloren' | 'loeschbar';
 
+export type UserRole = 'admin' | 'bearbeiter' | 'buchhaltung';
+
+export interface Profile {
+  id: string;
+  email: string;
+  full_name: string | null;
+  role: UserRole;
+  is_active: boolean;
+  last_login_at: string | null;
+  created_at: string;
+  updated_at: string;
+}
+
 export interface Kunde {
   id: string;
   firma: string;
@@ -13,6 +26,7 @@ export interface Kunde {
   telefon: string;
   email: string;
   notiz: string;
+  bearbeiter_id: string | null;
 }
 
 export type Bearbeiter = 'Anna' | 'Ben' | 'Clara';
@@ -25,7 +39,8 @@ export interface PipelineEintrag {
   angebotsdatum: string;
   status: PipelineStatus;
   notiz: string;
-  bearbeiter: string; // freitext in DB, UI dropdown beschraenkt auf Anna/Ben/Clara
+  bearbeiter: string; // freitext in DB, UI dropdown beschraenkt auf Anna/Ben/Clara (legacy snapshot)
+  bearbeiter_id: string | null; // FK auf auth.users(id) (RBAC)
   // Felder via JOIN aus kunden (optional, koennen null sein wenn Kunde-Daten fehlen)
   ansprechpartner?: string;
   branche?: string;

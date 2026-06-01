@@ -38,6 +38,10 @@ export async function POST(request: NextRequest) {
 
     const today = new Date().toISOString().split("T")[0];
 
+    const {
+      data: { user },
+    } = await supabase.auth.getUser();
+
     const { data, error } = await supabase
       .from("kunden")
       .insert({
@@ -52,6 +56,7 @@ export async function POST(request: NextRequest) {
         telefon: (body.telefon || "").trim(),
         email: (body.email || "").trim(),
         notiz: (body.notiz || "").trim(),
+        bearbeiter_id: body.bearbeiter_id ?? user?.id ?? null,
       })
       .select("id")
       .single();

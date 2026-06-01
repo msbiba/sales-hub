@@ -3,16 +3,30 @@
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import ThemeToggle from "./theme-toggle";
+import type { UserRole } from "@/types";
 
-export default function Navigation({ userEmail }: { userEmail: string | null }) {
+type NavLink = { href: string; label: string; roles: UserRole[] };
+
+const ALL_LINKS: NavLink[] = [
+  { href: "/", label: "Dashboard", roles: ["admin", "bearbeiter", "buchhaltung"] },
+  { href: "/pipeline", label: "Pipeline", roles: ["admin", "bearbeiter", "buchhaltung"] },
+  { href: "/berichte", label: "Berichte", roles: ["admin", "buchhaltung"] },
+  { href: "/kunden/neu", label: "Neuer Kunde", roles: ["admin", "bearbeiter"] },
+  { href: "/nutzer", label: "Nutzer", roles: ["admin"] },
+];
+
+export default function Navigation({
+  userEmail,
+  userRole,
+}: {
+  userEmail: string | null;
+  userRole: UserRole | null;
+}) {
   const pathname = usePathname();
 
-  const links = [
-    { href: "/", label: "Dashboard" },
-    { href: "/pipeline", label: "Pipeline" },
-    { href: "/berichte", label: "Berichte" },
-    { href: "/kunden/neu", label: "Neuer Kunde" },
-  ];
+  const links = userRole
+    ? ALL_LINKS.filter((l) => l.roles.includes(userRole))
+    : [];
 
   return (
     <header className="border-b border-gray-200 bg-white">
@@ -42,7 +56,12 @@ export default function Navigation({ userEmail }: { userEmail: string | null }) 
         <div className="flex items-center gap-4">
           {userEmail ? (
             <>
-              <span className="text-sm text-gray-500">{userEmail}</span>
+              <Link
+                href="/profil"
+                className="text-sm text-gray-500 hover:text-gray-900"
+              >
+                {userEmail}
+              </Link>
               <form action="/logout" method="post">
                 <button
                   type="submit"
