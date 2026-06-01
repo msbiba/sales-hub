@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { Geist } from "next/font/google";
 import "./globals.css";
 import Navigation from "./nav";
+import { createSupabaseServerClient } from "@/lib/supabase/server";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -13,11 +14,16 @@ export const metadata: Metadata = {
   description: "Vertriebs-Dashboard fuer Solarwerk Sued GmbH",
 };
 
-export default function RootLayout({
+export default async function RootLayout({
   children,
 }: Readonly<{
   children: React.ReactNode;
 }>) {
+  const supabase = await createSupabaseServerClient();
+  const {
+    data: { user },
+  } = await supabase.auth.getUser();
+
   return (
     <html
       lang="de"
@@ -32,7 +38,7 @@ export default function RootLayout({
         />
       </head>
       <body className="min-h-full flex flex-col bg-gray-50 font-[family-name:var(--font-geist-sans)] text-gray-900 antialiased">
-        <Navigation />
+        <Navigation userEmail={user?.email ?? null} />
         <main className="mx-auto w-full max-w-7xl flex-1 px-6 py-8">
           {children}
         </main>

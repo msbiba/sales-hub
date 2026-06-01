@@ -1,6 +1,6 @@
 import { NextRequest, NextResponse } from "next/server";
 import { revalidatePath } from "next/cache";
-import { supabase } from "@/lib/supabase";
+import { createSupabaseServerClient } from "@/lib/supabase/server";
 import { validatePipeline, type PipelineInput } from "@/lib/validation";
 
 export async function PUT(
@@ -8,6 +8,7 @@ export async function PUT(
   { params }: { params: Promise<{ id: string }> }
 ) {
   try {
+    const supabase = await createSupabaseServerClient();
     const { id } = await params;
 
     const body = (await request.json()) as Partial<PipelineInput>;
@@ -67,6 +68,7 @@ export async function DELETE(
   { params }: { params: Promise<{ id: string }> }
 ) {
   try {
+    const supabase = await createSupabaseServerClient();
     const { id } = await params;
 
     const { error } = await supabase

@@ -1,10 +1,11 @@
 import { NextRequest, NextResponse } from "next/server";
 import { revalidatePath } from "next/cache";
-import { supabase } from "@/lib/supabase";
+import { createSupabaseServerClient } from "@/lib/supabase/server";
 import { validatePipeline, type PipelineInput } from "@/lib/validation";
 
 export async function POST(request: NextRequest) {
   try {
+    const supabase = await createSupabaseServerClient();
     const body = (await request.json()) as Partial<PipelineInput>;
 
     const input: PipelineInput = {
