@@ -35,7 +35,13 @@ function toForm(k: Kunde): FormState {
   };
 }
 
-export default function KundeDetailClient({ kunde }: { kunde: Kunde }) {
+export default function KundeDetailClient({
+  kunde,
+  canEdit = true,
+}: {
+  kunde: Kunde;
+  canEdit?: boolean;
+}) {
   const router = useRouter();
   const [editing, setEditing] = useState(false);
   const [form, setForm] = useState<FormState>(toForm(kunde));
@@ -126,7 +132,7 @@ export default function KundeDetailClient({ kunde }: { kunde: Kunde }) {
           <h1 className="text-2xl font-bold">{kunde.firma}</h1>
           <div className="flex items-center gap-3">
             <KundeStatusBadge status={kunde.status} size="md" />
-            {!editing && (
+            {!editing && canEdit && (
               <button
                 type="button"
                 onClick={() => setEditing(true)}
@@ -292,18 +298,20 @@ export default function KundeDetailClient({ kunde }: { kunde: Kunde }) {
         )}
       </div>
 
-      <div className="mt-4 flex justify-end">
-        <button
-          type="button"
-          onClick={() => {
-            setDeleteError(null);
-            setConfirmDelete(true);
-          }}
-          className="rounded-md bg-red-600 px-4 py-2 text-sm font-medium text-white hover:bg-red-700"
-        >
-          Loeschen
-        </button>
-      </div>
+      {canEdit && (
+        <div className="mt-4 flex justify-end">
+          <button
+            type="button"
+            onClick={() => {
+              setDeleteError(null);
+              setConfirmDelete(true);
+            }}
+            className="rounded-md bg-red-600 px-4 py-2 text-sm font-medium text-white hover:bg-red-700"
+          >
+            Loeschen
+          </button>
+        </div>
+      )}
 
       <ConfirmDialog
         open={confirmDelete}

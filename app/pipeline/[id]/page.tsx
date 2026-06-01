@@ -1,5 +1,6 @@
 import { getPipelineEintrag } from "@/lib/data";
 import PipelineDetailClient from "./pipeline-detail-client";
+import { getCurrentUserProfile } from "@/lib/auth/role";
 
 export const dynamic = "force-dynamic";
 
@@ -13,11 +14,16 @@ export default async function PipelineDetailPage({
   const { id } = await params;
   const sp = await searchParams;
   const mockMode = sp.mock ?? 'normal';
-  const eintrag = await getPipelineEintrag(id, mockMode);
+  const [eintrag, profile] = await Promise.all([
+    getPipelineEintrag(id, mockMode),
+    getCurrentUserProfile(),
+  ]);
 
   if (!eintrag) {
     return <p>Pipeline-Eintrag nicht gefunden</p>;
   }
 
-  return <PipelineDetailClient eintrag={eintrag} />;
+  const canEdit = profile?.role !== "buchhaltung";
+
+  return <PipelineDetailClient eintrag={eintrag} canEdit={canEdit} />;
 }

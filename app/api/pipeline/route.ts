@@ -27,6 +27,10 @@ export async function POST(request: NextRequest) {
       );
     }
 
+    const {
+      data: { user },
+    } = await supabase.auth.getUser();
+
     const { data, error } = await supabase
       .from("pipeline")
       .insert({
@@ -37,6 +41,7 @@ export async function POST(request: NextRequest) {
         status: input.status,
         notiz: input.notiz.trim(),
         bearbeiter: input.bearbeiter,
+        bearbeiter_id: user?.id ?? null,
       })
       .select("id")
       .single();

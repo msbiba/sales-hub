@@ -17,6 +17,11 @@ export async function GET(request: NextRequest) {
     const supabase = await createSupabaseServerClient();
     const { error } = await supabase.auth.exchangeCodeForSession(code);
     if (!error) {
+      // last_login_at updaten (throttled, fire-and-forget)
+      fetch(`${origin}/api/login-hook`, {
+        method: "POST",
+        headers: { cookie: request.headers.get("cookie") ?? "" },
+      }).catch(() => {});
       return NextResponse.redirect(`${origin}${next}`);
     }
   }

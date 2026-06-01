@@ -18,6 +18,7 @@ export default function LoginForm() {
   const router = useRouter();
   const searchParams = useSearchParams();
   const redirectTo = safeRedirect(searchParams.get("redirect"));
+  const inactiveBanner = searchParams.get("inactive") === "1";
 
   const [mode, setMode] = useState<Mode>("signin");
   const [email, setEmail] = useState("");
@@ -54,6 +55,9 @@ export default function LoginForm() {
       }
     }
 
+    // last_login_at updaten (throttled, fire-and-forget)
+    fetch("/api/login-hook", { method: "POST" }).catch(() => {});
+
     router.push(redirectTo);
     router.refresh();
   }
@@ -67,6 +71,12 @@ export default function LoginForm() {
         <h1 className="mb-6 text-center text-xl font-bold">
           {mode === "signin" ? "Anmelden" : "Registrieren"}
         </h1>
+
+        {inactiveBanner && (
+          <div className="mb-4 rounded-md border border-amber-200 bg-amber-50 px-3 py-2 text-sm text-amber-800">
+            Dein Account ist inaktiv. Bitte kontaktiere einen Admin.
+          </div>
+        )}
 
         <div className="mb-4 flex rounded-md border border-gray-200 p-1">
           <button

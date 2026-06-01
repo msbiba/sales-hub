@@ -78,8 +78,10 @@ const formatEur = (n: number) =>
 
 export default function PipelineDetailClient({
   eintrag,
+  canEdit = true,
 }: {
   eintrag: PipelineEintrag;
+  canEdit?: boolean;
 }) {
   const router = useRouter();
   const [editing, setEditing] = useState(false);
@@ -175,7 +177,7 @@ export default function PipelineDetailClient({
             >
               {statusLabel(eintrag.status)}
             </span>
-            {!editing && (
+            {!editing && canEdit && (
               <button
                 type="button"
                 onClick={() => setEditing(true)}
@@ -351,18 +353,20 @@ export default function PipelineDetailClient({
         )}
       </div>
 
-      <div className="mt-4 flex justify-end">
-        <button
-          type="button"
-          onClick={() => {
-            setDeleteError(null);
-            setConfirmDelete(true);
-          }}
-          className="rounded-md bg-red-600 px-4 py-2 text-sm font-medium text-white hover:bg-red-700"
-        >
-          Loeschen
-        </button>
-      </div>
+      {canEdit && (
+        <div className="mt-4 flex justify-end">
+          <button
+            type="button"
+            onClick={() => {
+              setDeleteError(null);
+              setConfirmDelete(true);
+            }}
+            className="rounded-md bg-red-600 px-4 py-2 text-sm font-medium text-white hover:bg-red-700"
+          >
+            Loeschen
+          </button>
+        </div>
+      )}
 
       <ConfirmDialog
         open={confirmDelete}
