@@ -1,6 +1,7 @@
 import { getPipelineEintrag } from "@/lib/data";
 import PipelineDetailClient from "./pipeline-detail-client";
 import { getCurrentUserProfile } from "@/lib/auth/role";
+import Historie from "@/app/kunden/[id]/historie";
 
 export const dynamic = "force-dynamic";
 
@@ -25,5 +26,10 @@ export default async function PipelineDetailPage({
 
   const canEdit = profile?.role !== "buchhaltung";
 
-  return <PipelineDetailClient eintrag={eintrag} canEdit={canEdit} />;
+  return (
+    <>
+      <PipelineDetailClient eintrag={eintrag} canEdit={canEdit} />
+      <Historie entityType="pipeline" entityId={eintrag.id} />
+    </>
+  );
 }

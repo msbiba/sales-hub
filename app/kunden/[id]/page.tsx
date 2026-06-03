@@ -1,6 +1,7 @@
 import { getKunde } from "@/lib/data";
 import KundeDetailClient from "./kunde-detail-client";
 import { getCurrentUserProfile } from "@/lib/auth/role";
+import Historie from "./historie";
 
 export default async function KundenDetailPage({
   params,
@@ -23,5 +24,10 @@ export default async function KundenDetailPage({
 
   const canEdit = profile?.role !== "buchhaltung";
 
-  return <KundeDetailClient kunde={kunde} canEdit={canEdit} />;
+  return (
+    <>
+      <KundeDetailClient kunde={kunde} canEdit={canEdit} />
+      <Historie entityType="kunde" entityId={kunde.id} />
+    </>
+  );
 }
