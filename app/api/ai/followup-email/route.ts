@@ -120,7 +120,7 @@ export async function POST(request: NextRequest) {
   const { data: kunde, error: kundeError } = await supabase
     .from("kunden")
     .select(
-      "firma, ansprechpartner, status, letzter_kontakt, notiz, anlagengroesse_kwp"
+      "firma, ansprechpartner, status, letzter_kontakt, notiz, anlagengroesse_kwp, pipeline_stufe, vertriebler, produkt_interesse"
     )
     .eq("id", kundeId)
     .single();
@@ -140,19 +140,15 @@ export async function POST(request: NextRequest) {
       { status: 500 }
     );
   }
-  if (!pipelineEintraege || pipelineEintraege.length === 0) {
-    return Response.json(
-      { error: "Keine Pipeline-Eintraege vorhanden" },
-      { status: 400 }
-    );
-  }
-
-  const pipelineText = pipelineEintraege
-    .map(
-      (e) =>
-        `- ${e.status}: ${e.volumen_eur} EUR (Angebot: ${e.angebotsdatum})${e.notiz ? " — " + e.notiz : ""}`
-    )
-    .join("\n");
+  const pipelineText =
+    pipelineEintraege && pipelineEintraege.length > 0
+      ? pipelineEintraege
+          .map(
+            (e) =>
+              `- ${e.status}: ${e.volumen_eur} EUR (Angebot: ${e.angebotsdatum})${e.notiz ? " — " + e.notiz : ""}`
+          )
+          .join("\n")
+      : "Keine Pipeline-Eintraege vorhanden";
 
   const absender = profile.full_name || "Ihr Solarwerk Sued Team";
 

@@ -32,6 +32,17 @@ export interface Kunde {
   produkt_interesse: string | null;
 }
 
+export type AktivitaetenTyp = 'Anruf' | 'Termin' | 'E-Mail';
+
+export interface Aktivitaet {
+  id: string;
+  kunde_id: string;
+  typ: AktivitaetenTyp;
+  datum: string;
+  notiz: string | null;
+  created_at: string;
+}
+
 export type Bearbeiter = 'Anna' | 'Ben' | 'Clara';
 
 export interface PipelineEintrag {

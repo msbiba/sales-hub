@@ -57,7 +57,7 @@ export async function PUT(
       );
     }
 
-    const updateData = {
+    const updateData: Record<string, unknown> = {
       firma: String(body.firma).trim(),
       ansprechpartner: String(body.ansprechpartner ?? "").trim(),
       branche: String(body.branche ?? "").trim(),
@@ -71,6 +71,13 @@ export async function PUT(
       email: String(body.email ?? "").trim(),
       notiz: String(body.notiz ?? "").trim(),
     };
+
+    if (body.pipeline_stufe !== undefined)
+      updateData.pipeline_stufe = body.pipeline_stufe?.trim() || null;
+    if (body.vertriebler !== undefined)
+      updateData.vertriebler = body.vertriebler?.trim() || null;
+    if (body.produkt_interesse !== undefined)
+      updateData.produkt_interesse = body.produkt_interesse?.trim() || null;
 
     const { error } = await supabase
       .from("kunden")

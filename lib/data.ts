@@ -1,4 +1,4 @@
-import { Kunde, PipelineEintrag } from '@/types';
+import { Aktivitaet, Kunde, PipelineEintrag } from '@/types';
 import { createSupabaseServerClient } from './supabase/server';
 
 const mockMode = 'normal' // 'normal'|'loading'|'error'|'empty'
@@ -38,6 +38,20 @@ export async function getKunde(id: string, mode: string = mockMode): Promise<Kun
 
   if (error) return null;
   return data as Kunde;
+}
+
+// --- Aktivitaeten: Supabase ---
+
+export async function getAktivitaeten(kundeId: string): Promise<Aktivitaet[]> {
+  const supabase = await createSupabaseServerClient();
+  const { data, error } = await supabase
+    .from('aktivitaeten')
+    .select('id, kunde_id, typ, datum, notiz, created_at')
+    .eq('kunde_id', kundeId)
+    .order('datum', { ascending: false });
+
+  if (error) return [];
+  return data as Aktivitaet[];
 }
 
 // --- Pipeline: Hilfsfunktionen ---

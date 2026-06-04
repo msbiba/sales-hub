@@ -1,6 +1,11 @@
 -- Seed: kunden table — 28 records from solarwerk_kunden.csv
 -- Replaces previous seed data. Run AFTER migration 20260604_add_kunden_columns.sql.
 -- WARNING: This TRUNCATES the kunden table (cascades to pipeline FK references).
+--
+-- IMPORTANT: After running this seed, assign bearbeiter_id to all records:
+--   UPDATE public.kunden SET bearbeiter_id = '<uuid>' WHERE vertriebler = 'Klara Berger';
+--   UPDATE public.kunden SET bearbeiter_id = '<uuid>' WHERE vertriebler = 'Tobias Frank';
+-- Without bearbeiter_id, RLS-filtered users (role=bearbeiter) will see NO records.
 
 TRUNCATE public.kunden CASCADE;
 

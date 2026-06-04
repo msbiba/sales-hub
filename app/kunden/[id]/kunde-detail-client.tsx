@@ -39,11 +39,9 @@ function toForm(k: Kunde): FormState {
 export default function KundeDetailClient({
   kunde,
   canEdit = true,
-  hasPipelineEintraege = false,
 }: {
   kunde: Kunde;
   canEdit?: boolean;
-  hasPipelineEintraege?: boolean;
 }) {
   const router = useRouter();
   const [editing, setEditing] = useState(false);
@@ -198,6 +196,7 @@ export default function KundeDetailClient({
                 <option value="aktiv">Aktiv</option>
                 <option value="in_wartung">In Wartung</option>
                 <option value="beschwerde">Beschwerde</option>
+                <option value="interessent">Interessent</option>
               </select>
             </div>
             <div>
@@ -306,21 +305,19 @@ export default function KundeDetailClient({
         <div className="mt-4 space-y-3">
           <div className="flex items-center justify-between">
             <div>
-              {hasPipelineEintraege && (
-                <button
-                  type="button"
-                  onClick={() => setShowEmailGenerator(!showEmailGenerator)}
-                  className="inline-flex items-center gap-2 rounded-md bg-indigo-600 px-4 py-2 text-sm font-medium text-white hover:bg-indigo-700"
-                >
-                  <Mail className="h-4 w-4" />
-                  Follow-up E-Mail generieren
-                  {showEmailGenerator ? (
-                    <ChevronUp className="h-4 w-4" />
-                  ) : (
-                    <ChevronDown className="h-4 w-4" />
-                  )}
-                </button>
-              )}
+              <button
+                type="button"
+                onClick={() => setShowEmailGenerator(!showEmailGenerator)}
+                className="inline-flex items-center gap-2 rounded-md bg-indigo-600 px-4 py-2 text-sm font-medium text-white hover:bg-indigo-700"
+              >
+                <Mail className="h-4 w-4" />
+                Follow-up E-Mail generieren
+                {showEmailGenerator ? (
+                  <ChevronUp className="h-4 w-4" />
+                ) : (
+                  <ChevronDown className="h-4 w-4" />
+                )}
+              </button>
             </div>
             <button
               type="button"
@@ -334,7 +331,7 @@ export default function KundeDetailClient({
             </button>
           </div>
 
-          {hasPipelineEintraege && showEmailGenerator && (
+          {showEmailGenerator && (
             <FollowupEmailClient kundeId={kunde.id} />
           )}
         </div>
