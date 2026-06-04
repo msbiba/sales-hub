@@ -40,6 +40,19 @@ export async function getKunde(id: string, mode: string = mockMode): Promise<Kun
   return data as Kunde;
 }
 
+// --- Pipeline: Hilfsfunktionen ---
+
+export async function hatPipelineEintraege(kundeId: string): Promise<boolean> {
+  const supabase = await createSupabaseServerClient();
+  const { count, error } = await supabase
+    .from('pipeline')
+    .select('id', { count: 'exact', head: true })
+    .eq('customer_id', kundeId);
+
+  if (error) return false;
+  return (count ?? 0) > 0;
+}
+
 // --- Pipeline: Supabase mit JOIN auf kunden ---
 
 type PipelineRow = {

@@ -3,10 +3,11 @@
 import { useState } from "react";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
-import { ArrowLeft } from "lucide-react";
+import { ArrowLeft, Mail, ChevronDown, ChevronUp } from "lucide-react";
 import { Kunde, KundenStatus } from "@/types";
 import KundeStatusBadge from "@/components/KundeStatusBadge";
 import ConfirmDialog from "@/components/ConfirmDialog";
+import FollowupEmailClient from "./followup-email-client";
 
 type FormState = {
   firma: string;
@@ -38,9 +39,11 @@ function toForm(k: Kunde): FormState {
 export default function KundeDetailClient({
   kunde,
   canEdit = true,
+  hasPipelineEintraege = false,
 }: {
   kunde: Kunde;
   canEdit?: boolean;
+  hasPipelineEintraege?: boolean;
 }) {
   const router = useRouter();
   const [editing, setEditing] = useState(false);
@@ -51,6 +54,7 @@ export default function KundeDetailClient({
   const [confirmDelete, setConfirmDelete] = useState(false);
   const [deleting, setDeleting] = useState(false);
   const [deleteError, setDeleteError] = useState<string | null>(null);
+  const [showEmailGenerator, setShowEmailGenerator] = useState(false);
 
   const update = <K extends keyof FormState>(key: K, value: FormState[K]) => {
     setForm((f) => ({ ...f, [key]: value }));
@@ -299,17 +303,40 @@ export default function KundeDetailClient({
       </div>
 
       {canEdit && (
-        <div className="mt-4 flex justify-end">
-          <button
-            type="button"
-            onClick={() => {
-              setDeleteError(null);
-              setConfirmDelete(true);
-            }}
-            className="rounded-md bg-red-600 px-4 py-2 text-sm font-medium text-white hover:bg-red-700"
-          >
-            Loeschen
-          </button>
+        <div className="mt-4 space-y-3">
+          <div className="flex items-center justify-between">
+            <div>
+              {hasPipelineEintraege && (
+                <button
+                  type="button"
+                  onClick={() => setShowEmailGenerator(!showEmailGenerator)}
+                  className="inline-flex items-center gap-2 rounded-md bg-indigo-600 px-4 py-2 text-sm font-medium text-white hover:bg-indigo-700"
+                >
+                  <Mail className="h-4 w-4" />
+                  Follow-up E-Mail generieren
+                  {showEmailGenerator ? (
+                    <ChevronUp className="h-4 w-4" />
+                  ) : (
+                    <ChevronDown className="h-4 w-4" />
+                  )}
+                </button>
+              )}
+            </div>
+            <button
+              type="button"
+              onClick={() => {
+                setDeleteError(null);
+                setConfirmDelete(true);
+              }}
+              className="rounded-md bg-red-600 px-4 py-2 text-sm font-medium text-white hover:bg-red-700"
+            >
+              Loeschen
+            </button>
+          </div>
+
+          {hasPipelineEintraege && showEmailGenerator && (
+            <FollowupEmailClient kundeId={kunde.id} />
+          )}
         </div>
       )}
 
