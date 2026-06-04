@@ -1,4 +1,4 @@
-import { getKunde } from "@/lib/data";
+import { getKunde, hatPipelineEintraege } from "@/lib/data";
 import KundeDetailClient from "./kunde-detail-client";
 import { getCurrentUserProfile } from "@/lib/auth/role";
 import Historie from "./historie";
@@ -13,9 +13,10 @@ export default async function KundenDetailPage({
   const { id } = await params;
   const sp = await searchParams;
   const mockMode = sp.mock ?? 'normal';
-  const [kunde, profile] = await Promise.all([
+  const [kunde, profile, hasPipeline] = await Promise.all([
     getKunde(id, mockMode),
     getCurrentUserProfile(),
+    hatPipelineEintraege(id),
   ]);
 
   if (!kunde) {
@@ -26,7 +27,7 @@ export default async function KundenDetailPage({
 
   return (
     <>
-      <KundeDetailClient kunde={kunde} canEdit={canEdit} />
+      <KundeDetailClient kunde={kunde} canEdit={canEdit} hasPipelineEintraege={hasPipeline} />
       <Historie entityType="kunde" entityId={kunde.id} />
     </>
   );
