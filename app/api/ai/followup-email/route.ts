@@ -1,5 +1,24 @@
 import { NextRequest } from "next/server";
+import { readFile } from "node:fs/promises";
+import path from "node:path";
 import { createSupabaseServerClient } from "@/lib/supabase/server";
+
+type ChatMessage = { role: "system" | "user" | "assistant"; content: string };
+
+function renderMustache(template: string, vars: Record<string, string>): string {
+  let out = template.replace(
+    /\{\{#(\w+)\}\}([\s\S]*?)\{\{\/\1\}\}/g,
+    (_m, key, inner) => (vars[key] ? inner : "")
+  );
+  out = out.replace(/\{\{(\w+)\}\}/g, (_m, key) => vars[key] ?? "");
+  return out;
+}
+
+async function loadPrompt(name: string): Promise<ChatMessage[]> {
+  const file = path.join(process.cwd(), "prompts", `${name}.json`);
+  const raw = await readFile(file, "utf8");
+  return JSON.parse(raw) as ChatMessage[];
+}
 
 const ALLOWED_EMAIL_TYPEN = [
   "nachfass",
@@ -30,20 +49,6 @@ const TON_LABELS: Record<string, string> = {
   locker: "locker (Duzen)",
   neutral: "sachlich/neutral",
 };
-
-const SYSTEM_PROMPT = `Du bist ein Vertriebs-Assistent fuer Solarwerk Sued GmbH, einen Anbieter von Photovoltaik-Anlagen fuer Gewerbe und Landwirtschaft. Du schreibst professionelle Follow-up-E-Mails an Bestandskunden und Interessenten.
-
-Regeln:
-- Antworte IMMER im folgenden Format, exakt so:
-  BETREFF: [passender E-Mail-Betreff]
-  ---
-  [E-Mail-Body]
-- Beginne den Body mit passender Anrede basierend auf dem gewaehlten Ton
-- Beziehe dich konkret auf vorhandene Kundendaten (Anlagengroesse, letzte Interaktion, Pipeline-Status)
-- Schliesse mit Signatur: [Absender-Name], Solarwerk Sued GmbH
-- Halte den Body zwischen 80-200 Woertern
-- Verwende keine Platzhalter wie [DATUM] oder [NAME] — nutze die echten Daten
-- Schreibe auf Deutsch`;
 
 export async function POST(request: NextRequest) {
   const apiKey = process.env.OPENROUTER_API_KEY;
@@ -151,20 +156,24 @@ export async function POST(request: NextRequest) {
 
   const absender = profile.full_name || "Ihr Solarwerk Sued Team";
 
-  const userPrompt = `Erstelle eine Follow-up-E-Mail vom Typ "${EMAIL_TYP_LABELS[emailTyp] || emailTyp}" im Ton "${TON_LABELS[ton] || ton}".
-
-Kundendaten:
-- Firma: ${kunde.firma}
-- Ansprechpartner: ${kunde.ansprechpartner}
-- Kundenstatus: ${kunde.status}
-- Anlagengroesse: ${kunde.anlagengroesse_kwp} kWp
-- Letzter Kontakt: ${kunde.letzter_kontakt}
-- Notiz: ${kunde.notiz || "Keine Notiz vorhanden"}
-
-Pipeline-Eintraege:
-${pipelineText}
-
-Absender: ${absender}${zusatzKontext ? "\nZusaetzlicher Kontext: " + zusatzKontext : ""}`;
+  const promptTemplate = await loadPrompt("followup-email");
+  const vars: Record<string, string> = {
+    emailTypLabel: EMAIL_TYP_LABELS[emailTyp] || emailTyp,
+    tonLabel: TON_LABELS[ton] || ton,
+    firma: kunde.firma,
+    ansprechpartner: kunde.ansprechpartner,
+    status: kunde.status,
+    anlagengroesse_kwp: String(kunde.anlagengroesse_kwp),
+    letzter_kontakt: kunde.letzter_kontakt,
+    notiz: kunde.notiz || "Keine Notiz vorhanden",
+    pipelineText,
+    absender,
+    zusatzKontext: zusatzKontext || "",
+  };
+  const messages = promptTemplate.map((m) => ({
+    role: m.role,
+    content: renderMustache(m.content, vars),
+  }));
 
   const openRouterResponse = await fetch(
     "https://openrouter.ai/api/v1/chat/completions",
@@ -178,13 +187,10 @@ Absender: ${absender}${zusatzKontext ? "\nZusaetzlicher Kontext: " + zusatzKonte
         "X-Title": "Solarwerk Sued Sales Hub",
       },
       body: JSON.stringify({
-        model: "~anthropic/claude-haiku-latest",
+        model: "anthropic/claude-sonnet-4.6",
         stream: true,
         max_tokens: 1024,
-        messages: [
-          { role: "system", content: SYSTEM_PROMPT },
-          { role: "user", content: userPrompt },
-        ],
+        messages,
       }),
     }
   );

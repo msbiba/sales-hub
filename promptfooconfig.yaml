@@ -1,0 +1,21 @@
+# yaml-language-server: $schema=https://promptfoo.dev/config-schema.json
+description: "Solarwerk Sued Sales Hub — Prompt Evaluations"
+
+prompts:
+  - prompts/followup-email.json
+
+providers:
+  - id: openrouter:anthropic/claude-sonnet-4.6
+    config:
+      temperature: 0.7
+      max_tokens: 1024
+
+defaultTest:
+  options:
+    provider:
+      id: openrouter:anthropic/claude-sonnet-4.6
+      config:
+        temperature: 0
+
+# Testfaelle folgen in separater Phase (siehe prompts/README.md).
+tests: []

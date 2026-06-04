@@ -7,7 +7,9 @@
     "build": "next build",
     "start": "next start",
     "lint": "eslint",
-    "seed:users": "node scripts/seed-users.mjs"
+    "seed:users": "node scripts/seed-users.mjs",
+    "eval": "promptfoo eval",
+    "eval:view": "promptfoo view"
   },
   "dependencies": {
     "@supabase/ssr": "^0.10.3",
@@ -27,6 +29,7 @@
     "@types/react-dom": "^19",
     "eslint": "^9",
     "eslint-config-next": "16.2.6",
+    "promptfoo": "^0.121.14",
     "tailwindcss": "^4",
     "typescript": "^5"
   }
