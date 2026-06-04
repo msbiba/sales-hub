@@ -16,6 +16,188 @@ defaultTest:
       id: openrouter:anthropic/claude-sonnet-4.6
       config:
         temperature: 0
+  assert:
+    # Format: BETREFF: ...\n---\n...
+    - type: regex
+      value: "BETREFF:\\s*.+\\n---"
+    # Sprache Deutsch
+    - type: llm-rubric
+      value: "Die gesamte E-Mail ist auf Deutsch verfasst. Keine englischen Saetze."
+    # Keine Platzhalter
+    - type: not-contains
+      value: "[DATUM]"
+    - type: not-contains
+      value: "[NAME]"
+    - type: not-contains
+      value: "[FIRMA]"
 
-# Testfaelle folgen in separater Phase (siehe prompts/README.md).
-tests: []
+tests:
+  # ─── 1. Nachfass — formell — aktiver Bestandskunde mit Pipeline ───
+  - description: "Nachfass formell: aktiver Kunde mit Erweiterungsangebot"
+    vars:
+      emailTypLabel: "Nachfass-E-Mail"
+      tonLabel: "formell (Siezen)"
+      firma: "Huber Schreinerei GmbH"
+      ansprechpartner: "Andreas Huber"
+      status: "aktiv"
+      anlagengroesse_kwp: "45"
+      letzter_kontakt: "2026-03-12"
+      notiz: "Erweiterung um 25 kWp diskutiert. Angebot in Vorbereitung."
+      pipelineText: "- Angebot: 45000 EUR (Angebot: 2026-03-15) — Erweiterung Schreinerei Dach"
+      absender: "Klara Berger"
+      zusatzKontextBlock: ""
+    assert:
+      - type: contains
+        value: "Huber"
+      - type: contains
+        value: "Solarwerk Sued"
+      - type: javascript
+        value: "output.split(/\\s+/).length >= 80 && output.split(/\\s+/).length <= 250"
+      - type: llm-rubric
+        value: "E-Mail siezt den Empfaenger durchgehend. Ton ist formell und professionell. Bezieht sich auf die Erweiterung um 25 kWp."
+
+  # ─── 2. Beschwerde-Antwort — formell — Kunde mit Reklamation ───
+  - description: "Beschwerde-Antwort formell: Minderleistung Reklamation"
+    vars:
+      emailTypLabel: "Antwort auf Beschwerde"
+      tonLabel: "formell (Siezen)"
+      firma: "Kreitmeier Druck und Verlag"
+      ansprechpartner: "Manfred Kreitmeier"
+      status: "beschwerde"
+      anlagengroesse_kwp: "78"
+      letzter_kontakt: "2026-05-02"
+      notiz: "Reklamation: Monitoring zeigt 15 Prozent Minderleistung seit Maerz."
+      pipelineText: "- gewonnen: 72000 EUR (Angebot: 2025-11-10) — Bestandsanlage Druckerei"
+      absender: "Tobias Frank"
+      zusatzKontextBlock: ""
+    assert:
+      - type: contains
+        value: "Kreitmeier"
+      - type: llm-rubric
+        value: "E-Mail nimmt die Beschwerde ernst, zeigt Verstaendnis und bietet konkrete naechste Schritte zur Loesung. Kein abwiegelnder Ton. Erwaehnt die 15 Prozent Minderleistung."
+
+  # ─── 3. Terminvereinbarung — locker — aktiver Gewerbekunde ───
+  - description: "Terminvereinbarung locker: Wellnessbereich-Erweiterung"
+    vars:
+      emailTypLabel: "Terminvereinbarung"
+      tonLabel: "locker (Duzen)"
+      firma: "Hotel Sonnenwinkel"
+      ansprechpartner: "Florian Brunner"
+      status: "aktiv"
+      anlagengroesse_kwp: "95"
+      letzter_kontakt: "2026-01-15"
+      notiz: "Eigenverbrauch bei 82 Prozent. Erweiterung Wellnessbereich diskutiert."
+      pipelineText: "Keine Pipeline-Eintraege vorhanden"
+      absender: "Klara Berger"
+      zusatzKontextBlock: ""
+    assert:
+      - type: contains-any
+        value:
+          - "Brunner"
+          - "Florian"
+      - type: llm-rubric
+        value: "E-Mail duzt den Empfaenger durchgehend. Ton ist locker aber professionell. Schlaegt konkret einen Termin oder Terminvorschlag vor. Erwaehnt den Wellnessbereich oder die Erweiterung."
+
+  # ─── 4. Upselling — neutral — zufriedener Grosskunde ───
+  - description: "Upselling neutral: Speicher-Aufstockung Industriekunde"
+    vars:
+      emailTypLabel: "Upselling/Cross-Selling"
+      tonLabel: "sachlich/neutral"
+      firma: "Lechner Praezisionstechnik GmbH"
+      ansprechpartner: "Dr. Sabine Lechner"
+      status: "aktiv"
+      anlagengroesse_kwp: "120"
+      letzter_kontakt: "2026-04-22"
+      notiz: "Sehr zufrieden. Moechte Speicher von 35 auf 60 kWh aufstocken."
+      pipelineText: "- Verhandlung: 185000 EUR (Angebot: 2026-04-25) — Speicher-Upgrade 60 kWh"
+      absender: "Tobias Frank"
+      zusatzKontextBlock: ""
+    assert:
+      - type: contains
+        value: "Lechner"
+      - type: llm-rubric
+        value: "E-Mail bewirbt die Speicher-Aufstockung von 35 auf 60 kWh. Nutzt die bestehende Zufriedenheit als Aufhaenger. Sachlicher Ton ohne uebertriebene Verkaufssprache."
+
+  # ─── 5. Wartungserinnerung — formell — Kunde in Wartung ───
+  - description: "Wartungserinnerung formell: Wechselrichter-Ausfall"
+    vars:
+      emailTypLabel: "Wartungserinnerung"
+      tonLabel: "formell (Siezen)"
+      firma: "Sailer Spedition KG"
+      ansprechpartner: "Petra Sailer"
+      status: "in_wartung"
+      anlagengroesse_kwp: "540"
+      letzter_kontakt: "2026-04-30"
+      notiz: "Wechselrichter 3 ausgefallen. Ersatzteil bestellt. Wartungstermin 06.05.2026."
+      pipelineText: "- gewonnen: 480000 EUR (Angebot: 2025-06-20) — Logistikzentrum Komplett-PV"
+      absender: "Tobias Frank"
+      zusatzKontextBlock: ""
+    assert:
+      - type: contains
+        value: "Sailer"
+      - type: llm-rubric
+        value: "E-Mail informiert ueber Wartungsstatus. Erwaehnt den Wechselrichter oder das Ersatzteil. Gibt konkreten Zeitrahmen oder naechste Schritte an."
+
+  # ─── 6. Angebot — locker — Handwerksbetrieb Lead ───
+  - description: "Angebot locker: neuer Lead Metallbau"
+    vars:
+      emailTypLabel: "Angebot nachfassen/senden"
+      tonLabel: "locker (Duzen)"
+      firma: "Eichinger Metallbau OHG"
+      ansprechpartner: "Stefan Eichinger"
+      status: "aktiv"
+      anlagengroesse_kwp: "65"
+      letzter_kontakt: "2026-04-05"
+      notiz: "Erste Wartung Q3 faellig. Plant Lackiererei-Erweiterung 2027."
+      pipelineText: "Keine Pipeline-Eintraege vorhanden"
+      absender: "Tobias Frank"
+      zusatzKontextBlock: "\nZusaetzlicher Kontext: Sonderaktion 10% Rabatt auf Neuanlagen bis Ende Juni"
+    assert:
+      - type: contains-any
+        value:
+          - "Eichinger"
+          - "Stefan"
+      - type: llm-rubric
+        value: "E-Mail duzt durchgehend. Bezieht sich auf Lackiererei-Erweiterung 2027. Erwaehnt die Sonderaktion oder den Rabatt aus dem Zusatzkontext."
+
+  # ─── 7. Projektstatus-Update — neutral — Grossprojekt in Verhandlung ───
+  - description: "Statusupdate neutral: Grossprojekt Klinik"
+    vars:
+      emailTypLabel: "Projektstatus-Update"
+      tonLabel: "sachlich/neutral"
+      firma: "Klinik Am Rosengarten"
+      ansprechpartner: "Dr. Andrea Pfeiffer"
+      status: "aktiv"
+      anlagengroesse_kwp: "310"
+      letzter_kontakt: "2026-04-18"
+      notiz: "24h-Betrieb. Speicher mit 120 kWh. Notstromfaehigkeit geplant."
+      pipelineText: "- Verhandlung: 420000 EUR (Angebot: 2026-04-20) — PV + Speicher + Notstrom Klinik"
+      absender: "Tobias Frank"
+      zusatzKontextBlock: ""
+    assert:
+      - type: contains
+        value: "Pfeiffer"
+      - type: contains
+        value: "Rosengarten"
+      - type: llm-rubric
+        value: "E-Mail gibt ein sachliches Projektstatus-Update. Erwaehnt relevante Details wie Notstromfaehigkeit, 120 kWh Speicher oder den 24h-Betrieb. Kein Verkaufsdruck."
+
+  # ─── 8. Projektabschluss — formell — gewonnenes Projekt ───
+  - description: "Projektabschluss formell: Referenzkunde zufrieden"
+    vars:
+      emailTypLabel: "Projektabschluss-Mitteilung"
+      tonLabel: "formell (Siezen)"
+      firma: "Schreinerei Wagner und Sohn"
+      ansprechpartner: "Thomas Wagner"
+      status: "aktiv"
+      anlagengroesse_kwp: "86"
+      letzter_kontakt: "2026-03-30"
+      notiz: "Referenzkunde fuer Solar-fuer-KMU-Paket. Sehr zufrieden."
+      pipelineText: "- gewonnen: 78000 EUR (Angebot: 2025-12-01) — KMU-Paket Schreinerei"
+      absender: "Klara Berger"
+      zusatzKontextBlock: ""
+    assert:
+      - type: contains
+        value: "Wagner"
+      - type: llm-rubric
+        value: "E-Mail gratuliert zum Projektabschluss oder bedankt sich fuer die Zusammenarbeit. Professioneller Abschluss-Ton. Erwaehnt ggf. Referenz-Moeglichkeit oder weiteren Support."
