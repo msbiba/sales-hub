@@ -1,0 +1,36 @@
+name: Promptfoo Evaluation
+
+on:
+  pull_request:
+    paths:
+      - 'prompts/**'
+      - 'promptfooconfig.yaml'
+      - '.github/workflows/promptfoo.yml'
+
+jobs:
+  evaluate:
+    runs-on: ubuntu-latest
+    permissions:
+      pull-requests: write
+      contents: read
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+
+      - name: Run Promptfoo evaluation
+        uses: promptfoo/promptfoo-action@v1
+        with:
+          openai-api-key: unused
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+          prompts: 'prompts/**'
+          config: 'promptfooconfig.yaml'
+          cache-path: ~/.cache/promptfoo
+        env:
+          OPENROUTER_API_KEY: ${{ secrets.OPENROUTER_API_KEY }}
