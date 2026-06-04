@@ -1,4 +1,4 @@
-export type KundenStatus = 'aktiv' | 'in_wartung' | 'beschwerde';
+export type KundenStatus = 'aktiv' | 'in_wartung' | 'beschwerde' | 'interessent';
 
 export type PipelineStatus = 'erstkontakt' | 'angebot_raus' | 'verhandlung' | 'gewonnen' | 'verloren' | 'loeschbar';
 
@@ -27,6 +27,9 @@ export interface Kunde {
   email: string;
   notiz: string;
   bearbeiter_id: string | null;
+  pipeline_stufe: string | null;
+  vertriebler: string | null;
+  produkt_interesse: string | null;
 }
 
 export type Bearbeiter = 'Anna' | 'Ben' | 'Clara';

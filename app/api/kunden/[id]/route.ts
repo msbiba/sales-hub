@@ -42,7 +42,7 @@ export async function PUT(
       );
     }
 
-    const allowedStatus = ["aktiv", "in_wartung", "beschwerde"];
+    const allowedStatus = ["aktiv", "in_wartung", "beschwerde", "interessent"];
     if (body.status && !allowedStatus.includes(body.status)) {
       return NextResponse.json({ error: "Ungueltiger Status" }, { status: 400 });
     }

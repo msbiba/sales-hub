@@ -9,7 +9,7 @@ async function ladeKundenAusSupabase(): Promise<Kunde[]> {
   const supabase = await createSupabaseServerClient();
   const { data, error } = await supabase
     .from('kunden')
-    .select('id, firma, ansprechpartner, branche, anlagengroesse_kwp, status, letzter_kontakt, telefon, email, notiz');
+    .select('id, firma, ansprechpartner, branche, anlagengroesse_kwp, status, letzter_kontakt, telefon, email, notiz, pipeline_stufe, vertriebler, produkt_interesse');
 
   if (error) throw new Error(`Supabase-Fehler: ${error.message}`);
   return data as Kunde[];
@@ -32,7 +32,7 @@ export async function getKunde(id: string, mode: string = mockMode): Promise<Kun
   const supabase = await createSupabaseServerClient();
   const { data, error } = await supabase
     .from('kunden')
-    .select('id, firma, ansprechpartner, branche, anlagengroesse_kwp, status, letzter_kontakt, telefon, email, notiz')
+    .select('id, firma, ansprechpartner, branche, anlagengroesse_kwp, status, letzter_kontakt, telefon, email, notiz, pipeline_stufe, vertriebler, produkt_interesse')
     .eq('id', id)
     .single();
 

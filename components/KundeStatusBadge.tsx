@@ -4,6 +4,7 @@ const config: Record<KundenStatus, { label: string; className: string }> = {
   aktiv: { label: "Aktiv", className: "bg-green-100 text-green-700" },
   in_wartung: { label: "In Wartung", className: "bg-orange-100 text-orange-700" },
   beschwerde: { label: "Beschwerde", className: "bg-red-100 text-red-700" },
+  interessent: { label: "Interessent", className: "bg-blue-100 text-blue-700" },
 };
 
 export default function KundeStatusBadge({
