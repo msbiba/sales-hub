@@ -164,7 +164,9 @@ export async function POST(request: NextRequest) {
     notiz: kunde.notiz || "Keine Notiz vorhanden",
     pipelineText,
     absender,
-    zusatzKontext: zusatzKontext || "",
+    zusatzKontextBlock: zusatzKontext
+      ? `\nZusaetzlicher Kontext: ${zusatzKontext}`
+      : "",
   };
   const messages = promptTemplate.map((m) => ({
     role: m.role,

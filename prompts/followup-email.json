@@ -5,6 +5,6 @@
   },
   {
     "role": "user",
-    "content": "Erstelle eine Follow-up-E-Mail vom Typ \"{{emailTypLabel}}\" im Ton \"{{tonLabel}}\".\n\nKundendaten:\n- Firma: {{firma}}\n- Ansprechpartner: {{ansprechpartner}}\n- Kundenstatus: {{status}}\n- Anlagengroesse: {{anlagengroesse_kwp}} kWp\n- Letzter Kontakt: {{letzter_kontakt}}\n- Notiz: {{notiz}}\n\nPipeline-Eintraege:\n{{pipelineText}}\n\nAbsender: {{absender}}{{#zusatzKontext}}\nZusaetzlicher Kontext: {{zusatzKontext}}{{/zusatzKontext}}"
+    "content": "Erstelle eine Follow-up-E-Mail vom Typ \"{{emailTypLabel}}\" im Ton \"{{tonLabel}}\".\n\nKundendaten:\n- Firma: {{firma}}\n- Ansprechpartner: {{ansprechpartner}}\n- Kundenstatus: {{status}}\n- Anlagengroesse: {{anlagengroesse_kwp}} kWp\n- Letzter Kontakt: {{letzter_kontakt}}\n- Notiz: {{notiz}}\n\nPipeline-Eintraege:\n{{pipelineText}}\n\nAbsender: {{absender}}{{zusatzKontextBlock}}"
   }
 ]
