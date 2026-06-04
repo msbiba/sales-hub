@@ -38,8 +38,8 @@ Die bestehende `solarwerk_kunden.csv` soll als relationale Tabelle in Supabase n
 | `firma` | `text` | Kein `varchar(n)` — Postgres `text` ist performanter, Laengenlimits gehoeren in Validierung |
 | `ansprechpartner` | `text` | Freitext, variable Laenge |
 | `branche` | `text` | Aktuell 4 Werte (Industrie, Landwirtschaft, Gewerbe, Handwerk). Kein Enum, da erweiterbar ohne Migration |
-| `anlagengroesse_kwp` | `integer` | Ganzzahl in CSV, kein Dezimalbedarf. Alternativ `numeric` wenn Nachkommastellen erwartet |
-| `status` | `text` mit CHECK-Constraint | 3 feste Werte. CHECK statt Enum → einfacher zu erweitern per `ALTER` |
+| `anlagengroesse_kwp` | `integer` | Ganzzahl in CSV, kein Dezimalbedarf. CHECK >= 0 (Interessenten ohne Anlage) |
+| `status` | `text` mit CHECK-Constraint | 4 feste Werte (aktiv, in_wartung, beschwerde, interessent). CHECK statt Enum → einfacher zu erweitern per `ALTER` |
 | `letzter_kontakt` | `date` | ISO-Format in CSV, reiner Datumswert ohne Uhrzeit |
 | `telefon` | `text` | Keine Normalisierung — Format variiert (Bindestriche, Laengen) |
 | `email` | `text` (citext optional) | E-Mail-Adressen, case-insensitive Suche ggf. spaeter |

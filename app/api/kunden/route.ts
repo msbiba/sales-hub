@@ -57,6 +57,9 @@ export async function POST(request: NextRequest) {
         email: (body.email || "").trim(),
         notiz: (body.notiz || "").trim(),
         bearbeiter_id: body.bearbeiter_id ?? user?.id ?? null,
+        pipeline_stufe: body.pipeline_stufe?.trim() || null,
+        vertriebler: body.vertriebler?.trim() || null,
+        produkt_interesse: body.produkt_interesse?.trim() || null,
       })
       .select("id")
       .single();
