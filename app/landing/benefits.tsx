@@ -24,29 +24,31 @@ const BENEFITS = [
 export default function Benefits() {
   return (
     <section className="bg-[var(--paper)]">
-      <div className="mx-auto max-w-6xl px-6 py-20">
+      <div className="mx-auto max-w-6xl px-6 py-24">
         <div className="reveal max-w-3xl">
           <p className="font-mono-data text-xs uppercase tracking-[0.18em] text-[var(--steel)]">
             Was uns unterscheidet
           </p>
-          <h2 className="mt-4 text-3xl font-semibold leading-tight tracking-tight text-[var(--ink)] sm:text-4xl">
-            Fünf Dinge, die im Vertrag stehen — nicht nur im Pitch.
+          <h2 className="mt-4 text-3xl font-semibold leading-tight tracking-[-0.01em] text-[var(--ink)] sm:text-[40px]">
+            Fünf Dinge, die im{" "}
+            <span className="solar-underline">Vertrag</span> stehen — nicht nur
+            im Pitch.
           </h2>
         </div>
 
-        <ul className="reveal mt-12 divide-y divide-[var(--line)] border-y border-[var(--line)]">
+        <ul className="reveal mt-14 divide-y divide-[var(--line)] border-y border-[var(--line)]">
           {BENEFITS.map((b, i) => (
             <li
               key={b.headline}
-              className="grid grid-cols-[auto_1fr] items-baseline gap-x-6 gap-y-1 py-6 sm:grid-cols-[60px_1fr_2fr] sm:gap-x-10"
+              className="group grid grid-cols-[auto_1fr] items-baseline gap-x-6 gap-y-2 py-7 transition-colors sm:grid-cols-[80px_1fr_2fr] sm:gap-x-12"
             >
-              <span className="font-mono-data text-xs text-[var(--muted)]">
-                {String(i + 1).padStart(2, "0")}
+              <span className="font-mono-data text-sm text-[var(--muted)] transition-colors group-hover:text-[var(--solar)]">
+                {String(i + 1).padStart(2, "0")} —
               </span>
-              <h3 className="text-[18px] font-semibold leading-snug text-[var(--ink)] sm:text-[20px]">
+              <h3 className="text-[19px] font-semibold leading-snug tracking-[-0.01em] text-[var(--ink)] sm:text-[22px]">
                 {b.headline}
               </h3>
-              <p className="col-start-2 max-w-2xl text-[15px] leading-relaxed text-[var(--ink)]/80 sm:col-start-3 sm:row-start-1">
+              <p className="col-start-2 max-w-2xl text-[15px] leading-relaxed text-[var(--ink)]/75 sm:col-start-3 sm:row-start-1">
                 {b.body}
               </p>
             </li>

@@ -40,7 +40,7 @@ export default function Faq() {
           </h2>
         </div>
 
-        <ul className="reveal mt-10 divide-y divide-[var(--line)] border-y border-[var(--line)]">
+        <ul className="reveal mt-12 divide-y divide-[var(--line)] border-y border-[var(--line)]">
           {FAQ.map((item, i) => {
             const isOpen = open === i;
             return (
@@ -49,18 +49,25 @@ export default function Faq() {
                   type="button"
                   aria-expanded={isOpen}
                   onClick={() => setOpen(isOpen ? null : i)}
-                  className="flex w-full items-center justify-between gap-4 py-5 text-left"
+                  className="focus-ring group flex w-full items-center justify-between gap-4 py-6 text-left"
                 >
-                  <span className="text-[16px] font-semibold text-[var(--ink)]">
-                    {item.q}
+                  <span className="flex items-baseline gap-4">
+                    <span className="font-mono-data text-[11px] text-[var(--muted)] transition-colors group-hover:text-[var(--solar)]">
+                      {String(i + 1).padStart(2, "0")}
+                    </span>
+                    <span className="text-[17px] font-semibold text-[var(--ink)]">
+                      {item.q}
+                    </span>
                   </span>
                   <span
                     aria-hidden
-                    className={`shrink-0 transition-transform ${
-                      isOpen ? "rotate-45" : ""
+                    className={`shrink-0 rounded-full border border-[var(--line)] p-1.5 transition-all ${
+                      isOpen
+                        ? "rotate-45 border-[var(--solar)] bg-[var(--solar)] text-[var(--ink)]"
+                        : "text-[var(--steel)] group-hover:border-[var(--steel)]"
                     }`}
                   >
-                    <svg width="18" height="18" viewBox="0 0 18 18" fill="none">
+                    <svg width="14" height="14" viewBox="0 0 18 18" fill="none">
                       <path
                         d="M9 3v12M3 9h12"
                         stroke="currentColor"
@@ -71,7 +78,7 @@ export default function Faq() {
                   </span>
                 </button>
                 {isOpen && (
-                  <div className="pb-6 pr-10 text-[15px] leading-relaxed text-[var(--ink)]/80">
+                  <div className="pb-7 pl-10 pr-10 text-[15px] leading-relaxed text-[var(--ink)]/80">
                     {item.a}
                   </div>
                 )}

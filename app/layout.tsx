@@ -30,7 +30,18 @@ export default async function RootLayout({
 
   if (isMarketing) {
     return (
-      <html lang="de" className={`${geistSans.variable} h-full`}>
+      <html
+        lang="de"
+        className={`${geistSans.variable} h-full`}
+        suppressHydrationWarning
+      >
+        <head>
+          <script
+            dangerouslySetInnerHTML={{
+              __html: `document.documentElement.classList.add('js');`,
+            }}
+          />
+        </head>
         <body className="min-h-full bg-[var(--paper)] text-[var(--ink)] antialiased">
           {children}
         </body>
