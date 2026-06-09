@@ -43,3 +43,6 @@ yarn-error.log*
 # typescript
 *.tsbuildinfo
 next-env.d.ts
+
+# landing page leads (DSGVO: never commit personal data)
+/data/leads.jsonl
