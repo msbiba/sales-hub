@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { Geist } from "next/font/google";
+import { headers } from "next/headers";
 import "./globals.css";
 import Navigation from "./nav";
 import { getCurrentUserProfile } from "@/lib/auth/role";
@@ -14,11 +15,29 @@ export const metadata: Metadata = {
   description: "Vertriebs-Dashboard fuer Solarwerk Sued GmbH",
 };
 
+const MARKETING_PREFIXES = ["/landing", "/impressum", "/datenschutz"];
+
 export default async function RootLayout({
   children,
 }: Readonly<{
   children: React.ReactNode;
 }>) {
+  const headerList = await headers();
+  const pathname = headerList.get("x-pathname") ?? "";
+  const isMarketing = MARKETING_PREFIXES.some((prefix) =>
+    pathname.startsWith(prefix),
+  );
+
+  if (isMarketing) {
+    return (
+      <html lang="de" className={`${geistSans.variable} h-full`}>
+        <body className="min-h-full bg-[var(--paper)] text-[var(--ink)] antialiased">
+          {children}
+        </body>
+      </html>
+    );
+  }
+
   const profile = await getCurrentUserProfile();
 
   return (

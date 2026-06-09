@@ -7,6 +7,10 @@ const PUBLIC_PATHS = [
   "/passwort-neu",
   "/auth/callback",
   "/403",
+  "/landing",
+  "/impressum",
+  "/datenschutz",
+  "/api/lead",
 ];
 
 const ROUTE_ROLES: Array<{ prefix: string; roles: string[] }> = [
