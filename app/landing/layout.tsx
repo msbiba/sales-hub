@@ -25,12 +25,20 @@ export default function LandingLayout({ children }: { children: ReactNode }) {
       <header className="border-b border-[var(--line)] bg-[var(--paper)]">
         <div className="mx-auto flex max-w-6xl items-center justify-between px-6 py-5">
           <Logo />
-          <a
-            href="#termin"
-            className="hidden rounded-md bg-[var(--ink)] px-4 py-2 text-sm font-semibold text-white hover:bg-black sm:inline-flex"
-          >
-            Termin buchen
-          </a>
+          <nav className="hidden items-center gap-3 sm:flex">
+            <a
+              href="/login"
+              className="rounded-md border border-[var(--line)] bg-white px-4 py-2 text-sm font-semibold text-[var(--ink)] hover:bg-[var(--paper)]"
+            >
+              Kundenlogin
+            </a>
+            <a
+              href="#termin"
+              className="rounded-md bg-[var(--ink)] px-4 py-2 text-sm font-semibold text-white hover:bg-black"
+            >
+              Termin buchen
+            </a>
+          </nav>
         </div>
       </header>
       {children}
