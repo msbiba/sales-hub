@@ -1,9 +1,14 @@
+import type { Metadata } from "next";
 import { requireRole } from "@/lib/auth/role";
 import { createSupabaseServerClient } from "@/lib/supabase/server";
 import NutzerClient from "./nutzer-client";
 import type { Profile } from "@/types";
 
 export const dynamic = "force-dynamic";
+
+export const metadata: Metadata = {
+  title: "Nutzer · Solarwerk Sued",
+};
 
 export default async function NutzerPage() {
   const adminProfile = await requireRole("admin");

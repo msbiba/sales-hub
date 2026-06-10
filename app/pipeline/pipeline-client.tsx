@@ -103,7 +103,7 @@ export default function PipelineClient({
   }).length;
 
   const stats = [
-    { label: "Offene Angebote", value: offeneAngebote },
+    { label: "Angebote draußen", value: offeneAngebote },
     { label: "Pipeline-Volumen", value: formatEur(pipelineVolumen) },
     { label: "Gewonnen diesen Monat", value: gewonnenDiesenMonat },
   ];

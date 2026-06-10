@@ -1,7 +1,12 @@
+import type { Metadata } from "next";
 import { getKunden } from "@/lib/data";
 import DashboardClient from "./dashboard-client";
 
 export const dynamic = "force-dynamic";
+
+export const metadata: Metadata = {
+  title: "Dashboard · Solarwerk Sued",
+};
 
 export default async function DashboardPage({
   searchParams,

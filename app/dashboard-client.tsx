@@ -2,7 +2,7 @@
 
 import { useMemo, useState } from "react";
 import { useRouter } from "next/navigation";
-import { Users, CheckCircle, AlertTriangle } from "lucide-react";
+import { Users, CheckCircle, AlertTriangle, UserSearch, Wrench } from "lucide-react";
 import { Kunde, KundenStatus } from "@/types";
 import KundeStatusBadge from "@/components/KundeStatusBadge";
 import DualRangeSlider from "@/components/DualRangeSlider";
@@ -53,6 +53,8 @@ export default function DashboardClient({ kunden }: { kunden: Kunde[] }) {
 
   const gesamt = kunden.length;
   const aktive = kunden.filter((k) => k.status === "aktiv").length;
+  const interessenten = kunden.filter((k) => k.status === "interessent").length;
+  const inWartung = kunden.filter((k) => k.status === "in_wartung").length;
   const beschwerden = kunden.filter((k) => k.status === "beschwerde").length;
 
   const gefilterteKunden = kunden.filter((k) => {
@@ -84,7 +86,7 @@ export default function DashboardClient({ kunden }: { kunden: Kunde[] }) {
     <div>
       <h1 className="mb-6 text-2xl font-bold">Dashboard</h1>
 
-      <div className="mb-8 grid grid-cols-1 gap-4 sm:grid-cols-3">
+      <div className="mb-8 grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-5">
         <div className="rounded-lg border border-gray-200 bg-white p-6">
           <div className="flex items-center gap-3">
             <Users className="h-8 w-8 text-blue-500" />
@@ -100,6 +102,24 @@ export default function DashboardClient({ kunden }: { kunden: Kunde[] }) {
             <div>
               <p className="text-sm text-gray-500">Aktive Kunden</p>
               <p className="text-2xl font-bold">{aktive}</p>
+            </div>
+          </div>
+        </div>
+        <div className="rounded-lg border border-gray-200 bg-white p-6">
+          <div className="flex items-center gap-3">
+            <UserSearch className="h-8 w-8 text-amber-500" />
+            <div>
+              <p className="text-sm text-gray-500">Interessenten</p>
+              <p className="text-2xl font-bold">{interessenten}</p>
+            </div>
+          </div>
+        </div>
+        <div className="rounded-lg border border-gray-200 bg-white p-6">
+          <div className="flex items-center gap-3">
+            <Wrench className="h-8 w-8 text-indigo-500" />
+            <div>
+              <p className="text-sm text-gray-500">In Wartung</p>
+              <p className="text-2xl font-bold">{inWartung}</p>
             </div>
           </div>
         </div>

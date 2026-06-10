@@ -1,9 +1,14 @@
+import type { Metadata } from "next";
 import { getPipelineEintrag } from "@/lib/data";
 import PipelineDetailClient from "./pipeline-detail-client";
 import { getCurrentUserProfile } from "@/lib/auth/role";
 import Historie from "@/app/kunden/[id]/historie";
 
 export const dynamic = "force-dynamic";
+
+export const metadata: Metadata = {
+  title: "Pipeline-Eintrag · Solarwerk Sued",
+};
 
 export default async function PipelineDetailPage({
   params,
