@@ -3,6 +3,7 @@
 import { useEffect, useState } from "react";
 
 const STORAGE_KEY = "sw-cookie-consent-v2";
+const CONSENT_EVENT = "sw-cookie-consent-change";
 
 export default function CookieBanner() {
   const [open, setOpen] = useState(false);
@@ -24,6 +25,7 @@ export default function CookieBanner() {
     } catch {
       /* ignore */
     }
+    window.dispatchEvent(new Event(CONSENT_EVENT));
     setOpen(false);
   }
 
@@ -39,9 +41,10 @@ export default function CookieBanner() {
         DSGVO-Hinweis
       </p>
       <p className="mt-2 text-[15px] leading-relaxed text-[var(--ink)]">
-        Wir verwenden nur essenzielle Cookies für die Funktion dieser Seite.
-        Für die Terminbuchung über Cal.com wird beim Klick auf den
-        Buchungs-Button ein externer Dienst geladen. Details in der{" "}
+        Diese Seite verwendet essenzielle Cookies für die Funktion. Mit Ihrer
+        Einwilligung setzen wir zusätzlich Google Analytics ein, um die Seite
+        zu verbessern. Für die Terminbuchung über Cal.com wird beim Aufruf
+        ein externer Dienst geladen. Details in der{" "}
         <a
           href="/datenschutz"
           className="underline underline-offset-2 hover:text-[var(--solar)]"
@@ -63,7 +66,7 @@ export default function CookieBanner() {
           onClick={() => persist("all")}
           className="rounded-md bg-[var(--ink)] px-4 py-2 text-sm font-semibold text-white hover:bg-black"
         >
-          Verstanden
+          Analytics zustimmen
         </button>
       </div>
     </div>

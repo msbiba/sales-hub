@@ -1,0 +1,17 @@
+{
+  "ttfb": 17,
+  "domContentLoaded": 4496,
+  "loadEvent": 4937,
+  "resourceCount": 25,
+  "totalKB": 416,
+  "thirdPartyCount": 3,
+  "thirdPartyKB": 0,
+  "slowResources": [
+    {
+      "url": "https://app.cal.com/pickaslot/embed?layout=month_view&theme=light&embedType=inline&embed=solarwerk",
+      "dur": 2589,
+      "size": 0
+    }
+  ],
+  "largestResources": []
+}

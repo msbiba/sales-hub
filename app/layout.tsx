@@ -36,6 +36,8 @@ export default async function RootLayout({
         suppressHydrationWarning
       >
         <head>
+          <link rel="preconnect" href="https://app.cal.com" />
+          <link rel="dns-prefetch" href="https://app.cal.com" />
           <script
             dangerouslySetInnerHTML={{
               __html: `document.documentElement.classList.add('js');`,
