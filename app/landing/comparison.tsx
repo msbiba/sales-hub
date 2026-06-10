@@ -57,20 +57,32 @@ export default function Comparison() {
           <table className="w-full border-collapse text-[15px]">
             <thead>
               <tr className="border-b border-[var(--line)]">
-                <th className="w-[36%] bg-[var(--paper)] px-6 py-5 text-left font-mono-data text-[11px] font-medium uppercase tracking-wider text-[var(--muted)]">
+                <th
+                  scope="col"
+                  className="w-[36%] bg-[var(--paper)] px-6 py-5 text-left font-mono-data text-[11px] font-medium uppercase tracking-wider text-[var(--muted)]"
+                >
                   Kriterium
                 </th>
-                <th className="relative bg-[var(--ink)] px-6 py-5 text-left text-sm font-semibold text-white">
+                <th
+                  scope="col"
+                  className="relative bg-[var(--ink)] px-6 py-5 text-left text-sm font-semibold text-white"
+                >
                   <span
                     aria-hidden
                     className="absolute left-0 top-0 h-1 w-full bg-[var(--solar)]"
                   />
                   Solarwerk-Süd
                 </th>
-                <th className="bg-[var(--paper)] px-6 py-5 text-left text-sm font-medium text-[var(--muted)]">
+                <th
+                  scope="col"
+                  className="bg-[var(--paper)] px-6 py-5 text-left text-sm font-medium text-[var(--muted)]"
+                >
                   Plattform-Anbieter
                 </th>
-                <th className="bg-[var(--paper)] px-6 py-5 text-left text-sm font-medium text-[var(--muted)]">
+                <th
+                  scope="col"
+                  className="bg-[var(--paper)] px-6 py-5 text-left text-sm font-medium text-[var(--muted)]"
+                >
                   Generalunternehmer
                 </th>
               </tr>
@@ -83,9 +95,12 @@ export default function Comparison() {
                     i % 2 === 1 ? "bg-[var(--paper)]/40" : ""
                   }`}
                 >
-                  <td className="px-6 py-5 font-medium text-[var(--ink)]">
+                  <th
+                    scope="row"
+                    className="px-6 py-5 text-left font-medium text-[var(--ink)]"
+                  >
                     {row.kriterium}
-                  </td>
+                  </th>
                   <td className="bg-[var(--ink)]/[0.03] px-6 py-5 font-medium text-[var(--ink)]">
                     {row.uns === true ? (
                       <span className="inline-flex items-center gap-2 text-[var(--leaf)]">

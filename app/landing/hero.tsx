@@ -105,7 +105,7 @@ export default function Hero({ variant }: { variant?: string }) {
             </a>
             <a
               href="#rechner"
-              className="focus-ring text-[15px] font-medium text-white underline-offset-4 hover:underline"
+              className="focus-ring inline-flex min-h-[44px] items-center px-2 py-2 text-[15px] font-medium text-white underline-offset-4 hover:underline"
             >
               Erst rechnen lassen →
             </a>
