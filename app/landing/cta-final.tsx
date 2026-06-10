@@ -14,16 +14,16 @@ export default function CtaFinal() {
         aria-hidden
         className="absolute -right-32 top-20 h-[420px] w-[420px] rounded-full bg-[var(--solar)] opacity-[0.08] blur-3xl"
       />
-      <div className="relative mx-auto max-w-6xl px-6 py-24">
-        <div className="reveal mx-auto max-w-3xl text-center">
+      <div className="relative mx-auto max-w-3xl px-6 py-24">
+        <div className="reveal is-visible text-center">
           <p className="font-mono-data text-xs uppercase tracking-[0.18em] text-[var(--steel)]">
             30 Minuten. Ihr Dach. Ein ehrlicher Wert.
           </p>
-          <h2 className="mt-5 text-3xl font-semibold leading-tight tracking-[-0.01em] text-[var(--ink)] sm:text-[44px]">
+          <h2 className="mt-5 text-3xl font-semibold leading-tight tracking-[-0.01em] text-[var(--ink)] sm:text-[40px]">
             Wir prüfen Ihr Dach per Drohne — und sagen Ihnen{" "}
             <span className="solar-underline">schriftlich</span>, was geht.
           </h2>
-          <p className="mt-6 text-[17px] leading-relaxed text-[var(--ink)]/75">
+          <p className="mt-5 text-[16px] leading-relaxed text-[var(--ink)]/75">
             Kostenlos, unverbindlich, ohne Verkaufs-Theater. Wenn sich PV bei
             Ihnen nicht rechnet, sagen wir es Ihnen — auch das schriftlich.
           </p>
@@ -36,18 +36,21 @@ export default function CtaFinal() {
           </div>
         </div>
 
-        <div className="reveal mt-14">
+        <div className="reveal is-visible mt-14">
+          <h3 className="mb-5 text-center text-[20px] font-semibold tracking-[-0.01em] text-[var(--ink)] sm:text-[24px]">
+            Jetzt unverbindlich und persönlich beraten lassen
+          </h3>
           <CalEmbed />
         </div>
 
-        <p className="reveal mt-6 text-center text-xs text-[var(--muted)]">
+        <p className="reveal is-visible mt-6 text-center text-xs text-[var(--muted)]">
           Buchung über Cal.com — als funktional notwendig für unseren
-          Buchungsprozess eingestuft. Details:{" "}
+          Buchungsprozess eingestuft. DSGVO-konform; Details:{" "}
           <a
             href="/datenschutz"
             className="underline underline-offset-2 hover:text-[var(--ink)]"
           >
-            Datenschutz
+            Datenschutzerklärung
           </a>
           .
         </p>
