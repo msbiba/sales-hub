@@ -110,28 +110,38 @@ export default function LoginForm() {
         </div>
 
         <div className="mb-4">
-          <label className="mb-1 block text-sm font-medium text-gray-700">
+          <label
+            htmlFor="login-email"
+            className="mb-1 block text-sm font-medium text-gray-700"
+          >
             E-Mail
           </label>
           <input
+            id="login-email"
             type="email"
             value={email}
             onChange={(e) => setEmail(e.target.value)}
             required
+            autoComplete="username"
             className="w-full rounded-md border border-gray-300 px-3 py-2 text-sm"
             placeholder="felix@solarwerk-sued.de"
           />
         </div>
         <div className="mb-2">
-          <label className="mb-1 block text-sm font-medium text-gray-700">
+          <label
+            htmlFor="login-passwort"
+            className="mb-1 block text-sm font-medium text-gray-700"
+          >
             Passwort
           </label>
           <input
+            id="login-passwort"
             type="password"
             value={passwort}
             onChange={(e) => setPasswort(e.target.value)}
             required
             minLength={6}
+            autoComplete={mode === "signin" ? "current-password" : "new-password"}
             className="w-full rounded-md border border-gray-300 px-3 py-2 text-sm"
           />
         </div>

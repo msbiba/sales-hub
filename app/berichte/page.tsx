@@ -11,8 +11,13 @@ import {
   pipelineStatusLabels,
 } from "@/lib/berichte-aggregate";
 import BerichteClient from "./berichte-client";
+import type { Metadata } from "next";
 
 export const dynamic = "force-dynamic";
+
+export const metadata: Metadata = {
+  title: "Berichte · Solarwerk Sued",
+};
 
 export default async function BerichtePage({
   searchParams,

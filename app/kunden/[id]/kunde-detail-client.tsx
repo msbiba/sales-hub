@@ -149,8 +149,9 @@ export default function KundeDetailClient({
         {editing ? (
           <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
             <div className="sm:col-span-2">
-              <label className={labelCls}>Firma</label>
+              <label htmlFor="kd-firma" className={labelCls}>Firma</label>
               <input
+                id="kd-firma"
                 type="text"
                 value={form.firma}
                 onChange={(e) => update("firma", e.target.value)}
@@ -158,8 +159,9 @@ export default function KundeDetailClient({
               />
             </div>
             <div>
-              <label className={labelCls}>Ansprechpartner</label>
+              <label htmlFor="kd-ansprechpartner" className={labelCls}>Ansprechpartner</label>
               <input
+                id="kd-ansprechpartner"
                 type="text"
                 value={form.ansprechpartner}
                 onChange={(e) => update("ansprechpartner", e.target.value)}
@@ -167,8 +169,9 @@ export default function KundeDetailClient({
               />
             </div>
             <div>
-              <label className={labelCls}>Branche</label>
+              <label htmlFor="kd-branche" className={labelCls}>Branche</label>
               <input
+                id="kd-branche"
                 type="text"
                 value={form.branche}
                 onChange={(e) => update("branche", e.target.value)}
@@ -176,17 +179,20 @@ export default function KundeDetailClient({
               />
             </div>
             <div>
-              <label className={labelCls}>Anlagengroesse (kWp)</label>
+              <label htmlFor="kd-anlagengroesse" className={labelCls}>Anlagengroesse (kWp)</label>
               <input
+                id="kd-anlagengroesse"
                 type="number"
+                inputMode="numeric"
                 value={form.anlagengroesse_kwp}
                 onChange={(e) => update("anlagengroesse_kwp", e.target.value)}
                 className={inputCls}
               />
             </div>
             <div>
-              <label className={labelCls}>Status</label>
+              <label htmlFor="kd-status" className={labelCls}>Status</label>
               <select
+                id="kd-status"
                 value={form.status}
                 onChange={(e) =>
                   update("status", e.target.value as KundenStatus)
@@ -194,14 +200,15 @@ export default function KundeDetailClient({
                 className={inputCls}
               >
                 <option value="aktiv">Aktiv</option>
+                <option value="interessent">Interessent</option>
                 <option value="in_wartung">In Wartung</option>
                 <option value="beschwerde">Beschwerde</option>
-                <option value="interessent">Interessent</option>
               </select>
             </div>
             <div>
-              <label className={labelCls}>Letzter Kontakt</label>
+              <label htmlFor="kd-letzter-kontakt" className={labelCls}>Letzter Kontakt</label>
               <input
+                id="kd-letzter-kontakt"
                 type="date"
                 value={form.letzter_kontakt}
                 onChange={(e) => update("letzter_kontakt", e.target.value)}
@@ -209,17 +216,19 @@ export default function KundeDetailClient({
               />
             </div>
             <div>
-              <label className={labelCls}>Telefon</label>
+              <label htmlFor="kd-telefon" className={labelCls}>Telefon</label>
               <input
-                type="text"
+                id="kd-telefon"
+                type="tel"
                 value={form.telefon}
                 onChange={(e) => update("telefon", e.target.value)}
                 className={inputCls}
               />
             </div>
             <div className="sm:col-span-2">
-              <label className={labelCls}>E-Mail</label>
+              <label htmlFor="kd-email" className={labelCls}>E-Mail</label>
               <input
+                id="kd-email"
                 type="email"
                 value={form.email}
                 onChange={(e) => update("email", e.target.value)}
@@ -227,8 +236,9 @@ export default function KundeDetailClient({
               />
             </div>
             <div className="sm:col-span-2">
-              <label className={labelCls}>Notiz</label>
+              <label htmlFor="kd-notiz" className={labelCls}>Notiz</label>
               <textarea
+                id="kd-notiz"
                 value={form.notiz}
                 onChange={(e) => update("notiz", e.target.value)}
                 rows={3}

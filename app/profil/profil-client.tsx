@@ -74,13 +74,18 @@ export default function ProfilClient({ profile }: { profile: Profile }) {
         </div>
 
         <form onSubmit={saveName} className="border-t border-gray-100 pt-4">
-          <label className="mb-1 block text-sm font-medium text-gray-700">
+          <label
+            htmlFor="profil-name"
+            className="mb-1 block text-sm font-medium text-gray-700"
+          >
             Vollstaendiger Name
           </label>
           <input
+            id="profil-name"
             type="text"
             value={fullName}
             onChange={(e) => setFullName(e.target.value)}
+            autoComplete="name"
             className="mb-3 w-full rounded-md border border-gray-300 px-3 py-2 text-sm"
             placeholder="Max Mustermann"
           />
@@ -110,24 +115,34 @@ export default function ProfilClient({ profile }: { profile: Profile }) {
           Passwort aendern
         </h2>
         <form onSubmit={changePw}>
-          <label className="mb-1 block text-sm font-medium text-gray-700">
+          <label
+            htmlFor="profil-pw1"
+            className="mb-1 block text-sm font-medium text-gray-700"
+          >
             Neues Passwort
           </label>
           <input
+            id="profil-pw1"
             type="password"
             value={pw1}
             onChange={(e) => setPw1(e.target.value)}
             minLength={6}
+            autoComplete="new-password"
             className="mb-3 w-full rounded-md border border-gray-300 px-3 py-2 text-sm"
           />
-          <label className="mb-1 block text-sm font-medium text-gray-700">
+          <label
+            htmlFor="profil-pw2"
+            className="mb-1 block text-sm font-medium text-gray-700"
+          >
             Wiederholen
           </label>
           <input
+            id="profil-pw2"
             type="password"
             value={pw2}
             onChange={(e) => setPw2(e.target.value)}
             minLength={6}
+            autoComplete="new-password"
             className="mb-3 w-full rounded-md border border-gray-300 px-3 py-2 text-sm"
           />
           {pwMsg && (

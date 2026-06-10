@@ -1,7 +1,12 @@
+import type { Metadata } from "next";
 import Link from "next/link";
 import { getKunden } from "@/lib/data";
 
 export const dynamic = "force-dynamic";
+
+export const metadata: Metadata = {
+  title: "Kunden · Solarwerk Sued",
+};
 
 export default async function KundenPage({
   searchParams,

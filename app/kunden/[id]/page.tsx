@@ -1,9 +1,14 @@
+import type { Metadata } from "next";
 import { getKunde } from "@/lib/data";
 import KundeDetailClient from "./kunde-detail-client";
 import { getCurrentUserProfile } from "@/lib/auth/role";
 import AktivitaetErfassen from "./aktivitaet-erfassen";
 import Aktivitaeten from "./aktivitaeten";
 import Historie from "./historie";
+
+export const metadata: Metadata = {
+  title: "Kunde · Solarwerk Sued",
+};
 
 export default async function KundenDetailPage({
   params,

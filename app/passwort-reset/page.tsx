@@ -50,14 +50,19 @@ export default function PasswortResetPage() {
               E-Mail eingeben, wir senden einen Link zum Zuruecksetzen.
             </p>
             <div className="mb-4">
-              <label className="mb-1 block text-sm font-medium text-gray-700">
+              <label
+                htmlFor="reset-email"
+                className="mb-1 block text-sm font-medium text-gray-700"
+              >
                 E-Mail
               </label>
               <input
+                id="reset-email"
                 type="email"
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
                 required
+                autoComplete="username"
                 className="w-full rounded-md border border-gray-300 px-3 py-2 text-sm"
               />
             </div>

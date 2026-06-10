@@ -2,7 +2,7 @@
 
 import { useMemo, useState } from "react";
 import { useRouter } from "next/navigation";
-import { Users, CheckCircle, AlertTriangle } from "lucide-react";
+import { Users, CheckCircle, AlertTriangle, UserSearch, Wrench } from "lucide-react";
 import { Kunde, KundenStatus } from "@/types";
 import KundeStatusBadge from "@/components/KundeStatusBadge";
 import DualRangeSlider from "@/components/DualRangeSlider";
@@ -53,6 +53,8 @@ export default function DashboardClient({ kunden }: { kunden: Kunde[] }) {
 
   const gesamt = kunden.length;
   const aktive = kunden.filter((k) => k.status === "aktiv").length;
+  const interessenten = kunden.filter((k) => k.status === "interessent").length;
+  const inWartung = kunden.filter((k) => k.status === "in_wartung").length;
   const beschwerden = kunden.filter((k) => k.status === "beschwerde").length;
 
   const gefilterteKunden = kunden.filter((k) => {
@@ -84,7 +86,7 @@ export default function DashboardClient({ kunden }: { kunden: Kunde[] }) {
     <div>
       <h1 className="mb-6 text-2xl font-bold">Dashboard</h1>
 
-      <div className="mb-8 grid grid-cols-1 gap-4 sm:grid-cols-3">
+      <div className="mb-8 grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-5">
         <div className="rounded-lg border border-gray-200 bg-white p-6">
           <div className="flex items-center gap-3">
             <Users className="h-8 w-8 text-blue-500" />
@@ -105,6 +107,24 @@ export default function DashboardClient({ kunden }: { kunden: Kunde[] }) {
         </div>
         <div className="rounded-lg border border-gray-200 bg-white p-6">
           <div className="flex items-center gap-3">
+            <UserSearch className="h-8 w-8 text-amber-500" />
+            <div>
+              <p className="text-sm text-gray-500">Interessenten</p>
+              <p className="text-2xl font-bold">{interessenten}</p>
+            </div>
+          </div>
+        </div>
+        <div className="rounded-lg border border-gray-200 bg-white p-6">
+          <div className="flex items-center gap-3">
+            <Wrench className="h-8 w-8 text-indigo-500" />
+            <div>
+              <p className="text-sm text-gray-500">In Wartung</p>
+              <p className="text-2xl font-bold">{inWartung}</p>
+            </div>
+          </div>
+        </div>
+        <div className="rounded-lg border border-gray-200 bg-white p-6">
+          <div className="flex items-center gap-3">
             <AlertTriangle className="h-8 w-8 text-red-500" />
             <div>
               <p className="text-sm text-gray-500">Beschwerden</p>
@@ -120,16 +140,19 @@ export default function DashboardClient({ kunden }: { kunden: Kunde[] }) {
           onChange={(e) =>
             setStatusFilter(e.target.value as KundenStatus | "alle")
           }
+          aria-label="Nach Status filtern"
           className="rounded-md border border-gray-300 bg-white px-3 py-2 text-sm"
         >
           <option value="alle">Alle Status</option>
           <option value="aktiv">Aktiv</option>
+          <option value="interessent">Interessent</option>
           <option value="in_wartung">In Wartung</option>
           <option value="beschwerde">Beschwerde</option>
         </select>
         <input
           type="text"
           placeholder="Suche nach Firma oder Ansprechpartner..."
+          aria-label="Suche nach Firma oder Ansprechpartner"
           value={suchbegriff}
           onChange={(e) => setSuchbegriff(e.target.value)}
           className="rounded-md border border-gray-300 px-3 py-2 text-sm sm:w-80"
@@ -137,6 +160,7 @@ export default function DashboardClient({ kunden }: { kunden: Kunde[] }) {
         <select
           value={brancheFilter}
           onChange={(e) => setBrancheFilter(e.target.value)}
+          aria-label="Nach Branche filtern"
           className="rounded-md border border-gray-300 bg-white px-3 py-2 text-sm"
         >
           <option value="alle">Alle Branchen</option>
@@ -193,8 +217,17 @@ export default function DashboardClient({ kunden }: { kunden: Kunde[] }) {
             {sortierteKunden.map((kunde) => (
               <tr
                 key={kunde.id}
+                role="link"
+                tabIndex={0}
+                aria-label={`Kunde ${kunde.firma} öffnen`}
                 onClick={() => router.push(`/kunden/${kunde.id}`)}
-                className="cursor-pointer border-b border-gray-100 hover:bg-gray-50"
+                onKeyDown={(e) => {
+                  if (e.key === "Enter" || e.key === " ") {
+                    e.preventDefault();
+                    router.push(`/kunden/${kunde.id}`);
+                  }
+                }}
+                className="cursor-pointer border-b border-gray-100 hover:bg-gray-50 focus:bg-gray-50 focus:outline-none focus-visible:ring-2 focus-visible:ring-inset focus-visible:ring-blue-500"
               >
                 <td className="px-4 py-3 font-medium">{kunde.firma}</td>
                 <td className="px-4 py-3">{kunde.ansprechpartner}</td>

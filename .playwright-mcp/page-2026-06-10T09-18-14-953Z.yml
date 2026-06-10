@@ -1,0 +1,102 @@
+- generic [ref=e1]:
+  - banner [ref=e2]:
+    - generic [ref=e3]:
+      - link "Solarwerk Sued · Sales-Hub" [ref=e4] [cursor=pointer]:
+        - /url: /
+      - navigation [ref=e29]:
+        - link "Dashboard" [ref=e30] [cursor=pointer]:
+          - /url: /
+        - link "Pipeline" [ref=e31] [cursor=pointer]:
+          - /url: /pipeline
+        - link "Berichte" [ref=e32] [cursor=pointer]:
+          - /url: /berichte
+        - link "Neuer Kunde" [ref=e33] [cursor=pointer]:
+          - /url: /kunden/neu
+        - link "Nutzer" [ref=e34] [cursor=pointer]:
+          - /url: /nutzer
+      - generic [ref=e5]:
+        - link "marko.schweigerer@gmail.com" [ref=e35] [cursor=pointer]:
+          - /url: /profil
+        - button "Logout" [ref=e37]
+        - button "Theme umschalten" [ref=e7]:
+          - img [ref=e8]
+  - main [ref=e10]:
+    - generic [ref=e42]:
+      - heading "Dashboard" [level=1] [ref=e43]
+      - generic [ref=e44]:
+        - generic [ref=e46]:
+          - img [ref=e47]
+          - generic [ref=e52]:
+            - paragraph [ref=e53]: Gesamtkunden
+            - paragraph [ref=e54]: "40"
+        - generic [ref=e56]:
+          - img [ref=e57]
+          - generic [ref=e60]:
+            - paragraph [ref=e61]: Aktive Kunden
+            - paragraph [ref=e62]: "30"
+        - generic [ref=e64]:
+          - img [ref=e65]
+          - generic [ref=e67]:
+            - paragraph [ref=e68]: Beschwerden
+            - paragraph [ref=e69]: "3"
+      - generic [ref=e70]:
+        - combobox [ref=e71]:
+          - option "Alle Status"
+          - option "Aktiv"
+          - option "In Wartung"
+          - option "Beschwerde" [selected]
+        - textbox "Suche nach Firma oder Ansprechpartner..." [ref=e72]
+        - combobox [ref=e73]:
+          - option "Alle Branchen" [selected]
+          - option "Gewerbe"
+          - option "Handwerk"
+          - option "Industrie"
+          - option "Landwirtschaft"
+        - generic [ref=e74]:
+          - generic [ref=e75]: "Anlagengroesse: 0 kWp–720 kWp"
+          - generic [ref=e76]:
+            - slider [ref=e77]: "0"
+            - slider [ref=e78]: "720"
+        - button "Filter zurücksetzen" [active] [ref=e79]
+      - table [ref=e81]:
+        - rowgroup [ref=e82]:
+          - row "Firma Ansprechpartner Branche Anlagengroesse (kWp) Status Letzter Kontakt" [ref=e83]:
+            - columnheader "Firma" [ref=e84]:
+              - button "Firma" [ref=e85]
+            - columnheader "Ansprechpartner" [ref=e86]:
+              - button "Ansprechpartner" [ref=e87]
+            - columnheader "Branche" [ref=e88]:
+              - button "Branche" [ref=e89]
+            - columnheader "Anlagengroesse (kWp)" [ref=e90]:
+              - button "Anlagengroesse (kWp)" [ref=e91]
+            - columnheader "Status" [ref=e92]:
+              - button "Status" [ref=e93]
+            - columnheader "Letzter Kontakt" [ref=e94]:
+              - button "Letzter Kontakt" [ref=e95]
+        - rowgroup [ref=e96]:
+          - row "Schwabenmoebel GmbH Robert Haas Industrie 420 Beschwerde 2026-05-10" [ref=e473] [cursor=pointer]:
+            - cell "Schwabenmoebel GmbH" [ref=e474]
+            - cell "Robert Haas" [ref=e475]
+            - cell "Industrie" [ref=e476]
+            - cell "420" [ref=e477]
+            - cell "Beschwerde" [ref=e478]:
+              - generic [ref=e479]: Beschwerde
+            - cell "2026-05-10" [ref=e480]
+          - row "Kreitmeier Druck und Verlag Manfred Kreitmeier Industrie 78 Beschwerde 2026-05-02" [ref=e585] [cursor=pointer]:
+            - cell "Kreitmeier Druck und Verlag" [ref=e586]
+            - cell "Manfred Kreitmeier" [ref=e587]
+            - cell "Industrie" [ref=e588]
+            - cell "78" [ref=e589]
+            - cell "Beschwerde" [ref=e590]:
+              - generic [ref=e591]: Beschwerde
+            - cell "2026-05-02" [ref=e592]
+          - row "Bachmaier Baeckerei Julia Bachmaier Handwerk 52 Beschwerde 2026-05-08" [ref=e609] [cursor=pointer]:
+            - cell "Bachmaier Baeckerei" [ref=e610]
+            - cell "Julia Bachmaier" [ref=e611]
+            - cell "Handwerk" [ref=e612]
+            - cell "52" [ref=e613]
+            - cell "Beschwerde" [ref=e614]:
+              - generic [ref=e615]: Beschwerde
+            - cell "2026-05-08" [ref=e616]
+  - contentinfo [ref=e26]: Solarwerk Sued GmbH · Stadtbergen
+  - alert [ref=e27]

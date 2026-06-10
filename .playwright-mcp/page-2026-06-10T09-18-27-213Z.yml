@@ -1,0 +1,184 @@
+- generic [active] [ref=e1]:
+  - banner [ref=e2]:
+    - generic [ref=e3]:
+      - link "Solarwerk Sued · Sales-Hub" [ref=e4] [cursor=pointer]:
+        - /url: /
+      - navigation [ref=e5]:
+        - link "Dashboard" [ref=e6] [cursor=pointer]:
+          - /url: /
+        - link "Pipeline" [ref=e7] [cursor=pointer]:
+          - /url: /pipeline
+        - link "Berichte" [ref=e8] [cursor=pointer]:
+          - /url: /berichte
+        - link "Neuer Kunde" [ref=e9] [cursor=pointer]:
+          - /url: /kunden/neu
+        - link "Nutzer" [ref=e10] [cursor=pointer]:
+          - /url: /nutzer
+      - generic [ref=e11]:
+        - link "marko.schweigerer@gmail.com" [ref=e12] [cursor=pointer]:
+          - /url: /profil
+        - button "Logout" [ref=e14]
+        - button "Theme umschalten" [ref=e15]:
+          - img [ref=e16]
+  - main [ref=e18]:
+    - generic [ref=e19]:
+      - heading "Pipeline-Übersicht" [level=1] [ref=e20]
+      - generic [ref=e21]:
+        - generic [ref=e22]:
+          - paragraph [ref=e23]: Offene Angebote
+          - paragraph [ref=e24]: "5"
+        - generic [ref=e25]:
+          - paragraph [ref=e26]: Pipeline-Volumen
+          - paragraph [ref=e27]: 2.150.000 €
+        - generic [ref=e28]:
+          - paragraph [ref=e29]: Gewonnen diesen Monat
+          - paragraph [ref=e30]: "0"
+      - generic [ref=e31]:
+        - heading "Pipeline-Eintraege" [level=2] [ref=e32]
+        - link "Neuen Pipeline-Eintrag anlegen" [ref=e33] [cursor=pointer]:
+          - /url: /pipeline/neu
+      - generic [ref=e34]:
+        - combobox [ref=e35]:
+          - option "Alle Status" [selected]
+          - option "Erstkontakt"
+          - option "Angebot raus"
+          - option "Verhandlung"
+          - option "Gewonnen"
+          - option "Verloren"
+          - option "Loeschbar"
+        - textbox "Suche nach Firma..." [ref=e36]
+        - generic [ref=e37]:
+          - generic [ref=e38]: "Anlagengroesse: 35 kWp–650 kWp"
+          - generic [ref=e39]:
+            - slider [ref=e40]: "35"
+            - slider [ref=e41]: "650"
+        - generic [ref=e42]:
+          - generic [ref=e43]: "Volumen: 32.000 €–580.000 €"
+          - generic [ref=e44]:
+            - slider [ref=e45]: "32000"
+            - slider [ref=e46]: "580000"
+        - button "Filter zurücksetzen" [ref=e47]
+      - table [ref=e49]:
+        - rowgroup [ref=e50]:
+          - row "Firma Anlagengröße kWp Volumen € Angebotsdatum Status" [ref=e51]:
+            - columnheader "Firma" [ref=e52]:
+              - button "Firma" [ref=e53]
+            - columnheader "Anlagengröße kWp" [ref=e54]:
+              - button "Anlagengröße kWp" [ref=e55]
+            - columnheader "Volumen €" [ref=e56]:
+              - button "Volumen €" [ref=e57]
+            - columnheader "Angebotsdatum" [ref=e58]:
+              - button "Angebotsdatum" [ref=e59]
+            - columnheader "Status" [ref=e60]:
+              - button "Status" [ref=e61]
+        - rowgroup [ref=e62]:
+          - row "Druckhaus Lindauer 95 89.000 € 2026-04-20 Erstkontakt" [ref=e63]:
+            - cell "Druckhaus Lindauer" [ref=e64]:
+              - link "Druckhaus Lindauer" [ref=e65] [cursor=pointer]:
+                - /url: /pipeline/ac0ce8a9-0140-4589-b233-97f5a45c1ac2
+            - cell "95" [ref=e66]
+            - cell "89.000 €" [ref=e67]
+            - cell "2026-04-20" [ref=e68]
+            - cell "Erstkontakt" [ref=e69]:
+              - generic [ref=e70]: Erstkontakt
+          - row "Sporthotel Weitblick 180 168.000 € 2026-03-28 Angebot raus" [ref=e71]:
+            - cell "Sporthotel Weitblick" [ref=e72]:
+              - link "Sporthotel Weitblick" [ref=e73] [cursor=pointer]:
+                - /url: /pipeline/2f8fd3ac-c936-4674-bd50-108b8edacbb7
+            - cell "180" [ref=e74]
+            - cell "168.000 €" [ref=e75]
+            - cell "2026-03-28" [ref=e76]
+            - cell "Angebot raus" [ref=e77]:
+              - generic [ref=e78]: Angebot raus
+          - row "Metallwerk Donau GmbH 350 298.000 € 2026-03-10 Verhandlung" [ref=e79]:
+            - cell "Metallwerk Donau GmbH" [ref=e80]:
+              - link "Metallwerk Donau GmbH" [ref=e81] [cursor=pointer]:
+                - /url: /pipeline/8e9103ba-9839-40d7-b7af-9acd1ed2254d
+            - cell "350" [ref=e82]
+            - cell "298.000 €" [ref=e83]
+            - cell "2026-03-10" [ref=e84]
+            - cell "Verhandlung" [ref=e85]:
+              - generic [ref=e86]: Verhandlung
+          - row "Weber Maschinenbau AG 480 415.000 € 2026-02-14 Verhandlung" [ref=e87]:
+            - cell "Weber Maschinenbau AG" [ref=e88]:
+              - link "Weber Maschinenbau AG" [ref=e89] [cursor=pointer]:
+                - /url: /pipeline/7a90f472-0c94-407c-89ea-406dac1143e7
+            - cell "480" [ref=e90]
+            - cell "415.000 €" [ref=e91]
+            - cell "2026-02-14" [ref=e92]
+            - cell "Verhandlung" [ref=e93]:
+              - generic [ref=e94]: Verhandlung
+          - row "Obsthof Berger 130 124.000 € 2026-04-15 Angebot raus" [ref=e95]:
+            - cell "Obsthof Berger" [ref=e96]:
+              - link "Obsthof Berger" [ref=e97] [cursor=pointer]:
+                - /url: /pipeline/38c2a917-a5bd-42d4-a009-d811d9b28cff
+            - cell "130" [ref=e98]
+            - cell "124.000 €" [ref=e99]
+            - cell "2026-04-15" [ref=e100]
+            - cell "Angebot raus" [ref=e101]:
+              - generic [ref=e102]: Angebot raus
+          - row "Baeckerei Kronenbrot 42 38.500 € 2026-04-02 Angebot raus" [ref=e103]:
+            - cell "Baeckerei Kronenbrot" [ref=e104]:
+              - link "Baeckerei Kronenbrot" [ref=e105] [cursor=pointer]:
+                - /url: /pipeline/4a387385-6967-4f8e-9ea8-39905a698087
+            - cell "42" [ref=e106]
+            - cell "38.500 €" [ref=e107]
+            - cell "2026-04-02" [ref=e108]
+            - cell "Angebot raus" [ref=e109]:
+              - generic [ref=e110]: Angebot raus
+          - row "Fitnessstudio PowerZone 60 54.500 € 2026-04-25 Angebot raus" [ref=e111]:
+            - cell "Fitnessstudio PowerZone" [ref=e112]:
+              - link "Fitnessstudio PowerZone" [ref=e113] [cursor=pointer]:
+                - /url: /pipeline/76494073-8fd8-45f4-aeda-9a3208a52628
+            - cell "60" [ref=e114]
+            - cell "54.500 €" [ref=e115]
+            - cell "2026-04-25" [ref=e116]
+            - cell "Angebot raus" [ref=e117]:
+              - generic [ref=e118]: Angebot raus
+          - row "Tischlerei Seefeld 35 32.000 € 2026-04-30 Erstkontakt" [ref=e119]:
+            - cell "Tischlerei Seefeld" [ref=e120]:
+              - link "Tischlerei Seefeld" [ref=e121] [cursor=pointer]:
+                - /url: /pipeline/f87066cd-b518-44d5-a012-a285bee0b6bb
+            - cell "35" [ref=e122]
+            - cell "32.000 €" [ref=e123]
+            - cell "2026-04-30" [ref=e124]
+            - cell "Erstkontakt" [ref=e125]:
+              - generic [ref=e126]: Erstkontakt
+          - row "Weingut Am Sonnenberg 75 68.000 € 2026-04-08 Erstkontakt" [ref=e127]:
+            - cell "Weingut Am Sonnenberg" [ref=e128]:
+              - link "Weingut Am Sonnenberg" [ref=e129] [cursor=pointer]:
+                - /url: /pipeline/75e66451-87b6-44b1-a725-e8e222b296c0
+            - cell "75" [ref=e130]
+            - cell "68.000 €" [ref=e131]
+            - cell "2026-04-08" [ref=e132]
+            - cell "Erstkontakt" [ref=e133]:
+              - generic [ref=e134]: Erstkontakt
+          - row "Blumengrossmarkt Suedwest 110 98.000 € 2026-05-02 Erstkontakt" [ref=e135]:
+            - cell "Blumengrossmarkt Suedwest" [ref=e136]:
+              - link "Blumengrossmarkt Suedwest" [ref=e137] [cursor=pointer]:
+                - /url: /pipeline/7627cfd2-be2c-433a-bff7-aba75d09350f
+            - cell "110" [ref=e138]
+            - cell "98.000 €" [ref=e139]
+            - cell "2026-05-02" [ref=e140]
+            - cell "Erstkontakt" [ref=e141]:
+              - generic [ref=e142]: Erstkontakt
+          - row "Kaeserei Allgaeuer Gold 200 185.000 € 2026-03-20 Angebot raus" [ref=e143]:
+            - cell "Kaeserei Allgaeuer Gold" [ref=e144]:
+              - link "Kaeserei Allgaeuer Gold" [ref=e145] [cursor=pointer]:
+                - /url: /pipeline/bfce90de-986d-4afd-82c1-e72bf7876704
+            - cell "200" [ref=e146]
+            - cell "185.000 €" [ref=e147]
+            - cell "2026-03-20" [ref=e148]
+            - cell "Angebot raus" [ref=e149]:
+              - generic [ref=e150]: Angebot raus
+          - row "Stadtwerke Mering 650 580.000 € 2026-01-18 Gewonnen" [ref=e151]:
+            - cell "Stadtwerke Mering" [ref=e152]:
+              - link "Stadtwerke Mering" [ref=e153] [cursor=pointer]:
+                - /url: /pipeline/f273e9a2-c002-49d6-b978-9e9b7483daab
+            - cell "650" [ref=e154]
+            - cell "580.000 €" [ref=e155]
+            - cell "2026-01-18" [ref=e156]
+            - cell "Gewonnen" [ref=e157]:
+              - generic [ref=e158]: Gewonnen
+  - contentinfo [ref=e159]: Solarwerk Sued GmbH · Stadtbergen
+  - alert [ref=e160]
