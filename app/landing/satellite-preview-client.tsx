@@ -69,27 +69,29 @@ export default function SatellitePreview() {
         Wir analysieren Ihr Hallendach per Satellitenbild und schicken Ihnen
         eine erste Einschätzung — kostenlos.
       </p>
-      <div className="mt-4 grid grid-cols-2 gap-3 sm:grid-cols-[1fr_1fr_2fr]">
-        <input
-          type="text"
-          inputMode="numeric"
-          pattern="\d{5}"
-          maxLength={5}
-          required
-          value={plz}
-          onChange={(e) => setPlz(e.target.value.replace(/\D/g, ""))}
-          placeholder="PLZ"
-          aria-label="Postleitzahl"
-          className="rounded-md border border-[var(--line)] bg-white px-3 py-2.5 text-sm text-[var(--ink)] outline-none focus:border-[var(--steel)]"
-        />
-        <input
-          type="text"
-          value={hausnummer}
-          onChange={(e) => setHausnummer(e.target.value)}
-          placeholder="Nr."
-          aria-label="Hausnummer (optional)"
-          className="rounded-md border border-[var(--line)] bg-white px-3 py-2.5 text-sm text-[var(--ink)] outline-none focus:border-[var(--steel)]"
-        />
+      <div className="mt-4 space-y-3">
+        <div className="grid grid-cols-[1fr_100px] gap-3">
+          <input
+            type="text"
+            inputMode="numeric"
+            pattern="\d{5}"
+            maxLength={5}
+            required
+            value={plz}
+            onChange={(e) => setPlz(e.target.value.replace(/\D/g, ""))}
+            placeholder="PLZ"
+            aria-label="Postleitzahl"
+            className="focus-ring rounded-md border border-[var(--line)] bg-white px-3 py-2.5 text-sm text-[var(--ink)] outline-none focus:border-[var(--steel)]"
+          />
+          <input
+            type="text"
+            value={hausnummer}
+            onChange={(e) => setHausnummer(e.target.value)}
+            placeholder="Nr."
+            aria-label="Hausnummer (optional)"
+            className="focus-ring rounded-md border border-[var(--line)] bg-white px-3 py-2.5 text-sm text-[var(--ink)] outline-none focus:border-[var(--steel)]"
+          />
+        </div>
         <input
           type="email"
           required
@@ -97,7 +99,7 @@ export default function SatellitePreview() {
           onChange={(e) => setEmail(e.target.value)}
           placeholder="E-Mail für Rückmeldung"
           aria-label="E-Mail-Adresse"
-          className="col-span-2 rounded-md border border-[var(--line)] bg-white px-3 py-2.5 text-sm text-[var(--ink)] outline-none focus:border-[var(--steel)] sm:col-span-1"
+          className="focus-ring w-full rounded-md border border-[var(--line)] bg-white px-3 py-2.5 text-sm text-[var(--ink)] outline-none focus:border-[var(--steel)]"
         />
       </div>
       <button

@@ -1,28 +1,5 @@
 import Counter from "./counter-client";
 
-const CASES = [
-  {
-    badge: "[DEMO]",
-    firma: "Maier Logistik GmbH",
-    standort: "Heilbronn",
-    kwp: 480,
-    amortisation: 7.2,
-    zitat:
-      "„Festpreis hat gehalten. Termin auch. Wir hatten mit beidem nicht gerechnet.",
-    person: "Klaus Maier, Geschäftsführer",
-  },
-  {
-    badge: "[DEMO]",
-    firma: "Schwarzwald Kunststoff KG",
-    standort: "Villingen-Schwenningen",
-    kwp: 612,
-    amortisation: 6.8,
-    zitat:
-      "„Wir kennen unseren Vorarbeiter beim Namen. Bei drei früheren Anbietern wussten wir nicht, wer überhaupt auf dem Dach steht.",
-    person: "Sabine Brenner, kfm. Leitung",
-  },
-];
-
 const LOGOS = [
   "Maier Logistik",
   "Schwarzwald KS",
@@ -58,55 +35,6 @@ export default function SocialProof() {
             label="Ø Amortisation Gewerbe"
             prefix="Ø "
           />
-        </div>
-
-        <div className="mt-14 grid gap-6 lg:grid-cols-2">
-          {CASES.map((c) => (
-            <article
-              key={c.firma}
-              className="reveal card-lift flex flex-col gap-5 rounded-lg border border-[var(--line)] bg-white p-7 sm:p-8"
-            >
-              <header className="flex items-baseline justify-between gap-3">
-                <div>
-                  <p className="text-[16px] font-semibold text-[var(--ink)]">
-                    {c.firma}
-                  </p>
-                  <p className="font-mono-data text-[11px] uppercase tracking-wider text-[var(--steel)]">
-                    {c.standort}
-                  </p>
-                </div>
-                <span className="font-mono-data text-[10px] uppercase tracking-wider text-[var(--muted)]">
-                  {c.badge}
-                </span>
-              </header>
-              <div className="flex gap-10 border-y border-[var(--line)] py-5">
-                <div>
-                  <p className="font-mono-data text-3xl font-semibold tracking-tight text-[var(--ink)]">
-                    {c.kwp}
-                    <span className="text-[var(--muted)]"> kWp</span>
-                  </p>
-                  <p className="mt-1 font-mono-data text-[10px] uppercase tracking-wider text-[var(--muted)]">
-                    Anlagengröße
-                  </p>
-                </div>
-                <div>
-                  <p className="font-mono-data text-3xl font-semibold tracking-tight text-[var(--ink)]">
-                    {c.amortisation.toLocaleString("de-DE")}
-                    <span className="text-[var(--muted)]"> J.</span>
-                  </p>
-                  <p className="mt-1 font-mono-data text-[10px] uppercase tracking-wider text-[var(--muted)]">
-                    Amortisation
-                  </p>
-                </div>
-              </div>
-              <blockquote className="text-[16px] leading-relaxed text-[var(--ink)]/85">
-                {c.zitat}&ldquo;
-              </blockquote>
-              <p className="font-mono-data text-[11px] uppercase tracking-wider text-[var(--steel)]">
-                — {c.person}
-              </p>
-            </article>
-          ))}
         </div>
 
         <div className="reveal mt-16 border-t border-[var(--line)] pt-10">

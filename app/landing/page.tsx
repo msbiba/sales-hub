@@ -3,6 +3,7 @@ import Hero from "./hero";
 import Stakes from "./stakes";
 import Mechanism from "./mechanism";
 import SocialProof from "./social-proof";
+import Testimonials from "./testimonials-client";
 import Benefits from "./benefits";
 import Rechner from "./rechner-client";
 import Faq from "./faq-client";
@@ -40,6 +41,7 @@ export default async function LandingPage({
       <Stakes />
       <Mechanism />
       <SocialProof />
+      <Testimonials />
       <Benefits />
       <Rechner />
       <Faq />

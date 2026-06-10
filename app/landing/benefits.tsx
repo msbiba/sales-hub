@@ -24,7 +24,7 @@ const BENEFITS = [
 export default function Benefits() {
   return (
     <section className="bg-[var(--paper)]">
-      <div className="mx-auto max-w-6xl px-6 py-24">
+      <div className="mx-auto max-w-4xl px-6 py-24">
         <div className="reveal max-w-3xl">
           <p className="font-mono-data text-xs uppercase tracking-[0.18em] text-[var(--steel)]">
             Was uns unterscheidet

@@ -215,12 +215,12 @@ export default function Rechner() {
                       value={email}
                       onChange={(e) => setEmail(e.target.value)}
                       placeholder="name@firma.de"
-                      className="flex-1 rounded-md border border-[var(--line)] bg-white px-3 py-2.5 text-sm text-[var(--ink)] outline-none focus:border-[var(--steel)]"
+                      className="focus-ring flex-1 rounded-md border border-[var(--line)] bg-white px-3 py-2.5 text-sm text-[var(--ink)] outline-none focus:border-[var(--steel)]"
                     />
                     <button
                       type="submit"
                       disabled={status.kind === "submitting"}
-                      className="rounded-md bg-[var(--ink)] px-4 py-2.5 text-sm font-semibold text-white hover:bg-black disabled:opacity-50"
+                      className="focus-ring rounded-md bg-[var(--ink)] px-4 py-2.5 text-sm font-semibold text-white hover:bg-black disabled:opacity-50"
                     >
                       {status.kind === "submitting" ? "Sende …" : "Anfordern"}
                     </button>
@@ -230,6 +230,18 @@ export default function Rechner() {
                       {status.message}
                     </p>
                   )}
+                  <p className="mt-3 text-[11px] leading-relaxed text-[var(--muted)]">
+                    DSGVO-konform. Wir nutzen Ihre E-Mail ausschließlich für
+                    die Detail-Berechnung. Kein Newsletter, keine Weitergabe.
+                    Details in der{" "}
+                    <a
+                      href="/datenschutz"
+                      className="underline underline-offset-2 hover:text-[var(--ink)]"
+                    >
+                      Datenschutzerklärung
+                    </a>
+                    .
+                  </p>
                 </>
               )}
             </form>
