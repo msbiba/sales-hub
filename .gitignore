@@ -46,3 +46,6 @@ next-env.d.ts
 
 # landing page leads (DSGVO: never commit personal data)
 /data/leads.jsonl
+
+# playwright-mcp audit artefacts (snapshots, console logs)
+/.playwright-mcp/
