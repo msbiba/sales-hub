@@ -17,7 +17,7 @@ export default function Counter({
   durationMs = 1200,
   decimals = 0,
 }: Props) {
-  const [current, setCurrent] = useState(0);
+  const [current, setCurrent] = useState(value);
   const ref = useRef<HTMLSpanElement | null>(null);
   const startedRef = useRef(false);
 
@@ -30,17 +30,14 @@ export default function Counter({
       window.matchMedia &&
       window.matchMedia("(prefers-reduced-motion: reduce)").matches;
 
-    if (prefersReduced) {
-      // eslint-disable-next-line react-hooks/set-state-in-effect
-      setCurrent(value);
-      return;
-    }
+    if (prefersReduced) return;
 
     const obs = new IntersectionObserver(
       (entries) => {
         for (const entry of entries) {
           if (entry.isIntersecting && !startedRef.current) {
             startedRef.current = true;
+            setCurrent(0);
             const start = performance.now();
             const tick = (now: number) => {
               const elapsed = now - start;
