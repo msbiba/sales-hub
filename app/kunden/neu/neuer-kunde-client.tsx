@@ -199,7 +199,8 @@ export default function NeuerKundeClient() {
               Anlagengroesse (kWp) *
             </label>
             <input
-              type="text"
+              type="number"
+              inputMode="numeric"
               id="anlagengroesse_kwp"
               name="anlagengroesse_kwp"
               value={formData.anlagengroesse_kwp}
@@ -250,11 +251,12 @@ export default function NeuerKundeClient() {
               Telefon *
             </label>
             <input
-              type="text"
+              type="tel"
               id="telefon"
               name="telefon"
               value={formData.telefon}
               onChange={handleChange}
+              autoComplete="tel"
               aria-invalid={fieldErrors.telefon ? true : undefined}
               aria-describedby={fieldErrors.telefon ? "telefon-error" : undefined}
               className={fieldClass("telefon")}
@@ -273,11 +275,12 @@ export default function NeuerKundeClient() {
               E-Mail *
             </label>
             <input
-              type="text"
+              type="email"
               id="email"
               name="email"
               value={formData.email}
               onChange={handleChange}
+              autoComplete="email"
               aria-invalid={fieldErrors.email ? true : undefined}
               aria-describedby={fieldErrors.email ? "email-error" : undefined}
               className={fieldClass("email")}
