@@ -120,16 +120,19 @@ export default function DashboardClient({ kunden }: { kunden: Kunde[] }) {
           onChange={(e) =>
             setStatusFilter(e.target.value as KundenStatus | "alle")
           }
+          aria-label="Nach Status filtern"
           className="rounded-md border border-gray-300 bg-white px-3 py-2 text-sm"
         >
           <option value="alle">Alle Status</option>
           <option value="aktiv">Aktiv</option>
+          <option value="interessent">Interessent</option>
           <option value="in_wartung">In Wartung</option>
           <option value="beschwerde">Beschwerde</option>
         </select>
         <input
           type="text"
           placeholder="Suche nach Firma oder Ansprechpartner..."
+          aria-label="Suche nach Firma oder Ansprechpartner"
           value={suchbegriff}
           onChange={(e) => setSuchbegriff(e.target.value)}
           className="rounded-md border border-gray-300 px-3 py-2 text-sm sm:w-80"
@@ -137,6 +140,7 @@ export default function DashboardClient({ kunden }: { kunden: Kunde[] }) {
         <select
           value={brancheFilter}
           onChange={(e) => setBrancheFilter(e.target.value)}
+          aria-label="Nach Branche filtern"
           className="rounded-md border border-gray-300 bg-white px-3 py-2 text-sm"
         >
           <option value="alle">Alle Branchen</option>

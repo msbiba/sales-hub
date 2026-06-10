@@ -152,6 +152,7 @@ export default function PipelineClient({
           onChange={(e) =>
             setStatusFilter(e.target.value as PipelineStatus | "alle")
           }
+          aria-label="Nach Status filtern"
           className="rounded-md border border-gray-300 bg-white px-3 py-2 text-sm"
         >
           <option value="alle">Alle Status</option>
@@ -165,6 +166,7 @@ export default function PipelineClient({
         <input
           type="text"
           placeholder="Suche nach Firma..."
+          aria-label="Suche nach Firma"
           value={suchbegriff}
           onChange={(e) => setSuchbegriff(e.target.value)}
           className="rounded-md border border-gray-300 px-3 py-2 text-sm sm:w-80"

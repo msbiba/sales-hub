@@ -154,11 +154,13 @@ export default function NutzerClient({
             value={search}
             onChange={(e) => setSearch(e.target.value)}
             placeholder="Nutzer suchen ..."
+            aria-label="Nutzer suchen"
             className="flex-1 rounded-md border border-gray-300 px-3 py-2 text-sm"
           />
           <select
             value={roleFilter}
             onChange={(e) => setRoleFilter(e.target.value as "all" | UserRole)}
+            aria-label="Nach Rolle filtern"
             className="rounded-md border border-gray-300 px-3 py-2 text-sm"
           >
             <option value="all">Alle Rollen</option>
@@ -355,18 +357,21 @@ function InviteModal({
           </button>
         </div>
 
-        <label className="mb-1 block text-sm font-medium text-gray-700">E-Mail-Adresse</label>
+        <label htmlFor="invite-email" className="mb-1 block text-sm font-medium text-gray-700">E-Mail-Adresse</label>
         <input
+          id="invite-email"
           type="email"
           value={email}
           onChange={(e) => setEmail(e.target.value)}
           required
+          autoComplete="off"
           placeholder="nutzer@beispiel.de"
           className="mb-3 w-full rounded-md border border-gray-300 px-3 py-2 text-sm"
         />
 
-        <label className="mb-1 block text-sm font-medium text-gray-700">Rolle zuweisen</label>
+        <label htmlFor="invite-role" className="mb-1 block text-sm font-medium text-gray-700">Rolle zuweisen</label>
         <select
+          id="invite-role"
           value={role}
           onChange={(e) => setRole(e.target.value as UserRole | "")}
           required
