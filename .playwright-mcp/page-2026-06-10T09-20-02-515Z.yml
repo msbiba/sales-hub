@@ -1,0 +1,48 @@
+- generic [active] [ref=e1]:
+  - banner [ref=e2]:
+    - generic [ref=e3]:
+      - link "Solarwerk Sued · Sales-Hub" [ref=e4] [cursor=pointer]:
+        - /url: /
+      - navigation [ref=e5]:
+        - link "Dashboard" [ref=e6] [cursor=pointer]:
+          - /url: /
+        - link "Pipeline" [ref=e7] [cursor=pointer]:
+          - /url: /pipeline
+        - link "Berichte" [ref=e8] [cursor=pointer]:
+          - /url: /berichte
+        - link "Neuer Kunde" [ref=e9] [cursor=pointer]:
+          - /url: /kunden/neu
+        - link "Nutzer" [ref=e10] [cursor=pointer]:
+          - /url: /nutzer
+      - generic [ref=e11]:
+        - link "marko.schweigerer@gmail.com" [ref=e12] [cursor=pointer]:
+          - /url: /profil
+        - button "Logout" [ref=e14]
+        - button "Theme umschalten" [ref=e15]:
+          - img [ref=e16]
+  - main [ref=e18]:
+    - generic [ref=e19]:
+      - generic [ref=e20]:
+        - heading "Mein Profil" [level=1] [ref=e21]
+        - paragraph [ref=e22]: Persoenliche Daten und Passwort verwalten
+      - generic [ref=e23]:
+        - generic [ref=e24]:
+          - generic [ref=e25]: E-Mail
+          - generic [ref=e26]: marko.schweigerer@gmail.com
+        - generic [ref=e27]:
+          - generic [ref=e28]: Rolle
+          - generic [ref=e29]: admin
+        - generic [ref=e30]:
+          - generic [ref=e31]: Vollstaendiger Name
+          - textbox "Max Mustermann" [ref=e32]
+          - button "Name speichern" [ref=e33]
+      - generic [ref=e34]:
+        - heading "Passwort aendern" [level=2] [ref=e35]
+        - generic [ref=e36]:
+          - generic [ref=e37]: Neues Passwort
+          - textbox [ref=e38]
+          - generic [ref=e39]: Wiederholen
+          - textbox [ref=e40]
+          - button "Passwort aendern" [ref=e41]
+  - contentinfo [ref=e42]: Solarwerk Sued GmbH · Stadtbergen
+  - alert [ref=e43]

@@ -193,8 +193,17 @@ export default function DashboardClient({ kunden }: { kunden: Kunde[] }) {
             {sortierteKunden.map((kunde) => (
               <tr
                 key={kunde.id}
+                role="link"
+                tabIndex={0}
+                aria-label={`Kunde ${kunde.firma} öffnen`}
                 onClick={() => router.push(`/kunden/${kunde.id}`)}
-                className="cursor-pointer border-b border-gray-100 hover:bg-gray-50"
+                onKeyDown={(e) => {
+                  if (e.key === "Enter" || e.key === " ") {
+                    e.preventDefault();
+                    router.push(`/kunden/${kunde.id}`);
+                  }
+                }}
+                className="cursor-pointer border-b border-gray-100 hover:bg-gray-50 focus:bg-gray-50 focus:outline-none focus-visible:ring-2 focus-visible:ring-inset focus-visible:ring-blue-500"
               >
                 <td className="px-4 py-3 font-medium">{kunde.firma}</td>
                 <td className="px-4 py-3">{kunde.ansprechpartner}</td>
