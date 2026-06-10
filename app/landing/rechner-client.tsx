@@ -238,7 +238,7 @@ export default function Rechner() {
               Annahmen: 0,17 kWp/m²; 950 kWh/kWp/a Süddeutschland; 60 %
               Eigenverbrauch; 7,9 ct/kWh Einspeisung; 1.000 €/kWp netto;
               1,5 % Betriebskosten pro Jahr; 0,38 kg CO₂/kWh Strommix.
-              Ertrag „gesamt" abzüglich Betriebskosten. Wartung, Reinigung
+              Ertrag &bdquo;gesamt&ldquo; abzüglich Betriebskosten. Wartung, Reinigung
               und Monitoring sind in unserem Angebot enthalten. Werte
               ersetzen keine Detailplanung — die liefern wir kostenlos vor Ort.
             </p>

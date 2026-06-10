@@ -24,11 +24,22 @@ export default function RevealObserver() {
           }
         }
       },
-      { rootMargin: "0px 0px -10% 0px", threshold: 0.15 },
+      { rootMargin: "0px 0px -5% 0px", threshold: 0 },
     );
 
     document.querySelectorAll(".reveal").forEach((el) => obs.observe(el));
-    return () => obs.disconnect();
+
+    // Failsafe: nach 1.5s alle noch unsichtbaren Reveals einblenden
+    const failsafe = window.setTimeout(() => {
+      document
+        .querySelectorAll(".reveal:not(.is-visible)")
+        .forEach((el) => el.classList.add("is-visible"));
+    }, 1500);
+
+    return () => {
+      obs.disconnect();
+      window.clearTimeout(failsafe);
+    };
   }, []);
 
   return null;

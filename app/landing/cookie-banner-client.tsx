@@ -2,7 +2,7 @@
 
 import { useEffect, useState } from "react";
 
-const STORAGE_KEY = "sw-cookie-consent";
+const STORAGE_KEY = "sw-cookie-consent-v2";
 
 export default function CookieBanner() {
   const [open, setOpen] = useState(false);
@@ -32,13 +32,23 @@ export default function CookieBanner() {
   return (
     <div
       role="dialog"
-      aria-label="Cookie-Einstellungen"
+      aria-label="Cookie- und Datenschutz-Hinweis"
       className="fixed inset-x-3 bottom-3 z-50 mx-auto max-w-3xl rounded-lg border border-[var(--line)] bg-white p-5 shadow-[0_10px_40px_-15px_rgba(14,17,22,0.25)] sm:inset-x-auto sm:left-1/2 sm:-translate-x-1/2"
     >
-      <p className="text-[15px] leading-relaxed text-[var(--ink)]">
-        Wir verwenden essenzielle Cookies für die Funktion dieser Seite.
+      <p className="font-mono-data text-[11px] uppercase tracking-[0.18em] text-[var(--solar)]">
+        DSGVO-Hinweis
+      </p>
+      <p className="mt-2 text-[15px] leading-relaxed text-[var(--ink)]">
+        Wir verwenden nur essenzielle Cookies für die Funktion dieser Seite.
         Für die Terminbuchung über Cal.com wird beim Klick auf den
-        Buchungs-Button ein externer Dienst geladen.
+        Buchungs-Button ein externer Dienst geladen. Details in der{" "}
+        <a
+          href="/datenschutz"
+          className="underline underline-offset-2 hover:text-[var(--solar)]"
+        >
+          Datenschutzerklärung
+        </a>
+        .
       </p>
       <div className="mt-4 flex flex-col-reverse gap-2 sm:flex-row sm:justify-end">
         <button
