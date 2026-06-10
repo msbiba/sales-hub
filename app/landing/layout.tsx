@@ -1,4 +1,5 @@
 import { Inter, JetBrains_Mono } from "next/font/google";
+import Script from "next/script";
 import type { ReactNode } from "react";
 import CookieBanner from "./cookie-banner-client";
 import StickyCta from "./sticky-cta-client";
@@ -52,6 +53,18 @@ export default function LandingLayout({ children }: { children: ReactNode }) {
       <StickyCta />
       <CookieBanner />
       <RevealObserver />
+      <Script
+        src="https://www.googletagmanager.com/gtag/js?id=G-4NVZYT5KCY"
+        strategy="afterInteractive"
+      />
+      <Script id="gtag-init" strategy="afterInteractive">
+        {`
+          window.dataLayer = window.dataLayer || [];
+          function gtag(){dataLayer.push(arguments);}
+          gtag('js', new Date());
+          gtag('config', 'G-4NVZYT5KCY');
+        `}
+      </Script>
     </div>
   );
 }
