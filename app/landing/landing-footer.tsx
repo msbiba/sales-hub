@@ -16,32 +16,37 @@ export default function LandingFooter() {
           <p className="font-mono-data text-xs uppercase tracking-wider text-[var(--muted)]">
             Kontakt
           </p>
-          <ul className="mt-4 space-y-2 text-sm text-[var(--ink)]">
+          <ul className="mt-4 space-y-1 text-sm text-[var(--ink)]">
             <li>
-              <a href="tel:+49821000000" className="hover:underline">
+              <a
+                href="tel:+49821000000"
+                className="inline-block py-1.5 leading-6 hover:underline"
+              >
                 0821 XXX XXX
               </a>
             </li>
             <li>
               <a
                 href="mailto:kontakt@solarwerk-sued.de"
-                className="hover:underline"
+                className="inline-block py-1.5 leading-6 hover:underline"
               >
                 kontakt@solarwerk-sued.de
               </a>
             </li>
-            <li>Musterstraße 1, 86391 Stadtbergen</li>
+            <li className="py-1.5 leading-6">
+              Musterstraße 1, 86391 Stadtbergen
+            </li>
           </ul>
         </div>
         <div>
           <p className="font-mono-data text-xs uppercase tracking-wider text-[var(--muted)]">
             Rechtliches
           </p>
-          <ul className="mt-4 space-y-2 text-sm">
+          <ul className="mt-4 space-y-1 text-sm">
             <li>
               <Link
                 href="/impressum"
-                className="text-[var(--ink)] hover:underline"
+                className="inline-block py-1.5 leading-6 text-[var(--ink)] hover:underline"
               >
                 Impressum
               </Link>
@@ -49,7 +54,7 @@ export default function LandingFooter() {
             <li>
               <Link
                 href="/datenschutz"
-                className="text-[var(--ink)] hover:underline"
+                className="inline-block py-1.5 leading-6 text-[var(--ink)] hover:underline"
               >
                 Datenschutz
               </Link>

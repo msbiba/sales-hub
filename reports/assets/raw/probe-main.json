@@ -1,0 +1,222 @@
+{
+  "lang": "de",
+  "title": "Photovoltaik für Gewerbedächer — Festpreis · Eigene Monteure · 20 Jahre Garantie",
+  "viewportMeta": "width=device-width, initial-scale=1",
+  "descMeta": "Solarwerk-Süd plant und montiert Photovoltaik für Hallendächer in Süddeutschland. Festpreis, eigene Monteure, 20 Jahre Garantie. Kostenlose Dach-Analyse.",
+  "ogTitle": "Photovoltaik fürs Hallendach — Festpreis statt Überraschungen",
+  "ogImage": null,
+  "canonical": null,
+  "h1": [
+    "Photovoltaik fürs Hallendach. Festpreis. Eigene Monteure. 20 Jahre Garantie."
+  ],
+  "headings": [
+    "H1: Photovoltaik fürs Hallendach. Festpreis. Eigene Monteure. 20 Jahre Garantie.",
+    "H2: Industriestrom 2026 zwischen 25 und 30 ct/kWh. Tendenz: nicht fallend.",
+    "H2: Vier Schritte, ein Ansprechpartner, ein Termin am Ende.",
+    "H3: Dach-Analyse vor Ort",
+    "H3: Festpreis-Angebot + Förderantrag",
+    "H3: Montage durch eigene Monteure",
+    "H3: Netzanschluss + 20 Jahre Wartung",
+    "H2: 480 Anlagen. 142 MWp installiert. Ø 7,4 Jahre Amortisation.",
+    "H2: Fünf Dinge, die im Vertrag stehen — nicht nur im Pitch.",
+    "H3: Festpreis-Garantie.",
+    "H3: Eigene Monteure, keine Sub-Unternehmer.",
+    "H3: 20 Jahre Garantie inkl. Wartung.",
+    "H3: Nur Gewerbe.",
+    "H3: Regional Süddeutschland.",
+    "H2: Was kann Ihr Hallendach? In 30 Sekunden.",
+    "H2: Fragen, die zuerst auf den Tisch kommen.",
+    "H2: Was Sie woanders nicht zugesichert bekommen.",
+    "H2: Wir prüfen Ihr Dach per Drohne — und sagen Ihnen schriftlich, was geht.",
+    "H3: Jetzt unverbindlich und persönlich beraten lassen"
+  ],
+  "duplicateIds": [],
+  "imgs": [
+    {
+      "src": "https://slscrm.vercel.app/_next/image?url=https%3A%2F%2Fimages.unsplash.com%2Fphoto-1509391366360-2e959784a276%3Fauto%3Dformat%26fit%3Dcrop%26w%3D2400%26q%3D85&w=1920&q=75",
+      "alt": "",
+      "width": 1038,
+      "hasAlt": true,
+      "role": null,
+      "ariaHidden": "true"
+    }
+  ],
+  "inputs": [
+    {
+      "name": "",
+      "type": "text",
+      "id": null,
+      "ariaLabel": "Postleitzahl",
+      "ariaLabelledby": null,
+      "placeholder": "PLZ",
+      "hasLabel": false,
+      "required": true,
+      "autocomplete": null
+    },
+    {
+      "name": "",
+      "type": "text",
+      "id": null,
+      "ariaLabel": "Hausnummer (optional)",
+      "ariaLabelledby": null,
+      "placeholder": "Nr.",
+      "hasLabel": false,
+      "required": false,
+      "autocomplete": null
+    },
+    {
+      "name": "",
+      "type": "email",
+      "id": null,
+      "ariaLabel": "E-Mail-Adresse",
+      "ariaLabelledby": null,
+      "placeholder": "E-Mail für Rückmeldung",
+      "hasLabel": false,
+      "required": true,
+      "autocomplete": null
+    },
+    {
+      "name": "",
+      "type": "range",
+      "id": null,
+      "ariaLabel": "Dachfläche",
+      "ariaLabelledby": null,
+      "placeholder": "",
+      "hasLabel": false,
+      "required": false,
+      "autocomplete": null
+    },
+    {
+      "name": "",
+      "type": "range",
+      "id": null,
+      "ariaLabel": "Jahres-Stromverbrauch",
+      "ariaLabelledby": null,
+      "placeholder": "",
+      "hasLabel": false,
+      "required": false,
+      "autocomplete": null
+    },
+    {
+      "name": "",
+      "type": "range",
+      "id": null,
+      "ariaLabel": "Aktueller Strompreis",
+      "ariaLabelledby": null,
+      "placeholder": "",
+      "hasLabel": false,
+      "required": false,
+      "autocomplete": null
+    },
+    {
+      "name": "",
+      "type": "select-one",
+      "id": null,
+      "ariaLabel": null,
+      "ariaLabelledby": null,
+      "hasLabel": true,
+      "required": false,
+      "autocomplete": null
+    },
+    {
+      "name": "",
+      "type": "checkbox",
+      "id": null,
+      "ariaLabel": null,
+      "ariaLabelledby": null,
+      "placeholder": "",
+      "hasLabel": true,
+      "required": false,
+      "autocomplete": null
+    },
+    {
+      "name": "",
+      "type": "email",
+      "id": null,
+      "ariaLabel": null,
+      "ariaLabelledby": null,
+      "placeholder": "name@firma.de",
+      "hasLabel": false,
+      "required": true,
+      "autocomplete": null
+    }
+  ],
+  "buttonsNoName": [],
+  "internalLinks": [
+    "/landing",
+    "/login",
+    "/landing#termin",
+    "/landing#rechner",
+    "/datenschutz",
+    "/impressum"
+  ],
+  "externalLinks": [
+    "tel:+49821000000",
+    "mailto:kontakt@solarwerk-sued.de"
+  ],
+  "targetBlankNoNoopener": [],
+  "counters": [
+    "0+",
+    "0 MWp",
+    "Ø 0,0 J.",
+    "7,2 J.",
+    "6,8 J."
+  ],
+  "landmarks": {
+    "header": 3,
+    "main": 0,
+    "nav": 1,
+    "footer": 1
+  },
+  "smallTapTargets": [
+    {
+      "tag": "A",
+      "text": "Erst rechnen lassen →",
+      "w": 161,
+      "h": 23
+    },
+    {
+      "tag": "A",
+      "text": "Datenschutzerklärung",
+      "w": 125,
+      "h": 15
+    },
+    {
+      "tag": "A",
+      "text": "Datenschutzerklärung",
+      "w": 125,
+      "h": 15
+    },
+    {
+      "tag": "A",
+      "text": "0821 XXX XXX",
+      "w": 97,
+      "h": 17
+    },
+    {
+      "tag": "A",
+      "text": "kontakt@solarwerk-sued.de",
+      "w": 186,
+      "h": 17
+    },
+    {
+      "tag": "A",
+      "text": "Impressum",
+      "w": 73,
+      "h": 17
+    },
+    {
+      "tag": "A",
+      "text": "Datenschutz",
+      "w": 83,
+      "h": 17
+    },
+    {
+      "tag": "A",
+      "text": "Datenschutzerklärung",
+      "w": 156,
+      "h": 18
+    }
+  ],
+  "skipLink": false
+}

@@ -205,16 +205,21 @@ export default function Rechner() {
                 </p>
               ) : (
                 <>
-                  <label className="block text-sm font-medium text-[var(--ink)]">
+                  <label
+                    htmlFor="rechner-email"
+                    className="block text-sm font-medium text-[var(--ink)]"
+                  >
                     Detail-Berechnung per E-Mail erhalten
                   </label>
                   <div className="mt-2 flex flex-col gap-2 sm:flex-row">
                     <input
+                      id="rechner-email"
                       type="email"
                       required
                       value={email}
                       onChange={(e) => setEmail(e.target.value)}
                       placeholder="name@firma.de"
+                      autoComplete="email"
                       className="flex-1 rounded-md border border-[var(--line)] bg-white px-3 py-2.5 text-sm text-[var(--ink)] outline-none focus:border-[var(--steel)]"
                     />
                     <button

@@ -43,11 +43,13 @@ export default function Faq() {
         <ul className="reveal mt-12 divide-y divide-[var(--line)] border-y border-[var(--line)]">
           {FAQ.map((item, i) => {
             const isOpen = open === i;
+            const panelId = `faq-panel-${i}`;
             return (
               <li key={item.q}>
                 <button
                   type="button"
                   aria-expanded={isOpen}
+                  aria-controls={panelId}
                   onClick={() => setOpen(isOpen ? null : i)}
                   className="focus-ring group flex w-full items-center justify-between gap-4 py-6 text-left"
                 >
@@ -78,7 +80,11 @@ export default function Faq() {
                   </span>
                 </button>
                 {isOpen && (
-                  <div className="pb-7 pl-10 pr-10 text-[15px] leading-relaxed text-[var(--ink)]/80">
+                  <div
+                    id={panelId}
+                    role="region"
+                    className="pb-7 pl-10 pr-10 text-[15px] leading-relaxed text-[var(--ink)]/80"
+                  >
                     {item.a}
                   </div>
                 )}
