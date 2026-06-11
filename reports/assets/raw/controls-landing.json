@@ -1,0 +1,363 @@
+[
+  {
+    "i": 0,
+    "kind": "text",
+    "label": "Postleitzahl",
+    "box": {
+      "x": 701,
+      "y": 1126,
+      "w": 217,
+      "h": 42
+    },
+    "checked": false,
+    "disabled": false,
+    "accent": "auto",
+    "color": "rgb(14, 17, 22)",
+    "bg": "rgb(255, 255, 255)",
+    "radius": "6px",
+    "border": "0.8px solid rgb(216, 212, 200)",
+    "shadow": "none"
+  },
+  {
+    "i": 1,
+    "kind": "text",
+    "label": "Hausnummer (optional)",
+    "box": {
+      "x": 930,
+      "y": 1126,
+      "w": 217,
+      "h": 42
+    },
+    "checked": false,
+    "disabled": false,
+    "accent": "auto",
+    "color": "rgb(14, 17, 22)",
+    "bg": "rgb(255, 255, 255)",
+    "radius": "6px",
+    "border": "0.8px solid rgb(216, 212, 200)",
+    "shadow": "none"
+  },
+  {
+    "i": 2,
+    "kind": "email",
+    "label": "E-Mail-Adresse",
+    "box": {
+      "x": 1158,
+      "y": 1126,
+      "w": 217,
+      "h": 42
+    },
+    "checked": false,
+    "disabled": false,
+    "accent": "auto",
+    "color": "rgb(14, 17, 22)",
+    "bg": "rgb(255, 255, 255)",
+    "radius": "6px",
+    "border": "0.8px solid rgb(216, 212, 200)",
+    "shadow": "none"
+  },
+  {
+    "i": 3,
+    "kind": "submit",
+    "label": "Satelliten-Vorschau anfordern",
+    "box": {
+      "x": 701,
+      "y": 1184,
+      "w": 244,
+      "h": 40
+    },
+    "checked": null,
+    "disabled": false,
+    "accent": "auto",
+    "color": "rgb(255, 255, 255)",
+    "bg": "rgb(14, 17, 22)",
+    "radius": "6px",
+    "border": "0px solid rgb(255, 255, 255)",
+    "shadow": "none"
+  },
+  {
+    "i": 4,
+    "kind": "range",
+    "label": "Dachfläche",
+    "box": {
+      "x": 88,
+      "y": 5159,
+      "w": 545,
+      "h": 16
+    },
+    "checked": false,
+    "disabled": false,
+    "accent": "rgb(232, 163, 61)",
+    "color": "rgb(14, 17, 22)",
+    "bg": "rgba(0, 0, 0, 0)",
+    "radius": "0px",
+    "border": "0px solid rgb(14, 17, 22)",
+    "shadow": "none"
+  },
+  {
+    "i": 5,
+    "kind": "range",
+    "label": "Jahres-Stromverbrauch",
+    "box": {
+      "x": 88,
+      "y": 5268,
+      "w": 545,
+      "h": 16
+    },
+    "checked": false,
+    "disabled": false,
+    "accent": "rgb(232, 163, 61)",
+    "color": "rgb(14, 17, 22)",
+    "bg": "rgba(0, 0, 0, 0)",
+    "radius": "0px",
+    "border": "0px solid rgb(14, 17, 22)",
+    "shadow": "none"
+  },
+  {
+    "i": 6,
+    "kind": "range",
+    "label": "Aktueller Strompreis",
+    "box": {
+      "x": 88,
+      "y": 5377,
+      "w": 545,
+      "h": 16
+    },
+    "checked": false,
+    "disabled": false,
+    "accent": "rgb(232, 163, 61)",
+    "color": "rgb(14, 17, 22)",
+    "bg": "rgba(0, 0, 0, 0)",
+    "radius": "0px",
+    "border": "0px solid rgb(14, 17, 22)",
+    "shadow": "none"
+  },
+  {
+    "i": 7,
+    "kind": "select-one",
+    "label": "TrapezblechBitumenZiegelAndere",
+    "box": {
+      "x": 88,
+      "y": 5480,
+      "w": 264,
+      "h": 40
+    },
+    "checked": null,
+    "disabled": false,
+    "accent": "auto",
+    "color": "rgb(14, 17, 22)",
+    "bg": "rgb(255, 255, 255)",
+    "radius": "6px",
+    "border": "0.8px solid rgb(216, 212, 200)",
+    "shadow": "none"
+  },
+  {
+    "i": 8,
+    "kind": "checkbox",
+    "label": "",
+    "box": {
+      "x": 381,
+      "y": 5471,
+      "w": 13,
+      "h": 16
+    },
+    "checked": false,
+    "disabled": false,
+    "accent": "rgb(232, 163, 61)",
+    "color": "rgb(14, 17, 22)",
+    "bg": "rgba(0, 0, 0, 0)",
+    "radius": "0px",
+    "border": "0px none rgb(14, 17, 22)",
+    "shadow": "none"
+  },
+  {
+    "i": 9,
+    "kind": "email",
+    "label": "name@firma.de",
+    "box": {
+      "x": 706,
+      "y": 5518,
+      "w": 345,
+      "h": 42
+    },
+    "checked": false,
+    "disabled": false,
+    "accent": "auto",
+    "color": "rgb(14, 17, 22)",
+    "bg": "rgb(255, 255, 255)",
+    "radius": "6px",
+    "border": "0.8px solid rgb(216, 212, 200)",
+    "shadow": "none"
+  },
+  {
+    "i": 10,
+    "kind": "submit",
+    "label": "Anfordern",
+    "box": {
+      "x": 1058,
+      "y": 5518,
+      "w": 101,
+      "h": 42
+    },
+    "checked": null,
+    "disabled": false,
+    "accent": "auto",
+    "color": "rgb(255, 255, 255)",
+    "bg": "rgb(14, 17, 22)",
+    "radius": "6px",
+    "border": "0px solid rgb(255, 255, 255)",
+    "shadow": "none"
+  },
+  {
+    "i": 11,
+    "kind": "button",
+    "label": "01Was, wenn der Strompreis wieder fällt?",
+    "box": {
+      "x": 280,
+      "y": 5988,
+      "w": 720,
+      "h": 76
+    },
+    "checked": null,
+    "disabled": false,
+    "accent": "auto",
+    "color": "rgb(14, 17, 22)",
+    "bg": "rgba(0, 0, 0, 0)",
+    "radius": "0px",
+    "border": "0px solid rgb(14, 17, 22)",
+    "shadow": "none"
+  },
+  {
+    "i": 12,
+    "kind": "button",
+    "label": "02Wer haftet bei Schäden am Dach während",
+    "box": {
+      "x": 280,
+      "y": 6190,
+      "w": 720,
+      "h": 76
+    },
+    "checked": null,
+    "disabled": false,
+    "accent": "auto",
+    "color": "rgb(14, 17, 22)",
+    "bg": "rgba(0, 0, 0, 0)",
+    "radius": "0px",
+    "border": "0px solid rgb(14, 17, 22)",
+    "shadow": "none"
+  },
+  {
+    "i": 13,
+    "kind": "button",
+    "label": "03Was passiert nach 20 Jahren mit den Mo",
+    "box": {
+      "x": 280,
+      "y": 6266,
+      "w": 720,
+      "h": 76
+    },
+    "checked": null,
+    "disabled": false,
+    "accent": "auto",
+    "color": "rgb(14, 17, 22)",
+    "bg": "rgba(0, 0, 0, 0)",
+    "radius": "0px",
+    "border": "0px solid rgb(14, 17, 22)",
+    "shadow": "none"
+  },
+  {
+    "i": 14,
+    "kind": "button",
+    "label": "04Wir sind Mieter / Erbbaurecht — geht d",
+    "box": {
+      "x": 280,
+      "y": 6343,
+      "w": 720,
+      "h": 76
+    },
+    "checked": null,
+    "disabled": false,
+    "accent": "auto",
+    "color": "rgb(14, 17, 22)",
+    "bg": "rgba(0, 0, 0, 0)",
+    "radius": "0px",
+    "border": "0px solid rgb(14, 17, 22)",
+    "shadow": "none"
+  },
+  {
+    "i": 15,
+    "kind": "button",
+    "label": "05Wie lange dauert Förderantrag und wer ",
+    "box": {
+      "x": 280,
+      "y": 6419,
+      "w": 720,
+      "h": 76
+    },
+    "checked": null,
+    "disabled": false,
+    "accent": "auto",
+    "color": "rgb(14, 17, 22)",
+    "bg": "rgba(0, 0, 0, 0)",
+    "radius": "0px",
+    "border": "0px solid rgb(14, 17, 22)",
+    "shadow": "none"
+  },
+  {
+    "i": 16,
+    "kind": "button",
+    "label": "Termin wählen",
+    "box": {
+      "x": 570,
+      "y": 8052,
+      "w": 139,
+      "h": 40
+    },
+    "checked": null,
+    "disabled": false,
+    "accent": "auto",
+    "color": "rgb(255, 255, 255)",
+    "bg": "rgb(14, 17, 22)",
+    "radius": "6px",
+    "border": "0px solid rgb(255, 255, 255)",
+    "shadow": "none"
+  },
+  {
+    "i": 17,
+    "kind": "button",
+    "label": "Nur essenziell",
+    "box": {
+      "x": 629,
+      "y": 730,
+      "w": 128,
+      "h": 38
+    },
+    "checked": null,
+    "disabled": false,
+    "accent": "auto",
+    "color": "rgb(14, 17, 22)",
+    "bg": "rgba(0, 0, 0, 0)",
+    "radius": "6px",
+    "border": "0.8px solid rgb(216, 212, 200)",
+    "shadow": "none"
+  },
+  {
+    "i": 18,
+    "kind": "button",
+    "label": "Analytics zustimmen",
+    "box": {
+      "x": 765,
+      "y": 730,
+      "w": 174,
+      "h": 38
+    },
+    "checked": null,
+    "disabled": false,
+    "accent": "auto",
+    "color": "rgb(255, 255, 255)",
+    "bg": "rgb(14, 17, 22)",
+    "radius": "6px",
+    "border": "0px solid rgb(255, 255, 255)",
+    "shadow": "none"
+  }
+]
