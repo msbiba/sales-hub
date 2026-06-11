@@ -1,16 +1,18 @@
-import BentoMetric, { BentoGrid } from "./bento-metric";
+// UX-013 — Live Förder-status mini-bento
+// Spec source: reports/audit-ux-2026-06-11-0824-slscrm.vercel.app.md UX-013.magic_prompt
+// Reuses BentoMetric (UX-005). Production copy at app/landing/foerder-ticker.tsx.
 
-// UX-013: re-designed from flat single-line ribbon to 3-card bento.
-// Manually-maintained static numbers; Stand-Datum sichtbar.
-export default function FoerderTicker() {
+import BentoMetric, { BentoGrid } from "./UX-005-bento-metric";
+
+export default function FoerderStatusBar() {
   return (
     <section className="border-y border-[var(--line)] bg-[var(--paper)]">
-      <div className="mx-auto max-w-6xl px-6 py-5">
+      <div className="mx-auto max-w-6xl px-6 py-3">
         <BentoGrid cols={3}>
           <BentoMetric
             tone="leaf"
             live
-            eyebrow="Förder-Status"
+            eyebrow="Status"
             value="Live"
             caption="Stand 01.06.2026"
           />

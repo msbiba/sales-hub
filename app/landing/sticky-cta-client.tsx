@@ -22,7 +22,7 @@ export default function StickyCta() {
       {/* Desktop: schmaler Bar am oberen Rand, unter dem sticky Header */}
       <div className="reveal is-visible fixed inset-x-0 top-[65px] z-30 hidden border-b border-[var(--line)] bg-white/95 shadow-[0_4px_20px_-12px_rgba(14,17,22,0.2)] backdrop-blur sm:block">
         <div className="mx-auto flex max-w-6xl items-center justify-between gap-3 px-6 py-2.5">
-          <span className="flex items-center gap-2 text-sm text-[var(--ink)]">
+          <span className="flex items-center gap-2 text-fs-2 text-[var(--ink)]">
             <span
               aria-hidden
               className="inline-block h-1.5 w-1.5 rounded-full bg-[var(--solar)]"
@@ -32,7 +32,8 @@ export default function StickyCta() {
           <div className="flex items-center gap-2">
             <a
               href="#termin"
-              className="focus-ring inline-flex items-center gap-2 rounded-md bg-[var(--solar)] px-3.5 py-1.5 text-sm font-semibold text-[var(--ink)] transition-colors hover:bg-[var(--solar-hover)]"
+              className="btn-primary focus-ring text-fs-2"
+              style={{ padding: "0.375rem 0.875rem" }}
             >
               Termin wählen
               <span aria-hidden>→</span>
@@ -61,7 +62,8 @@ export default function StickyCta() {
         <div className="flex items-center gap-2">
           <a
             href="#termin"
-            className="focus-ring flex flex-1 items-center justify-center gap-2 rounded-md bg-[var(--solar)] px-4 py-3 text-[15px] font-semibold text-[var(--ink)]"
+            className="btn-primary focus-ring flex-1 text-fs-3"
+            style={{ padding: "0.75rem 1rem" }}
           >
             Termin wählen
             <span aria-hidden>→</span>

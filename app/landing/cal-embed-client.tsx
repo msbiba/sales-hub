@@ -2,6 +2,7 @@
 
 import Cal, { getCalApi } from "@calcom/embed-react";
 import { useEffect, useRef, useState } from "react";
+import ConsentGateCard from "./consent-gate-card";
 
 export default function CalEmbed() {
   const [mounted, setMounted] = useState(false);
@@ -52,22 +53,14 @@ export default function CalEmbed() {
   }
 
   return (
-    <div
-      ref={sectionRef}
-      className="flex min-h-[320px] flex-col items-center justify-center gap-4 rounded-lg border border-[var(--line)] bg-white p-10 text-center"
-    >
-      <p className="text-[15px] leading-relaxed text-[var(--ink)]/75">
-        Terminbuchung wird beim Laden von einem externen Dienst (Cal.com)
-        bereitgestellt. Aus Datenschutz- und Performance-Gründen laden wir
-        den Buchungskalender erst auf Ihren Wunsch.
-      </p>
-      <button
-        type="button"
-        onClick={() => setMounted(true)}
-        className="rounded-md bg-[var(--ink)] px-5 py-2.5 text-sm font-semibold text-white hover:bg-black"
-      >
-        Termin wählen
-      </button>
+    <div ref={sectionRef}>
+      <ConsentGateCard
+        heading="Termin per Cal.com auswählen"
+        body="Aus Datenschutz- und Performance-Gründen laden wir den Buchungskalender erst auf Ihren Wunsch. Ein Klick startet den externen Dienst."
+        ctaLabel="Kalender laden"
+        onConsent={() => setMounted(true)}
+        footnote="Buchung über Cal.com — DSGVO-konform, als funktional notwendig eingestuft."
+      />
     </div>
   );
 }

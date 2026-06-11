@@ -1,3 +1,5 @@
+import SectionEyebrow from "./section-eyebrow";
+
 const BENEFITS = [
   {
     headline: "Festpreis-Garantie.",
@@ -26,10 +28,10 @@ export default function Benefits() {
     <section className="bg-[var(--paper)]">
       <div className="mx-auto max-w-6xl px-6 py-24">
         <div className="reveal max-w-3xl">
-          <p className="font-mono-data text-xs uppercase tracking-[0.18em] text-[var(--steel)]">
+          <SectionEyebrow tone="steel" dot>
             Was uns unterscheidet
-          </p>
-          <h2 className="mt-4 text-3xl font-semibold leading-tight tracking-[-0.01em] text-[var(--ink)] sm:text-[40px]">
+          </SectionEyebrow>
+          <h2 className="mt-4 text-fs-6 font-semibold leading-tight tracking-[-0.01em] text-[var(--ink)] sm:text-fs-7">
             Fünf Dinge, die im{" "}
             <span className="solar-underline">Vertrag</span> stehen — nicht nur
             im Pitch.
@@ -42,13 +44,13 @@ export default function Benefits() {
               key={b.headline}
               className="group grid grid-cols-[auto_1fr] items-baseline gap-x-6 gap-y-2 py-7 transition-colors sm:grid-cols-[80px_1fr_2fr] sm:gap-x-12"
             >
-              <span className="font-mono-data text-sm text-[var(--muted)] transition-colors group-hover:text-[var(--solar)]">
+              <span className="font-mono-data text-fs-2 text-[var(--muted)] transition-colors group-hover:text-[var(--solar)]">
                 {String(i + 1).padStart(2, "0")} —
               </span>
-              <h3 className="text-[19px] font-semibold leading-snug tracking-[-0.01em] text-[var(--ink)] sm:text-[22px]">
+              <h3 className="text-fs-4 font-semibold leading-snug tracking-[-0.01em] text-[var(--ink)] sm:text-fs-5">
                 {b.headline}
               </h3>
-              <p className="col-start-2 max-w-2xl text-[15px] leading-relaxed text-[var(--ink)]/75 sm:col-start-3 sm:row-start-1">
+              <p className="col-start-2 max-w-2xl text-fs-3 leading-relaxed text-[var(--ink)]/75 sm:col-start-3 sm:row-start-1">
                 {b.body}
               </p>
             </li>

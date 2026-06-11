@@ -1,3 +1,5 @@
+import SectionEyebrow from "./section-eyebrow";
+
 type Row = {
   kriterium: string;
   uns: string | true;
@@ -43,45 +45,52 @@ export default function Comparison() {
     <section className="border-y border-[var(--line)] bg-white">
       <div className="mx-auto max-w-6xl px-6 py-24">
         <div className="reveal max-w-3xl">
-          <p className="font-mono-data text-xs uppercase tracking-[0.18em] text-[var(--steel)]">
+          <SectionEyebrow tone="steel" dot>
             Vergleich
-          </p>
-          <h2 className="mt-4 text-3xl font-semibold leading-tight tracking-[-0.01em] text-[var(--ink)] sm:text-[40px]">
+          </SectionEyebrow>
+          <h2 className="mt-4 text-fs-6 font-semibold leading-tight tracking-[-0.01em] text-[var(--ink)] sm:text-fs-7">
             Was Sie woanders{" "}
             <span className="solar-underline">nicht zugesichert</span> bekommen.
           </h2>
         </div>
 
-        {/* Desktop: echte Tabelle, USP-Spalte highlighted */}
+        {/* Desktop: echte Tabelle, USP-Spalte highlighted (UX-007) */}
         <div className="reveal mt-12 hidden overflow-hidden rounded-lg border border-[var(--line)] lg:block">
-          <table className="w-full border-collapse text-[15px]">
+          <table className="w-full border-collapse text-fs-3">
             <thead>
               <tr className="border-b border-[var(--line)]">
                 <th
                   scope="col"
-                  className="w-[36%] bg-[var(--paper)] px-6 py-5 text-left font-mono-data text-[11px] font-medium uppercase tracking-wider text-[var(--muted)]"
+                  className="w-[36%] bg-[var(--paper)] px-6 py-5 text-left font-mono-data text-fs-1 font-medium uppercase tracking-wider text-[var(--muted)]"
                 >
                   Kriterium
                 </th>
                 <th
                   scope="col"
-                  className="relative bg-[var(--ink)] px-6 py-5 text-left text-sm font-semibold text-white"
+                  className="relative rounded-t-lg px-6 py-5 text-left text-fs-2 font-semibold text-[var(--ink)]"
+                  style={{
+                    backgroundColor: "rgba(232,163,61,0.06)",
+                    borderLeft: "2px solid var(--solar)",
+                    borderRight: "2px solid var(--solar)",
+                  }}
                 >
-                  <span
-                    aria-hidden
-                    className="absolute left-0 top-0 h-1 w-full bg-[var(--solar)]"
-                  />
-                  Solarwerk-Süd
+                  <span className="inline-flex items-center gap-2">
+                    <span
+                      aria-hidden
+                      className="inline-block h-1.5 w-1.5 rounded-full bg-[var(--solar)]"
+                    />
+                    Solarwerk-Süd
+                  </span>
                 </th>
                 <th
                   scope="col"
-                  className="bg-[var(--paper)] px-6 py-5 text-left text-sm font-medium text-[var(--muted)]"
+                  className="bg-[var(--paper)] px-6 py-5 text-left font-mono-data text-fs-1 font-medium uppercase tracking-wider text-[var(--muted)]"
                 >
                   Plattform-Anbieter
                 </th>
                 <th
                   scope="col"
-                  className="bg-[var(--paper)] px-6 py-5 text-left text-sm font-medium text-[var(--muted)]"
+                  className="bg-[var(--paper)] px-6 py-5 text-left font-mono-data text-fs-1 font-medium uppercase tracking-wider text-[var(--muted)]"
                 >
                   Generalunternehmer
                 </th>
@@ -101,7 +110,14 @@ export default function Comparison() {
                   >
                     {row.kriterium}
                   </th>
-                  <td className="bg-[var(--ink)]/[0.03] px-6 py-5 font-medium text-[var(--ink)]">
+                  <td
+                    className="px-6 py-5 font-medium text-[var(--ink)]"
+                    style={{
+                      backgroundColor: "rgba(232,163,61,0.06)",
+                      borderLeft: "2px solid var(--solar)",
+                      borderRight: "2px solid var(--solar)",
+                    }}
+                  >
                     {row.uns === true ? (
                       <span className="inline-flex items-center gap-2 text-[var(--leaf)]">
                         <Check />
@@ -130,12 +146,12 @@ export default function Comparison() {
               key={row.kriterium}
               className="card-lift rounded-lg border border-[var(--line)] bg-white p-5"
             >
-              <p className="text-sm font-semibold text-[var(--ink)]">
+              <p className="text-fs-2 font-semibold text-[var(--ink)]">
                 {row.kriterium}
               </p>
-              <dl className="mt-3 space-y-2 text-sm">
+              <dl className="mt-3 space-y-2 text-fs-2">
                 <div className="flex justify-between gap-4 border-b border-[var(--line)] pb-2">
-                  <dt className="font-mono-data text-[11px] uppercase tracking-wider text-[var(--muted)]">
+                  <dt className="font-mono-data text-fs-1 uppercase tracking-wider text-[var(--muted)]">
                     Solarwerk-Süd
                   </dt>
                   <dd className="text-right font-semibold text-[var(--leaf)]">
@@ -143,7 +159,7 @@ export default function Comparison() {
                   </dd>
                 </div>
                 <div className="flex justify-between gap-4">
-                  <dt className="font-mono-data text-[11px] uppercase tracking-wider text-[var(--muted)]">
+                  <dt className="font-mono-data text-fs-1 uppercase tracking-wider text-[var(--muted)]">
                     Plattform
                   </dt>
                   <dd className="text-right text-[var(--ink)]/65">
@@ -151,7 +167,7 @@ export default function Comparison() {
                   </dd>
                 </div>
                 <div className="flex justify-between gap-4">
-                  <dt className="font-mono-data text-[11px] uppercase tracking-wider text-[var(--muted)]">
+                  <dt className="font-mono-data text-fs-1 uppercase tracking-wider text-[var(--muted)]">
                     Generalunternehmer
                   </dt>
                   <dd className="text-right text-[var(--ink)]/65">

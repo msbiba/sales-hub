@@ -25,7 +25,7 @@ export default function LandingLayout({ children }: { children: ReactNode }) {
     >
       <a
         href="#main"
-        className="sr-only focus:not-sr-only focus:fixed focus:top-3 focus:left-3 focus:z-50 focus:rounded-md focus:bg-[var(--ink)] focus:px-4 focus:py-2 focus:text-sm focus:font-semibold focus:text-white"
+        className="sr-only focus:not-sr-only focus:fixed focus:top-3 focus:left-3 focus:z-50 focus:rounded-md focus:bg-[var(--ink)] focus:px-4 focus:py-2 focus:text-fs-2 focus:font-semibold focus:text-white"
       >
         Zum Inhalt springen
       </a>
@@ -33,23 +33,18 @@ export default function LandingLayout({ children }: { children: ReactNode }) {
         <div className="mx-auto flex max-w-6xl items-center justify-between px-6 py-4">
           <Logo />
           <nav className="hidden items-center gap-2 sm:flex">
-            <a
-              href="/login"
-              className="focus-ring rounded-md border border-[var(--line)] bg-white px-4 py-2 text-sm font-semibold text-[var(--ink)] transition-colors hover:border-[var(--steel)] hover:bg-[var(--paper)]"
-            >
+            <a href="/login" className="btn-ghost focus-ring text-fs-2">
               Kundenlogin
             </a>
-            <a
-              href="#termin"
-              className="focus-ring inline-flex items-center gap-2 rounded-md bg-[var(--ink)] px-4 py-2 text-sm font-semibold text-white transition-colors hover:bg-black"
-            >
+            <a href="#termin" className="btn-secondary focus-ring text-fs-2">
               Termin buchen
               <span aria-hidden>→</span>
             </a>
           </nav>
           <a
             href="#termin"
-            className="focus-ring rounded-md bg-[var(--ink)] px-3 py-2 text-sm font-semibold text-white sm:hidden"
+            className="btn-secondary focus-ring text-fs-2 sm:hidden"
+            style={{ padding: "0.5rem 0.75rem" }}
           >
             Termin
           </a>

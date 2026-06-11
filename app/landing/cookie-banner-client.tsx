@@ -37,10 +37,10 @@ export default function CookieBanner() {
       aria-label="Cookie- und Datenschutz-Hinweis"
       className="fixed inset-x-3 bottom-3 z-50 mx-auto max-w-3xl rounded-lg border border-[var(--line)] bg-white p-5 shadow-[0_10px_40px_-15px_rgba(14,17,22,0.25)] sm:inset-x-auto sm:left-1/2 sm:-translate-x-1/2"
     >
-      <p className="font-mono-data text-[11px] uppercase tracking-[0.18em] text-[var(--solar)]">
+      <p className="font-mono-data text-fs-1 uppercase tracking-[0.18em] text-[var(--solar)]">
         DSGVO-Hinweis
       </p>
-      <p className="mt-2 text-[15px] leading-relaxed text-[var(--ink)]">
+      <p className="mt-2 text-fs-3 leading-relaxed text-[var(--ink)]">
         Diese Seite verwendet essenzielle Cookies für die Funktion. Mit Ihrer
         Einwilligung setzen wir zusätzlich Google Analytics ein, um die Seite
         zu verbessern. Für die Terminbuchung über Cal.com wird beim Aufruf
@@ -57,14 +57,14 @@ export default function CookieBanner() {
         <button
           type="button"
           onClick={() => persist("essential")}
-          className="rounded-md border border-[var(--line)] px-4 py-2 text-sm font-medium text-[var(--ink)] hover:bg-[var(--paper)]"
+          className="btn-ghost focus-ring text-fs-2"
         >
           Nur essenziell
         </button>
         <button
           type="button"
           onClick={() => persist("all")}
-          className="rounded-md bg-[var(--ink)] px-4 py-2 text-sm font-semibold text-white hover:bg-black"
+          className="btn-secondary focus-ring text-fs-2"
         >
           Analytics zustimmen
         </button>

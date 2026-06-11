@@ -1,6 +1,7 @@
 "use client";
 
 import { useState } from "react";
+import SectionEyebrow from "./section-eyebrow";
 
 const FAQ = [
   {
@@ -32,58 +33,67 @@ export default function Faq() {
     <section className="bg-[var(--paper)]">
       <div className="mx-auto max-w-3xl px-6 py-20">
         <div className="reveal">
-          <p className="font-mono-data text-xs uppercase tracking-[0.18em] text-[var(--steel)]">
+          <SectionEyebrow tone="steel" dot>
             Was Kunden vor dem Termin fragen
-          </p>
-          <h2 className="mt-4 text-3xl font-semibold leading-tight tracking-tight text-[var(--ink)] sm:text-4xl">
+          </SectionEyebrow>
+          <h2 className="mt-4 text-fs-6 font-semibold leading-tight tracking-tight text-[var(--ink)] sm:text-fs-7">
             Fragen, die zuerst auf den Tisch kommen.
           </h2>
         </div>
 
-        <ul className="reveal mt-12 divide-y divide-[var(--line)] border-y border-[var(--line)]">
+        {/* UX-008: card-framed accordion */}
+        <ul className="reveal mt-12 space-y-3">
           {FAQ.map((item, i) => {
             const isOpen = open === i;
             const panelId = `faq-panel-${i}`;
             return (
-              <li key={item.q}>
+              <li
+                key={item.q}
+                className={`rounded-lg border bg-[var(--paper)] transition-[background-color,border-color,box-shadow] duration-200 ease-[cubic-bezier(0.22,1,0.36,1)] ${
+                  isOpen
+                    ? "border-[var(--line)] bg-[color-mix(in_srgb,var(--paper)_60%,white)]"
+                    : "border-[var(--line)] hover:border-[color-mix(in_srgb,var(--ink)_15%,transparent)] hover:shadow-[0_10px_40px_-15px_rgba(14,17,22,0.25)]"
+                }`}
+              >
                 <button
                   type="button"
                   aria-expanded={isOpen}
                   aria-controls={panelId}
                   onClick={() => setOpen(isOpen ? null : i)}
-                  className="focus-ring group flex w-full items-center justify-between gap-4 py-6 text-left"
+                  className="focus-ring group flex w-full items-center justify-between gap-4 px-6 py-4 text-left"
                 >
                   <span className="flex items-baseline gap-4">
-                    <span className="font-mono-data text-[11px] text-[var(--muted)] transition-colors group-hover:text-[var(--solar)]">
+                    <span className="font-mono-data text-fs-2 text-[var(--muted)] transition-colors group-hover:text-[var(--solar)]">
                       {String(i + 1).padStart(2, "0")}
                     </span>
-                    <span className="text-[17px] font-semibold text-[var(--ink)]">
+                    <span className="text-fs-3 font-medium text-[var(--ink)]">
                       {item.q}
                     </span>
                   </span>
-                  <span
+                  <svg
                     aria-hidden
-                    className={`shrink-0 rounded-full border border-[var(--line)] p-1.5 transition-all ${
-                      isOpen
-                        ? "rotate-45 border-[var(--solar)] bg-[var(--solar)] text-[var(--ink)]"
-                        : "text-[var(--steel)] group-hover:border-[var(--steel)]"
+                    width="16"
+                    height="16"
+                    viewBox="0 0 16 16"
+                    fill="none"
+                    className={`shrink-0 transition-transform duration-200 ease-[cubic-bezier(0.22,1,0.36,1)] ${
+                      isOpen ? "rotate-180 text-[var(--ink)]" : "text-[var(--muted)] group-hover:text-[var(--ink)]"
                     }`}
                   >
-                    <svg width="14" height="14" viewBox="0 0 18 18" fill="none">
-                      <path
-                        d="M9 3v12M3 9h12"
-                        stroke="currentColor"
-                        strokeWidth="1.5"
-                        strokeLinecap="round"
-                      />
-                    </svg>
-                  </span>
+                    <path
+                      d="M4 6L8 10L12 6"
+                      stroke="currentColor"
+                      strokeWidth="1.5"
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                    />
+                  </svg>
                 </button>
                 {isOpen && (
                   <div
                     id={panelId}
                     role="region"
-                    className="pb-7 pl-10 pr-10 text-[15px] leading-relaxed text-[var(--ink)]/80"
+                    className="px-6 pb-5 pl-[3.75rem] text-fs-3 leading-relaxed text-[var(--ink)]/80"
                   >
                     {item.a}
                   </div>
