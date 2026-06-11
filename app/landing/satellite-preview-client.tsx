@@ -106,7 +106,7 @@ export default function SatellitePreview() {
       <button
         type="submit"
         disabled={status.kind === "submitting"}
-        className="mt-4 inline-flex w-full items-center justify-center rounded-md bg-[var(--ink)] px-5 py-2.5 text-fs-2 font-semibold text-white hover:bg-black disabled:opacity-50 sm:w-auto"
+        className="btn-secondary focus-ring mt-4 w-full text-fs-2 sm:w-auto"
       >
         {status.kind === "submitting"
           ? "Wird gesendet …"

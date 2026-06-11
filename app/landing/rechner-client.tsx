@@ -215,7 +215,7 @@ export default function Rechner() {
                     <button
                       type="submit"
                       disabled={status.kind === "submitting"}
-                      className="focus-ring rounded-md bg-[var(--ink)] px-4 py-2.5 text-fs-2 font-semibold text-white hover:bg-black disabled:opacity-50"
+                      className="btn-secondary focus-ring text-fs-2"
                     >
                       {status.kind === "submitting" ? "Sende …" : "Anfordern"}
                     </button>

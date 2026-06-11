@@ -21,6 +21,8 @@
 | UX-006 | quick_win | magic | 4/2 | done | `app/landing/rechner-client.tsx` | (inline in rechner-client) | Amortisation + Ertrag gesamt promoted to fs-6 with solar-underline; 6 secondary metrics in 2-col muted grid |
 | UX-007 | quick_win | magic | 4/2 | done | `app/landing/comparison.tsx` | (inline in comparison) | "Us" column gets 6% solar wash + 2px solar L/R borders; competitor headers harmonized to mono-data eyebrow style |
 | UX-008 | quick_win | magic | 4/2 | done | `app/landing/faq-client.tsx` | (inline in faq-client) | Card-framed accordion items, hover lift + neutral shadow, chevron rotation 180° on expand |
+| UX-009 | strategic_bet | agent | 4/2 | done | `app/globals.css`, `app/landing/layout.tsx`, `app/landing/cookie-banner-client.tsx`, `app/landing/sticky-cta-client.tsx`, `app/landing/satellite-preview-client.tsx`, `app/landing/rechner-client.tsx` | — | 3-tier button utilities `.btn-primary` / `.btn-secondary` / `.btn-ghost` added; cookie banner, sticky CTA, header CTAs, form submits all swept to correct tier |
+| UX-011 | strategic_bet | magic | 4/3 | done | `app/landing/consent-gate-card.tsx`, `app/landing/cal-embed-client.tsx` | `components/_generated/UX-011-consent-gate-card.tsx` | Ink-bg consent-gate w/ amber CalendarDays icon, white heading + body, PrimaryCTA inside, lazy-load preserved (IntersectionObserver) |
 
 ## Summary
 

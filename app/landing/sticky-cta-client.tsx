@@ -32,7 +32,8 @@ export default function StickyCta() {
           <div className="flex items-center gap-2">
             <a
               href="#termin"
-              className="focus-ring inline-flex items-center gap-2 rounded-md bg-[var(--solar)] px-3.5 py-1.5 text-fs-2 font-semibold text-[var(--ink)] transition-colors hover:bg-[var(--solar-hover)]"
+              className="btn-primary focus-ring text-fs-2"
+              style={{ padding: "0.375rem 0.875rem" }}
             >
               Termin wählen
               <span aria-hidden>→</span>
@@ -61,7 +62,8 @@ export default function StickyCta() {
         <div className="flex items-center gap-2">
           <a
             href="#termin"
-            className="focus-ring flex flex-1 items-center justify-center gap-2 rounded-md bg-[var(--solar)] px-4 py-3 text-fs-3 font-semibold text-[var(--ink)]"
+            className="btn-primary focus-ring flex-1 text-fs-3"
+            style={{ padding: "0.75rem 1rem" }}
           >
             Termin wählen
             <span aria-hidden>→</span>

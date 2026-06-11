@@ -57,14 +57,14 @@ export default function CookieBanner() {
         <button
           type="button"
           onClick={() => persist("essential")}
-          className="rounded-md border border-[var(--line)] px-4 py-2 text-fs-2 font-medium text-[var(--ink)] hover:bg-[var(--paper)]"
+          className="btn-ghost focus-ring text-fs-2"
         >
           Nur essenziell
         </button>
         <button
           type="button"
           onClick={() => persist("all")}
-          className="rounded-md bg-[var(--ink)] px-4 py-2 text-fs-2 font-semibold text-white hover:bg-black"
+          className="btn-secondary focus-ring text-fs-2"
         >
           Analytics zustimmen
         </button>

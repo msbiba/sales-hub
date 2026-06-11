@@ -157,6 +157,86 @@ html.js .reveal.is-visible {
   outline-offset: 2px;
 }
 
+/* ------------------------------------------------------------------ */
+/* Button tier system (UX-009)                                          */
+/* primary  = amber, ink text, glow shadow — hero CTA + closing Cal CTA */
+/* secondary= ink, white text — form submits, in-page jumps             */
+/* ghost    = transparent + line border — cookie dismiss, etc.          */
+/* PrimaryCTA component encapsulates the richer hover for the hero;     */
+/* these classes give parity for plain <button>/<a> usage.              */
+/* ------------------------------------------------------------------ */
+.btn-primary {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  border-radius: 6px;
+  background-color: var(--solar);
+  color: var(--ink);
+  font-weight: 600;
+  padding: 0.625rem 1rem;
+  box-shadow: 0 10px 30px -10px rgba(232, 163, 61, 0.6);
+  transition:
+    transform 150ms cubic-bezier(0.4, 0, 0.2, 1),
+    box-shadow 150ms cubic-bezier(0.4, 0, 0.2, 1),
+    background-color 150ms cubic-bezier(0.4, 0, 0.2, 1);
+}
+.btn-primary:hover {
+  background-color: var(--solar-hover);
+  transform: translateY(-1px);
+  box-shadow: 0 10px 30px -10px rgba(232, 163, 61, 0.75);
+}
+.btn-primary:disabled {
+  opacity: 0.4;
+  box-shadow: none;
+  transform: none;
+  pointer-events: none;
+}
+
+.btn-secondary {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  border-radius: 6px;
+  background-color: var(--ink);
+  color: #ffffff;
+  font-weight: 600;
+  padding: 0.625rem 1rem;
+  transition: background-color 150ms cubic-bezier(0.4, 0, 0.2, 1);
+}
+.btn-secondary:hover {
+  background-color: #000;
+}
+.btn-secondary:disabled {
+  opacity: 0.5;
+  pointer-events: none;
+}
+
+.btn-ghost {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  border-radius: 6px;
+  background-color: transparent;
+  color: var(--ink);
+  font-weight: 500;
+  padding: 0.625rem 1rem;
+  border: 1px solid var(--line);
+  transition:
+    background-color 150ms cubic-bezier(0.4, 0, 0.2, 1),
+    border-color 150ms cubic-bezier(0.4, 0, 0.2, 1);
+}
+.btn-ghost:hover {
+  background-color: var(--paper);
+  border-color: color-mix(in srgb, var(--ink) 25%, transparent);
+}
+.btn-ghost:disabled {
+  opacity: 0.4;
+  pointer-events: none;
+}
+
 /* Branded slider (UX-001): custom thumb + track for native <input type=range> */
 .branded-slider {
   -webkit-appearance: none;
