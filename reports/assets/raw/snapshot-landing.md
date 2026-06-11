@@ -1,0 +1,422 @@
+- generic [active] [ref=e1]:
+  - generic [ref=e2]:
+    - link "Zum Inhalt springen" [ref=e3] [cursor=pointer]:
+      - /url: "#main"
+    - banner [ref=e4]:
+      - generic [ref=e5]:
+        - link "solarwerk süd" [ref=e6] [cursor=pointer]:
+          - /url: /landing
+          - generic [ref=e7]: solarwerk
+          - generic [ref=e9]: süd
+        - navigation [ref=e10]:
+          - link "Kundenlogin" [ref=e11] [cursor=pointer]:
+            - /url: /login
+          - link "Termin buchen" [ref=e12] [cursor=pointer]:
+            - /url: "#termin"
+            - text: Termin buchen
+            - generic [ref=e13]: →
+    - main [ref=e14]:
+      - generic [ref=e15]:
+        - img [ref=e16]
+        - generic [ref=e22]:
+          - paragraph [ref=e23]: Photovoltaik · Gewerbe · Süddeutschland
+          - heading "Photovoltaik fürs Hallendach. Festpreis. Eigene Monteure. 20 Jahre Garantie." [level=1] [ref=e25]
+          - paragraph [ref=e26]: Geplant von Ingenieuren in Stadtbergen. In 8 Wochen am Netz — oder Sie zahlen nicht.
+          - generic [ref=e27]:
+            - link "Kostenlose Dach-Analyse buchen" [ref=e28] [cursor=pointer]:
+              - /url: "#termin"
+              - text: Kostenlose Dach-Analyse buchen
+              - generic [ref=e29]: →
+            - link "Erst rechnen lassen →" [ref=e30] [cursor=pointer]:
+              - /url: "#rechner"
+          - generic [ref=e31]:
+            - generic [ref=e32]:
+              - term [ref=e33]: Gewerbeanlagen
+              - definition [ref=e34]: 480+
+            - generic [ref=e35]:
+              - term [ref=e36]: installiert
+              - definition [ref=e37]: 142 MWp
+            - generic [ref=e38]:
+              - term [ref=e39]: bis Netzanschluss
+              - definition [ref=e40]: 8 Wo.
+          - list [ref=e41]:
+            - listitem [ref=e42]:
+              - img [ref=e43]
+              - text: TÜV-zertifizierte Montage
+            - listitem [ref=e45]:
+              - img [ref=e46]
+              - text: Eigene Monteure
+            - listitem [ref=e48]:
+              - img [ref=e49]
+              - text: Förderantrag inklusive
+        - generic [ref=e53]:
+          - paragraph [ref=e54]: Dach-Vorschau in 24 h
+          - paragraph [ref=e55]: Wir analysieren Ihr Hallendach per Satellitenbild und schicken Ihnen eine erste Einschätzung — kostenlos.
+          - generic [ref=e56]:
+            - textbox "Postleitzahl" [ref=e57]:
+              - /placeholder: PLZ
+            - textbox "Hausnummer (optional)" [ref=e58]:
+              - /placeholder: Nr.
+            - textbox "E-Mail-Adresse" [ref=e59]:
+              - /placeholder: E-Mail für Rückmeldung
+          - button "Satelliten-Vorschau anfordern" [ref=e60]
+          - paragraph [ref=e61]:
+            - text: Wir verwenden Ihre Daten ausschließlich für die Dach-Einschätzung. Details in der
+            - link "Datenschutzerklärung" [ref=e62] [cursor=pointer]:
+              - /url: /datenschutz
+            - text: .
+      - generic [ref=e64]:
+        - generic [ref=e69]: Förder-Status live
+        - generic [ref=e70]:
+          - generic [ref=e71]: KfW 270 · 12,3 Mio € verbleibend
+          - generic [ref=e72]: §6 EEG · endet 31.12.2026
+        - generic [ref=e73]: "Stand: 01.06.2026"
+      - generic [ref=e77]:
+        - generic [ref=e78]:
+          - paragraph [ref=e79]: Warum jetzt
+          - 'heading "Industriestrom 2026 zwischen 25 und 30 ct/kWh. Tendenz: nicht fallend." [level=2] [ref=e80]'
+          - paragraph [ref=e81]: "Drei Bewegungen treffen Gewerbe-Bilanzen gleichzeitig: steigende Industriestrompreise, auslaufende Förderfenster und ein wachsender ESG-Druck von Banken, Kunden und Geschäftsführung. Wer jetzt plant, sichert sich Festpreise, bestehende Förderprogramme und Lieferzeiten."
+          - paragraph [ref=e82]: BDEW-Strompreisanalyse · Stand 2026 · Gewerbe > 100 MWh/a
+        - generic [ref=e83]:
+          - paragraph [ref=e85]: Strompreis-Anstieg
+          - paragraph [ref=e86]: +38%
+          - paragraph [ref=e87]: Gewerbestrom seit 2021. Mittlere Spannungsebene.
+        - generic [ref=e88]:
+          - paragraph [ref=e90]: Förderfenster
+          - paragraph [ref=e91]: 31.12.26
+          - paragraph [ref=e92]: Auslauf §6 EEG-Direktvermarktungs-Bonus.
+      - generic [ref=e95]:
+        - generic [ref=e96]:
+          - generic [ref=e97]:
+            - paragraph [ref=e98]: So läuft Ihr Projekt
+            - heading "Vier Schritte, ein Ansprechpartner, ein Termin am Ende." [level=2] [ref=e99]
+          - paragraph [ref=e100]: Ø 8 Wochen bis Netzanschluss
+        - list [ref=e101]:
+          - listitem [ref=e102]:
+            - generic [ref=e103]:
+              - generic [ref=e104]: "01"
+              - generic [ref=e105]: Tag 1–3
+            - heading "Dach-Analyse vor Ort" [level=3] [ref=e106]
+            - paragraph [ref=e107]: Drohnen-Befliegung, Statik-Check, Verschattungs-Simulation. Ein Ingenieur, kein Vertriebler.
+          - listitem [ref=e108]:
+            - generic [ref=e109]:
+              - generic [ref=e110]: "02"
+              - generic [ref=e111]: Tag 4–14
+            - heading "Festpreis-Angebot + Förderantrag" [level=3] [ref=e112]
+            - paragraph [ref=e113]: Schriftlicher Festpreis ohne Nachforderungs-Klauseln. KfW-, EEG- und Landesförderung beantragen wir.
+          - listitem [ref=e114]:
+            - generic [ref=e115]:
+              - generic [ref=e116]: "03"
+              - generic [ref=e117]: Woche 4–8
+            - heading "Montage durch eigene Monteure" [level=3] [ref=e118]
+            - paragraph [ref=e119]: Keine Subunternehmer. Vorarbeiter mit Klarnamen und Direktnummer. Inkl. Brandschutz-Abnahme.
+          - listitem [ref=e120]:
+            - generic [ref=e121]:
+              - generic [ref=e122]: "04"
+              - generic [ref=e123]: Ab Woche 8
+            - heading "Netzanschluss + 20 Jahre Wartung" [level=3] [ref=e124]
+            - paragraph [ref=e125]: Inbetriebnahme inkl. Monitoring-Setup. Wartung, Reinigung und Garantie-Service inklusive.
+      - generic [ref=e127]:
+        - generic [ref=e128]:
+          - paragraph [ref=e129]: "Was zählt: belegbare Zahlen"
+          - heading "480 Anlagen. 142 MWp installiert. Ø 7,4 Jahre Amortisation." [level=2] [ref=e130]
+        - generic [ref=e131]:
+          - generic [ref=e132]:
+            - paragraph [ref=e133]:
+              - generic [ref=e134]: 480+
+            - paragraph [ref=e135]: Gewerbe-Anlagen seit 2009
+          - generic [ref=e136]:
+            - paragraph [ref=e137]:
+              - generic [ref=e138]: 142 MWp
+            - paragraph [ref=e139]: Gesamt installiert
+          - generic [ref=e140]:
+            - paragraph [ref=e141]:
+              - generic [ref=e142]: Ø 7,4 J.
+            - paragraph [ref=e143]: Ø Amortisation Gewerbe
+        - generic [ref=e144]:
+          - article [ref=e145]:
+            - generic [ref=e146]:
+              - generic [ref=e147]:
+                - paragraph [ref=e148]: Maier Logistik GmbH
+                - paragraph [ref=e149]: Heilbronn
+              - generic [ref=e150]: "[DEMO]"
+            - generic [ref=e151]:
+              - generic [ref=e152]:
+                - paragraph [ref=e153]: 480 kWp
+                - paragraph [ref=e154]: Anlagengröße
+              - generic [ref=e155]:
+                - paragraph [ref=e156]: 7,2 J.
+                - paragraph [ref=e157]: Amortisation
+            - blockquote [ref=e158]: „Festpreis hat gehalten. Termin auch. Wir hatten mit beidem nicht gerechnet.“
+            - paragraph [ref=e159]: — Klaus Maier, Geschäftsführer
+          - article [ref=e160]:
+            - generic [ref=e161]:
+              - generic [ref=e162]:
+                - paragraph [ref=e163]: Schwarzwald Kunststoff KG
+                - paragraph [ref=e164]: Villingen-Schwenningen
+              - generic [ref=e165]: "[DEMO]"
+            - generic [ref=e166]:
+              - generic [ref=e167]:
+                - paragraph [ref=e168]: 612 kWp
+                - paragraph [ref=e169]: Anlagengröße
+              - generic [ref=e170]:
+                - paragraph [ref=e171]: 6,8 J.
+                - paragraph [ref=e172]: Amortisation
+            - blockquote [ref=e173]: „Wir kennen unseren Vorarbeiter beim Namen. Bei drei früheren Anbietern wussten wir nicht, wer überhaupt auf dem Dach steht.“
+            - paragraph [ref=e174]: — Sabine Brenner, kfm. Leitung
+        - generic [ref=e175]:
+          - paragraph [ref=e176]: Auswahl bestehender Kunden
+          - list [ref=e177]:
+            - listitem [ref=e178]: Maier Logistik
+            - listitem [ref=e179]: Schwarzwald KS
+            - listitem [ref=e180]: Hofbauer Halle
+            - listitem [ref=e181]: Reichert AG
+            - listitem [ref=e182]: Allgäu Verpackung
+            - listitem [ref=e183]: Donau Stahl
+            - listitem [ref=e184]: Wagner Metall
+            - listitem [ref=e185]: Brauerei Hirsch
+          - paragraph [ref=e186]: Demo-Daten zur Illustration des Lehr-Repos.
+      - generic [ref=e188]:
+        - generic [ref=e189]:
+          - paragraph [ref=e190]: Was uns unterscheidet
+          - heading "Fünf Dinge, die im Vertrag stehen — nicht nur im Pitch." [level=2] [ref=e191]
+        - list [ref=e192]:
+          - listitem [ref=e193]:
+            - generic [ref=e194]: 01 —
+            - heading "Festpreis-Garantie." [level=3] [ref=e195]
+            - paragraph [ref=e196]: Was im Angebot steht, steht in der Rechnung. Keine Nachforderung, schriftlich.
+          - listitem [ref=e197]:
+            - generic [ref=e198]: 02 —
+            - heading "Eigene Monteure, keine Sub-Unternehmer." [level=3] [ref=e199]
+            - paragraph [ref=e200]: Sie kennen den Vorarbeiter beim Namen. Wir auch.
+          - listitem [ref=e201]:
+            - generic [ref=e202]: 03 —
+            - heading "20 Jahre Garantie inkl. Wartung." [level=3] [ref=e203]
+            - paragraph [ref=e204]: Module, Wechselrichter, Montage — eine Garantie, ein Ansprechpartner.
+          - listitem [ref=e205]:
+            - generic [ref=e206]: 04 —
+            - heading "Nur Gewerbe." [level=3] [ref=e207]
+            - paragraph [ref=e208]: Kein B2C-Nebengeschäft. Wir kennen Statik, Brandschutz und Netzanschluss > 100 kWp.
+          - listitem [ref=e209]:
+            - generic [ref=e210]: 05 —
+            - heading "Regional Süddeutschland." [level=3] [ref=e211]
+            - paragraph [ref=e212]: Sitz Stadtbergen bei Augsburg. Servicewagen in 90 Min in Bayrisch-Schwaben, Allgäu, Ulm und östliches BW.
+      - generic [ref=e214]:
+        - generic [ref=e215]:
+          - paragraph [ref=e216]: Selbst nachrechnen
+          - heading "Was kann Ihr Hallendach? In 30 Sekunden." [level=2] [ref=e217]
+          - paragraph [ref=e218]: Konservative Schätzwerte für Süddeutschland. Keine Verkaufs-Magie, keine Optimismus-Filter. Eine Detail-Berechnung folgt nach Drohnen-Befliegung.
+        - generic [ref=e219]:
+          - generic [ref=e220]:
+            - generic [ref=e221]:
+              - generic [ref=e222]:
+                - generic [ref=e223]: Dachfläche
+                - generic [ref=e224]: 1.000 m²
+              - slider "Dachfläche" [ref=e225]: "1000"
+              - generic [ref=e226]:
+                - generic [ref=e227]: 200 m²
+                - generic [ref=e228]: 10.000 m²
+            - generic [ref=e229]:
+              - generic [ref=e230]:
+                - generic [ref=e231]: Jahres-Stromverbrauch
+                - generic [ref=e232]: 200.000 kWh
+              - slider "Jahres-Stromverbrauch" [ref=e233]: "200000"
+              - generic [ref=e234]:
+                - generic [ref=e235]: 20.000 kWh
+                - generic [ref=e236]: 2.000.000 kWh
+            - generic [ref=e237]:
+              - generic [ref=e238]:
+                - generic [ref=e239]: Aktueller Strompreis
+                - generic [ref=e240]: 27,0 ct/kWh
+              - slider "Aktueller Strompreis" [ref=e241]: "27"
+              - generic [ref=e242]:
+                - generic [ref=e243]: 15,0 ct/kWh
+                - generic [ref=e244]: 45,0 ct/kWh
+            - generic [ref=e245]:
+              - generic [ref=e246]:
+                - generic [ref=e247]: Dach-Typ
+                - combobox "Dach-Typ" [ref=e248]:
+                  - option "Trapezblech" [selected]
+                  - option "Bitumen"
+                  - option "Ziegel"
+                  - option "Andere"
+              - generic [ref=e249] [cursor=pointer]:
+                - checkbox "Es ist bereits PV auf dem Dach installiert." [ref=e250]
+                - generic [ref=e251]: Es ist bereits PV auf dem Dach installiert.
+          - complementary [ref=e252]:
+            - paragraph [ref=e253]: Richtwerte Ihre Anlage
+            - generic [ref=e254]:
+              - generic [ref=e255]:
+                - term [ref=e256]: Anlagengröße
+                - definition [ref=e257]: 170,0 kWp
+              - generic [ref=e258]:
+                - term [ref=e259]: Jahresertrag
+                - definition [ref=e260]: 161.500 kWh
+              - generic [ref=e261]:
+                - term [ref=e262]: Einsparung Strom
+                - definition [ref=e263]: 26.163 € / Jahr
+              - generic [ref=e264]:
+                - term [ref=e265]: Einspeise-Vergütung
+                - definition [ref=e266]: 5.103 € / Jahr
+              - generic [ref=e267]:
+                - term [ref=e268]: Ertrag gesamt
+                - definition [ref=e269]: 28.716 € / Jahr
+              - generic [ref=e270]:
+                - term [ref=e271]: Investition (netto)
+                - definition [ref=e272]: 170.000 €
+              - generic [ref=e273]:
+                - term [ref=e274]: Amortisation
+                - definition [ref=e275]: 5,9 Jahre
+              - generic [ref=e276]:
+                - term [ref=e277]: CO₂ vermieden
+                - definition [ref=e278]: 61,4 t / Jahr
+            - generic [ref=e279]:
+              - generic [ref=e280]: Detail-Berechnung per E-Mail erhalten
+              - generic [ref=e281]:
+                - textbox "Detail-Berechnung per E-Mail erhalten" [ref=e282]:
+                  - /placeholder: name@firma.de
+                - button "Anfordern" [ref=e283]
+            - paragraph [ref=e284]: "Annahmen: 0,17 kWp/m²; 950 kWh/kWp/a Süddeutschland; 60 % Eigenverbrauch; 7,9 ct/kWh Einspeisung; 1.000 €/kWp netto; 1,5 % Betriebskosten pro Jahr; 0,38 kg CO₂/kWh Strommix. Ertrag „gesamt“ abzüglich Betriebskosten. Wartung, Reinigung und Monitoring sind in unserem Angebot enthalten. Werte ersetzen keine Detailplanung — die liefern wir kostenlos vor Ort."
+      - generic [ref=e286]:
+        - generic [ref=e287]:
+          - paragraph [ref=e288]: Was Kunden vor dem Termin fragen
+          - heading "Fragen, die zuerst auf den Tisch kommen." [level=2] [ref=e289]
+        - list [ref=e290]:
+          - listitem [ref=e291]:
+            - button "01 Was, wenn der Strompreis wieder fällt?" [expanded] [ref=e292]:
+              - generic [ref=e293]:
+                - generic [ref=e294]: "01"
+                - generic [ref=e295]: Was, wenn der Strompreis wieder fällt?
+              - img [ref=e297]
+            - region [ref=e299]: Selbst beim Industriestrom-Tief 2020 lagen Gewerbepreise > 15 ct/kWh. Unsere Rechnung amortisiert sich auch bei dauerhaft 18 ct/kWh in unter 11 Jahren — getragen wird die Anlage zusätzlich durch die Einspeisevergütung, die gesetzlich für 20 Jahre fixiert ist.
+          - listitem [ref=e300]:
+            - button "02 Wer haftet bei Schäden am Dach während Montage?" [ref=e301]:
+              - generic [ref=e302]:
+                - generic [ref=e303]: "02"
+                - generic [ref=e304]: Wer haftet bei Schäden am Dach während Montage?
+              - img [ref=e306]
+          - listitem [ref=e308]:
+            - button "03 Was passiert nach 20 Jahren mit den Modulen?" [ref=e309]:
+              - generic [ref=e310]:
+                - generic [ref=e311]: "03"
+                - generic [ref=e312]: Was passiert nach 20 Jahren mit den Modulen?
+              - img [ref=e314]
+          - listitem [ref=e316]:
+            - button "04 Wir sind Mieter / Erbbaurecht — geht das auch?" [ref=e317]:
+              - generic [ref=e318]:
+                - generic [ref=e319]: "04"
+                - generic [ref=e320]: Wir sind Mieter / Erbbaurecht — geht das auch?
+              - img [ref=e322]
+          - listitem [ref=e324]:
+            - button "05 Wie lange dauert Förderantrag und wer macht das?" [ref=e325]:
+              - generic [ref=e326]:
+                - generic [ref=e327]: "05"
+                - generic [ref=e328]: Wie lange dauert Förderantrag und wer macht das?
+              - img [ref=e330]
+      - generic [ref=e333]:
+        - generic [ref=e334]:
+          - paragraph [ref=e335]: Vergleich
+          - heading "Was Sie woanders nicht zugesichert bekommen." [level=2] [ref=e336]
+        - table [ref=e338]:
+          - rowgroup [ref=e339]:
+            - row "Kriterium Solarwerk-Süd Plattform-Anbieter Generalunternehmer" [ref=e340]:
+              - columnheader "Kriterium" [ref=e341]
+              - columnheader "Solarwerk-Süd" [ref=e342]: Solarwerk-Süd
+              - columnheader "Plattform-Anbieter" [ref=e344]
+              - columnheader "Generalunternehmer" [ref=e345]
+          - rowgroup [ref=e346]:
+            - row "Festpreis-Garantie, schriftlich Inklusive Variable Modelle Üblich, oft teurer" [ref=e347]:
+              - rowheader "Festpreis-Garantie, schriftlich" [ref=e348]
+              - cell "Inklusive" [ref=e349]:
+                - generic [ref=e350]:
+                  - img [ref=e351]
+                  - text: Inklusive
+              - cell "Variable Modelle" [ref=e353]
+              - cell "Üblich, oft teurer" [ref=e354]
+            - row "Eigene Monteure (kein Sub) Inklusive Sub-Unternehmer Gemischt" [ref=e355]:
+              - rowheader "Eigene Monteure (kein Sub)" [ref=e356]
+              - cell "Inklusive" [ref=e357]:
+                - generic [ref=e358]:
+                  - img [ref=e359]
+                  - text: Inklusive
+              - cell "Sub-Unternehmer" [ref=e361]
+              - cell "Gemischt" [ref=e362]
+            - row "Service vor Ort ≤ 90 Min Inklusive Bundesweit zentral Regional" [ref=e363]:
+              - rowheader "Service vor Ort ≤ 90 Min" [ref=e364]
+              - cell "Inklusive" [ref=e365]:
+                - generic [ref=e366]:
+                  - img [ref=e367]
+                  - text: Inklusive
+              - cell "Bundesweit zentral" [ref=e369]
+              - cell "Regional" [ref=e370]
+            - row "Fokus Gewerbe > 100 kWp Inklusive B2C-Schwerpunkt Allbau" [ref=e371]:
+              - rowheader "Fokus Gewerbe > 100 kWp" [ref=e372]
+              - cell "Inklusive" [ref=e373]:
+                - generic [ref=e374]:
+                  - img [ref=e375]
+                  - text: Inklusive
+              - cell "B2C-Schwerpunkt" [ref=e377]
+              - cell "Allbau" [ref=e378]
+            - row "Förderantrag inklusive Inklusive Teils gegen Aufpreis Selten" [ref=e379]:
+              - rowheader "Förderantrag inklusive" [ref=e380]
+              - cell "Inklusive" [ref=e381]:
+                - generic [ref=e382]:
+                  - img [ref=e383]
+                  - text: Inklusive
+              - cell "Teils gegen Aufpreis" [ref=e385]
+              - cell "Selten" [ref=e386]
+      - generic [ref=e390]:
+        - generic [ref=e391]:
+          - paragraph [ref=e392]: 30 Minuten. Ihr Dach. Ein ehrlicher Wert.
+          - heading "Wir prüfen Ihr Dach per Drohne — und sagen Ihnen schriftlich, was geht." [level=2] [ref=e393]
+          - paragraph [ref=e394]: Kostenlos, unverbindlich, ohne Verkaufs-Theater. Wenn sich PV bei Ihnen nicht rechnet, sagen wir es Ihnen — auch das schriftlich.
+          - generic [ref=e395]: Geld-zurück-Versprechen bei Falschberatung
+        - generic [ref=e397]:
+          - heading "Jetzt unverbindlich und persönlich beraten lassen" [level=3] [ref=e398]
+          - generic [ref=e399]:
+            - paragraph [ref=e400]: Terminbuchung wird beim Laden von einem externen Dienst (Cal.com) bereitgestellt. Aus Datenschutz- und Performance-Gründen laden wir den Buchungskalender erst auf Ihren Wunsch.
+            - button "Termin wählen" [ref=e401]
+        - paragraph [ref=e402]:
+          - text: "Buchung über Cal.com — als funktional notwendig für unseren Buchungsprozess eingestuft. DSGVO-konform; Details:"
+          - link "Datenschutzerklärung" [ref=e403] [cursor=pointer]:
+            - /url: /datenschutz
+          - text: .
+      - generic [ref=e404]:
+        - generic [ref=e405]:
+          - generic [ref=e406]:
+            - link "solarwerk süd" [ref=e407] [cursor=pointer]:
+              - /url: /landing
+              - generic [ref=e408]: solarwerk
+              - generic [ref=e410]: süd
+            - paragraph [ref=e411]: Festpreis-Photovoltaik für Gewerbe in Süddeutschland. Sitz in Stadtbergen bei Augsburg.
+          - generic [ref=e412]:
+            - paragraph [ref=e413]: Kontakt
+            - list [ref=e414]:
+              - listitem [ref=e415]:
+                - link "0821 XXX XXX" [ref=e416] [cursor=pointer]:
+                  - /url: tel:+49821000000
+              - listitem [ref=e417]:
+                - link "kontakt@solarwerk-sued.de" [ref=e418] [cursor=pointer]:
+                  - /url: mailto:kontakt@solarwerk-sued.de
+              - listitem [ref=e419]: Musterstraße 1, 86391 Stadtbergen
+          - generic [ref=e420]:
+            - paragraph [ref=e421]: Rechtliches
+            - list [ref=e422]:
+              - listitem [ref=e423]:
+                - link "Impressum" [ref=e424] [cursor=pointer]:
+                  - /url: /impressum
+              - listitem [ref=e425]:
+                - link "Datenschutz" [ref=e426] [cursor=pointer]:
+                  - /url: /datenschutz
+        - generic [ref=e428]: © 2026 Solarwerk-Süd GmbH · Demo-Landing-Page des Sales-Hub-Lehr-Repos
+    - dialog "Cookie- und Datenschutz-Hinweis" [ref=e430]:
+      - paragraph [ref=e431]: DSGVO-Hinweis
+      - paragraph [ref=e432]:
+        - text: Diese Seite verwendet essenzielle Cookies für die Funktion. Mit Ihrer Einwilligung setzen wir zusätzlich Google Analytics ein, um die Seite zu verbessern. Für die Terminbuchung über Cal.com wird beim Aufruf ein externer Dienst geladen. Details in der
+        - link "Datenschutzerklärung" [ref=e433] [cursor=pointer]:
+          - /url: /datenschutz
+        - text: .
+      - generic [ref=e434]:
+        - button "Nur essenziell" [ref=e435]
+        - button "Analytics zustimmen" [ref=e436]
+  - alert [ref=e429]
