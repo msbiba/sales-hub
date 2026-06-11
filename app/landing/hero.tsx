@@ -1,5 +1,7 @@
 import Image from "next/image";
 import SatellitePreview from "./satellite-preview-client";
+import PrimaryCTA from "./primary-cta";
+import BentoMetric, { BentoGrid } from "./bento-metric";
 
 const HEADLINES: Record<string, { h1: React.ReactNode; sub: string }> = {
   default: {
@@ -76,59 +78,45 @@ export default function Hero({ variant }: { variant?: string }) {
 
       <div className="relative mx-auto max-w-6xl px-6 pb-24 pt-20 sm:pt-24 lg:pb-32 lg:pt-32">
         <div className="max-w-3xl">
-          <p className="inline-flex items-center gap-2 rounded-full border border-white/20 bg-white/[0.06] px-3 py-1 font-mono-data text-[11px] uppercase tracking-[0.18em] text-white/90 backdrop-blur">
+          <p className="inline-flex items-center gap-2 rounded-full border border-white/20 bg-white/[0.06] px-3 py-1 font-mono-data text-fs-1 uppercase tracking-[0.18em] text-white/90 backdrop-blur">
             <span
               aria-hidden
               className="inline-block h-1.5 w-1.5 rounded-full bg-[var(--solar)]"
             />
             Photovoltaik · Gewerbe · Süddeutschland
           </p>
-          <h1 className="mt-6 text-[40px] font-semibold leading-[1.04] tracking-[-0.02em] text-white sm:text-[58px] lg:text-[68px]">
+          <h1 className="mt-6 text-fs-7 font-semibold leading-[1.04] tracking-[-0.02em] text-white sm:text-fs-9 lg:text-fs-9">
             {h1}
           </h1>
-          <p className="mt-7 max-w-2xl text-[18px] leading-relaxed text-white/85">
+          <p className="mt-7 max-w-2xl text-fs-4 leading-relaxed text-white/85">
             {sub}
           </p>
 
           <div className="mt-10 flex flex-wrap items-center gap-x-6 gap-y-3">
-            <a
-              href="#termin"
-              className="focus-ring group inline-flex items-center justify-center gap-2 rounded-md bg-[var(--solar)] px-6 py-3.5 text-[15px] font-semibold text-[var(--ink)] shadow-[0_10px_30px_-10px_rgba(232,163,61,0.6)] transition-colors hover:bg-[var(--solar-hover)]"
-            >
+            <PrimaryCTA href="#termin">
               Kostenlose Dach-Analyse buchen
-              <span
-                aria-hidden
-                className="transition-transform group-hover:translate-x-0.5"
-              >
-                →
-              </span>
-            </a>
+            </PrimaryCTA>
             <a
               href="#rechner"
-              className="focus-ring inline-flex min-h-[44px] items-center px-2 py-2 text-[15px] font-medium text-white underline-offset-4 hover:underline"
+              className="focus-ring inline-flex min-h-[44px] items-center px-2 py-2 text-fs-3 font-medium text-white underline-offset-4 hover:underline"
             >
               Erst rechnen lassen →
             </a>
           </div>
 
-          {/* Metrik-Strip */}
-          <dl className="mt-12 grid max-w-2xl grid-cols-3 gap-px overflow-hidden rounded-lg border border-white/15 bg-white/10">
+          {/* UX-005: bento metric grid */}
+          <BentoGrid cols={3} className="mt-12 max-w-2xl">
             {HERO_METRICS.map((m) => (
-              <div
+              <BentoMetric
                 key={m.label}
-                className="bg-[var(--ink)]/60 px-4 py-4 backdrop-blur"
-              >
-                <dt className="font-mono-data text-[10px] uppercase tracking-wider text-white/55">
-                  {m.label}
-                </dt>
-                <dd className="mt-1 font-mono-data text-[22px] font-semibold tracking-tight text-white">
-                  {m.value}
-                </dd>
-              </div>
+                theme="dark"
+                eyebrow={m.label}
+                value={m.value}
+              />
             ))}
-          </dl>
+          </BentoGrid>
 
-          <ul className="mt-8 flex flex-wrap items-center gap-x-5 gap-y-2 text-[13px] text-white/75">
+          <ul className="mt-8 flex flex-wrap items-center gap-x-5 gap-y-2 text-fs-2 text-white/75">
             <li className="flex items-center gap-2">
               <Tick />
               TÜV-zertifizierte Montage

@@ -7,16 +7,16 @@ export default function LandingFooter() {
       <div className="mx-auto grid max-w-6xl gap-10 px-6 py-12 sm:grid-cols-[1.5fr_1fr_1fr]">
         <div>
           <Logo />
-          <p className="mt-4 max-w-sm text-sm leading-relaxed text-[var(--ink)]/75">
+          <p className="mt-4 max-w-sm text-fs-2 leading-relaxed text-[var(--ink)]/75">
             Festpreis-Photovoltaik für Gewerbe in Süddeutschland.
             Sitz in Stadtbergen bei Augsburg.
           </p>
         </div>
         <div>
-          <p className="font-mono-data text-xs uppercase tracking-wider text-[var(--muted)]">
+          <p className="font-mono-data text-fs-1 uppercase tracking-wider text-[var(--muted)]">
             Kontakt
           </p>
-          <ul className="mt-4 space-y-1 text-sm text-[var(--ink)]">
+          <ul className="mt-4 space-y-1 text-fs-2 text-[var(--ink)]">
             <li>
               <a
                 href="tel:+49821000000"
@@ -39,10 +39,10 @@ export default function LandingFooter() {
           </ul>
         </div>
         <div>
-          <p className="font-mono-data text-xs uppercase tracking-wider text-[var(--muted)]">
+          <p className="font-mono-data text-fs-1 uppercase tracking-wider text-[var(--muted)]">
             Rechtliches
           </p>
-          <ul className="mt-4 space-y-1 text-sm">
+          <ul className="mt-4 space-y-1 text-fs-2">
             <li>
               <Link
                 href="/impressum"
@@ -63,7 +63,7 @@ export default function LandingFooter() {
         </div>
       </div>
       <div className="border-t border-[var(--line)]">
-        <div className="mx-auto max-w-6xl px-6 py-5 text-xs text-[var(--muted)]">
+        <div className="mx-auto max-w-6xl px-6 py-5 text-fs-1 text-[var(--muted)]">
           © {new Date().getFullYear()} Solarwerk-Süd GmbH · Demo-Landing-Page
           des Sales-Hub-Lehr-Repos
         </div>

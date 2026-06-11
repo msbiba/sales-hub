@@ -56,7 +56,7 @@ export default function CalEmbed() {
       ref={sectionRef}
       className="flex min-h-[320px] flex-col items-center justify-center gap-4 rounded-lg border border-[var(--line)] bg-white p-10 text-center"
     >
-      <p className="text-[15px] leading-relaxed text-[var(--ink)]/75">
+      <p className="text-fs-3 leading-relaxed text-[var(--ink)]/75">
         Terminbuchung wird beim Laden von einem externen Dienst (Cal.com)
         bereitgestellt. Aus Datenschutz- und Performance-Gründen laden wir
         den Buchungskalender erst auf Ihren Wunsch.
@@ -64,7 +64,7 @@ export default function CalEmbed() {
       <button
         type="button"
         onClick={() => setMounted(true)}
-        className="rounded-md bg-[var(--ink)] px-5 py-2.5 text-sm font-semibold text-white hover:bg-black"
+        className="rounded-md bg-[var(--ink)] px-5 py-2.5 text-fs-2 font-semibold text-white hover:bg-black"
       >
         Termin wählen
       </button>

@@ -25,7 +25,7 @@ export default function LandingLayout({ children }: { children: ReactNode }) {
     >
       <a
         href="#main"
-        className="sr-only focus:not-sr-only focus:fixed focus:top-3 focus:left-3 focus:z-50 focus:rounded-md focus:bg-[var(--ink)] focus:px-4 focus:py-2 focus:text-sm focus:font-semibold focus:text-white"
+        className="sr-only focus:not-sr-only focus:fixed focus:top-3 focus:left-3 focus:z-50 focus:rounded-md focus:bg-[var(--ink)] focus:px-4 focus:py-2 focus:text-fs-2 focus:font-semibold focus:text-white"
       >
         Zum Inhalt springen
       </a>
@@ -35,13 +35,13 @@ export default function LandingLayout({ children }: { children: ReactNode }) {
           <nav className="hidden items-center gap-2 sm:flex">
             <a
               href="/login"
-              className="focus-ring rounded-md border border-[var(--line)] bg-white px-4 py-2 text-sm font-semibold text-[var(--ink)] transition-colors hover:border-[var(--steel)] hover:bg-[var(--paper)]"
+              className="focus-ring rounded-md border border-[var(--line)] bg-white px-4 py-2 text-fs-2 font-semibold text-[var(--ink)] transition-colors hover:border-[var(--steel)] hover:bg-[var(--paper)]"
             >
               Kundenlogin
             </a>
             <a
               href="#termin"
-              className="focus-ring inline-flex items-center gap-2 rounded-md bg-[var(--ink)] px-4 py-2 text-sm font-semibold text-white transition-colors hover:bg-black"
+              className="focus-ring inline-flex items-center gap-2 rounded-md bg-[var(--ink)] px-4 py-2 text-fs-2 font-semibold text-white transition-colors hover:bg-black"
             >
               Termin buchen
               <span aria-hidden>→</span>
@@ -49,7 +49,7 @@ export default function LandingLayout({ children }: { children: ReactNode }) {
           </nav>
           <a
             href="#termin"
-            className="focus-ring rounded-md bg-[var(--ink)] px-3 py-2 text-sm font-semibold text-white sm:hidden"
+            className="focus-ring rounded-md bg-[var(--ink)] px-3 py-2 text-fs-2 font-semibold text-white sm:hidden"
           >
             Termin
           </a>

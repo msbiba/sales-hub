@@ -7,6 +7,10 @@ import {
   formatZahl,
   type RechnerOutput,
 } from "./rechner-formel";
+import SectionEyebrow from "./section-eyebrow";
+import BrandedSlider from "./branded-slider";
+import BrandedSelect from "./branded-select";
+import BrandedCheckbox from "./branded-checkbox";
 
 type SubmitStatus =
   | { kind: "idle" }
@@ -68,6 +72,29 @@ export default function Rechner() {
     }
   }
 
+  const amortisationLabel = isFinite(result.amortisationJahre)
+    ? `${formatZahl(result.amortisationJahre, 1)} Jahre`
+    : "—";
+  const ertragLabel = `${formatEuro(result.ertragGesamtProJahrEur)} / Jahr`;
+
+  const secondary: { label: string; value: string }[] = [
+    { label: "Anlagengröße", value: `${formatZahl(result.kWp, 1)} kWp` },
+    { label: "Jahresertrag", value: `${formatZahl(result.jahresertragKwh)} kWh` },
+    {
+      label: "Einsparung Strom",
+      value: `${formatEuro(result.einsparungProJahrEur)} / Jahr`,
+    },
+    {
+      label: "Einspeise-Vergütung",
+      value: `${formatEuro(result.einspeiseverguetungProJahrEur)} / Jahr`,
+    },
+    { label: "Investition (netto)", value: `${formatEuro(result.investitionEur)}` },
+    {
+      label: "CO₂ vermieden",
+      value: `${formatZahl(result.co2EinsparungProJahrT, 1)} t / Jahr`,
+    },
+  ];
+
   return (
     <section
       id="rechner"
@@ -75,13 +102,13 @@ export default function Rechner() {
     >
       <div className="mx-auto max-w-6xl px-6 py-20">
         <div className="reveal max-w-3xl">
-          <p className="font-mono-data text-xs uppercase tracking-[0.18em] text-[var(--steel)]">
+          <SectionEyebrow tone="steel" dot>
             Selbst nachrechnen
-          </p>
-          <h2 className="mt-4 text-3xl font-semibold leading-tight tracking-tight text-[var(--ink)] sm:text-4xl">
+          </SectionEyebrow>
+          <h2 className="mt-4 text-fs-6 font-semibold leading-tight tracking-tight text-[var(--ink)] sm:text-fs-7">
             Was kann Ihr Hallendach? In 30 Sekunden.
           </h2>
-          <p className="mt-4 text-[15px] leading-relaxed text-[var(--ink)]/75">
+          <p className="mt-4 text-fs-3 leading-relaxed text-[var(--ink)]/75">
             Konservative Schätzwerte für Süddeutschland. Keine Verkaufs-Magie,
             keine Optimismus-Filter. Eine Detail-Berechnung folgt nach
             Drohnen-Befliegung.
@@ -90,7 +117,7 @@ export default function Rechner() {
 
         <div className="reveal mt-12 grid gap-10 lg:grid-cols-[1.05fr_1fr]">
           <div className="space-y-8">
-            <Slider
+            <BrandedSlider
               label="Dachfläche"
               value={dach}
               min={200}
@@ -99,7 +126,7 @@ export default function Rechner() {
               unit=" m²"
               onChange={setDach}
             />
-            <Slider
+            <BrandedSlider
               label="Jahres-Stromverbrauch"
               value={verbrauch}
               min={20_000}
@@ -108,7 +135,7 @@ export default function Rechner() {
               unit=" kWh"
               onChange={setVerbrauch}
             />
-            <Slider
+            <BrandedSlider
               label="Aktueller Strompreis"
               value={strompreis}
               min={15}
@@ -120,79 +147,41 @@ export default function Rechner() {
             />
 
             <div className="grid gap-4 sm:grid-cols-2">
-              <label className="block">
-                <span className="block text-sm font-medium text-[var(--ink)]">
-                  Dach-Typ
-                </span>
-                <select
-                  value={dachtyp}
-                  onChange={(e) => setDachtyp(e.target.value)}
-                  className="mt-2 w-full rounded-md border border-[var(--line)] bg-white px-3 py-2.5 text-sm text-[var(--ink)] outline-none focus:border-[var(--steel)]"
-                >
-                  {DACHTYP_OPTIONS.map((o) => (
-                    <option key={o.value} value={o.value}>
-                      {o.label}
-                    </option>
-                  ))}
-                </select>
-              </label>
-              <label className="flex cursor-pointer items-start gap-3 self-end rounded-md border border-[var(--line)] bg-[var(--paper)] px-3 py-2.5">
-                <input
-                  type="checkbox"
+              <BrandedSelect
+                label="Dach-Typ"
+                value={dachtyp}
+                options={DACHTYP_OPTIONS}
+                onChange={setDachtyp}
+              />
+              <div className="flex items-center self-end rounded-md border border-[var(--line)] bg-[var(--paper)] px-3 py-2.5">
+                <BrandedCheckbox
                   checked={bestehendePv}
-                  onChange={(e) => setBestehendePv(e.target.checked)}
-                  className="mt-0.5 h-4 w-4 accent-[var(--solar)]"
+                  onChange={setBestehendePv}
+                  label="Es ist bereits PV auf dem Dach installiert."
                 />
-                <span className="text-sm text-[var(--ink)]">
-                  Es ist bereits PV auf dem Dach installiert.
-                </span>
-              </label>
+              </div>
             </div>
           </div>
 
           <aside className="rounded-lg border border-[var(--line)] bg-[var(--paper)] p-6 sm:p-8">
-            <p className="font-mono-data text-xs uppercase tracking-wider text-[var(--steel)]">
-              Richtwerte Ihre Anlage
-            </p>
-            <dl className="mt-5 grid grid-cols-2 gap-x-6 gap-y-5">
-              <Metric
-                label="Anlagengröße"
-                value={`${formatZahl(result.kWp, 1)} kWp`}
-              />
-              <Metric
-                label="Jahresertrag"
-                value={`${formatZahl(result.jahresertragKwh)} kWh`}
-              />
-              <Metric
-                label="Einsparung Strom"
-                value={`${formatEuro(result.einsparungProJahrEur)} / Jahr`}
-              />
-              <Metric
-                label="Einspeise-Vergütung"
-                value={`${formatEuro(result.einspeiseverguetungProJahrEur)} / Jahr`}
-              />
-              <Metric
-                label="Ertrag gesamt"
-                value={`${formatEuro(result.ertragGesamtProJahrEur)} / Jahr`}
-                highlight
-              />
-              <Metric
-                label="Investition (netto)"
-                value={`${formatEuro(result.investitionEur)}`}
-              />
-              <Metric
-                label="Amortisation"
-                value={
-                  isFinite(result.amortisationJahre)
-                    ? `${formatZahl(result.amortisationJahre, 1)} Jahre`
-                    : "—"
-                }
-                highlight
-              />
-              <Metric
-                label="CO₂ vermieden"
-                value={`${formatZahl(result.co2EinsparungProJahrT, 1)} t / Jahr`}
-              />
+            <SectionEyebrow tone="muted">Richtwerte Ihre Anlage</SectionEyebrow>
+
+            {/* UX-006: promoted hero metrics */}
+            <div className="mt-5 space-y-4">
+              <PrimaryMetric label="Amortisation" value={amortisationLabel} />
+              <PrimaryMetric label="Ertrag gesamt" value={ertragLabel} />
+            </div>
+
+            {/* UX-006: secondary metrics — muted 2-col grid */}
+            <dl className="mt-6 grid grid-cols-2 gap-x-6 gap-y-3 border-t border-[var(--line)] pt-5">
+              {secondary.map((m) => (
+                <div key={m.label}>
+                  <dt className="text-fs-1 text-[var(--muted)]">{m.label}</dt>
+                  <dd className="font-mono-data mt-0.5 text-fs-3 text-[var(--ink)]">
+                    {m.value}
+                  </dd>
+                </div>
+              ))}
             </dl>
 
             <form
@@ -200,14 +189,14 @@ export default function Rechner() {
               className="mt-7 border-t border-[var(--line)] pt-5"
             >
               {status.kind === "success" ? (
-                <p className="text-sm font-semibold text-[var(--leaf)]">
+                <p className="text-fs-2 font-semibold text-[var(--leaf)]">
                   ✓ Danke. Detail-Berechnung folgt innerhalb 24 h per Mail.
                 </p>
               ) : (
                 <>
                   <label
                     htmlFor="rechner-email"
-                    className="block text-sm font-medium text-[var(--ink)]"
+                    className="block text-fs-2 font-medium text-[var(--ink)]"
                   >
                     Detail-Berechnung per E-Mail erhalten
                   </label>
@@ -220,18 +209,19 @@ export default function Rechner() {
                       onChange={(e) => setEmail(e.target.value)}
                       placeholder="name@firma.de"
                       autoComplete="email"
-                      className="flex-1 rounded-md border border-[var(--line)] bg-white px-3 py-2.5 text-sm text-[var(--ink)] outline-none focus:border-[var(--steel)]"
+                      className="focus-ring flex-1 rounded-md border border-[var(--line)] bg-white px-3 py-2.5 text-fs-2 text-[var(--ink)] outline-none focus:border-[var(--solar)]"
+                      style={{ boxShadow: "inset 0 1px 0 rgba(14,17,22,0.04)" }}
                     />
                     <button
                       type="submit"
                       disabled={status.kind === "submitting"}
-                      className="rounded-md bg-[var(--ink)] px-4 py-2.5 text-sm font-semibold text-white hover:bg-black disabled:opacity-50"
+                      className="focus-ring rounded-md bg-[var(--ink)] px-4 py-2.5 text-fs-2 font-semibold text-white hover:bg-black disabled:opacity-50"
                     >
                       {status.kind === "submitting" ? "Sende …" : "Anfordern"}
                     </button>
                   </div>
                   {status.kind === "error" && (
-                    <p className="mt-2 text-sm text-red-600">
+                    <p className="mt-2 text-fs-2 text-red-600">
                       {status.message}
                     </p>
                   )}
@@ -239,7 +229,7 @@ export default function Rechner() {
               )}
             </form>
 
-            <p className="mt-5 text-[11px] leading-relaxed text-[var(--muted)]">
+            <p className="mt-5 text-fs-1 leading-relaxed text-[var(--muted)]">
               Annahmen: 0,17 kWp/m²; 950 kWh/kWp/a Süddeutschland; 60 %
               Eigenverbrauch; 7,9 ct/kWh Einspeisung; 1.000 €/kWp netto;
               1,5 % Betriebskosten pro Jahr; 0,38 kg CO₂/kWh Strommix.
@@ -254,81 +244,13 @@ export default function Rechner() {
   );
 }
 
-function Slider({
-  label,
-  value,
-  min,
-  max,
-  step,
-  unit,
-  decimals = 0,
-  onChange,
-}: {
-  label: string;
-  value: number;
-  min: number;
-  max: number;
-  step: number;
-  unit: string;
-  decimals?: number;
-  onChange: (n: number) => void;
-}) {
+function PrimaryMetric({ label, value }: { label: string; value: string }) {
   return (
     <div>
-      <div className="flex items-baseline justify-between">
-        <label className="text-sm font-medium text-[var(--ink)]">
-          {label}
-        </label>
-        <span className="font-mono-data text-[15px] font-semibold text-[var(--ink)]">
-          {formatZahl(value, decimals)}
-          {unit}
-        </span>
-      </div>
-      <input
-        type="range"
-        min={min}
-        max={max}
-        step={step}
-        value={value}
-        onChange={(e) => onChange(Number(e.target.value))}
-        className="mt-3 w-full accent-[var(--solar)]"
-        aria-label={label}
-      />
-      <div className="mt-1 flex justify-between font-mono-data text-[11px] text-[var(--muted)]">
-        <span>
-          {formatZahl(min, decimals)}
-          {unit}
-        </span>
-        <span>
-          {formatZahl(max, decimals)}
-          {unit}
-        </span>
-      </div>
-    </div>
-  );
-}
-
-function Metric({
-  label,
-  value,
-  highlight = false,
-}: {
-  label: string;
-  value: string;
-  highlight?: boolean;
-}) {
-  return (
-    <div>
-      <dt className="text-xs uppercase tracking-wider text-[var(--muted)]">
-        {label}
-      </dt>
-      <dd
-        className={`mt-1 font-mono-data text-[18px] font-semibold ${
-          highlight ? "text-[var(--ink)]" : "text-[var(--ink)]/80"
-        }`}
-      >
-        {value}
-      </dd>
+      <p className="text-fs-1 text-[var(--muted)]">{label}</p>
+      <p className="mt-1 text-fs-6 font-semibold leading-none tracking-tight text-[var(--ink)]">
+        <span className="solar-underline">{value}</span>
+      </p>
     </div>
   );
 }
