@@ -151,10 +151,28 @@ html.js .reveal.is-visible {
   padding: 0 2px;
 }
 
-/* Focus-Ring konsistent */
+/* Focus-Ring konsistent (UX-012)
+   - explicit utility for any element
+   - default applied to all form controls on landing routes
+   - default inset depth shadow on light-bg controls */
 .focus-ring:focus-visible {
   outline: 2px solid var(--solar);
   outline-offset: 2px;
+}
+
+main input:focus-visible,
+main select:focus-visible,
+main textarea:focus-visible,
+main [role="slider"]:focus-visible,
+main [role="checkbox"]:focus-visible {
+  outline: 2px solid var(--solar);
+  outline-offset: 2px;
+}
+
+main input:not([type="checkbox"]):not([type="radio"]):not([type="range"]),
+main select,
+main textarea {
+  box-shadow: inset 0 1px 0 rgba(14, 17, 22, 0.04);
 }
 
 /* ------------------------------------------------------------------ */

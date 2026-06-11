@@ -23,7 +23,39 @@
 | UX-008 | quick_win | magic | 4/2 | done | `app/landing/faq-client.tsx` | (inline in faq-client) | Card-framed accordion items, hover lift + neutral shadow, chevron rotation 180° on expand |
 | UX-009 | strategic_bet | agent | 4/2 | done | `app/globals.css`, `app/landing/layout.tsx`, `app/landing/cookie-banner-client.tsx`, `app/landing/sticky-cta-client.tsx`, `app/landing/satellite-preview-client.tsx`, `app/landing/rechner-client.tsx` | — | 3-tier button utilities `.btn-primary` / `.btn-secondary` / `.btn-ghost` added; cookie banner, sticky CTA, header CTAs, form submits all swept to correct tier |
 | UX-011 | strategic_bet | magic | 4/3 | done | `app/landing/consent-gate-card.tsx`, `app/landing/cal-embed-client.tsx` | `components/_generated/UX-011-consent-gate-card.tsx` | Ink-bg consent-gate w/ amber CalendarDays icon, white heading + body, PrimaryCTA inside, lazy-load preserved (IntersectionObserver) |
+| UX-012 | incremental | agent | 3/2 | done | `app/globals.css` | — | Global focus-ring + inset depth shadow rules for all `main input/select/textarea/[role=slider]/[role=checkbox]` on landing routes; explicit `.focus-ring` utility preserved |
+| UX-013 | incremental | magic | 3/2 | done | `app/landing/foerder-ticker.tsx` | `components/_generated/UX-013-foerder-status-bar.tsx` | Förder-status ribbon → 3-card bento (Status / KfW 270 / §6 EEG) reusing BentoMetric, leaf-green pulsing live dot on Status card |
 
 ## Summary
 
-<!-- filled at end -->
+- **Done:** 13 / 13 recommendations
+- **Deferred / blocked:** 0
+- **Skipped (out of scope):** 0 (no `deprioritize` items in the audit)
+- **Branch:** `apply_ux_fixes`
+- **Commits (per tier):**
+  - `fa53c51` ux-audit(quick_win): UX-001..008, UX-010
+  - `8f27304` ux-audit(strategic_bet): UX-009, UX-011
+  - *(this tier)* ux-audit(incremental): UX-012, UX-013
+
+### Generated components (`components/_generated/`) — Magic-spec drafts kept for review
+
+- `UX-001-branded-slider.tsx` / `UX-001-branded-select.tsx` / `UX-001-branded-checkbox.tsx`
+- `UX-003-section-eyebrow.tsx`
+- `UX-004-primary-cta.tsx`
+- `UX-005-bento-metric.tsx`
+- `UX-010-demo-tag.tsx`
+- `UX-011-consent-gate-card.tsx`
+- `UX-013-foerder-status-bar.tsx`
+
+Production copies are co-located under `app/landing/` per CLAUDE.md (no `components/` folder convention).
+
+### Orphaned old code
+
+None. Every removed structure (inline eyebrow `<p>`, native form controls in rechner-client, old MetricBlock helper in social-proof, old gate placeholder in cal-embed-client, ribbon markup in foerder-ticker) was removed inline as part of the integration edit. No abandoned files to clean up.
+
+### Notes / deviations from spec
+
+- **No new UI-library deps.** The audit's `magic_prompt`s for UX-001 BrandedSelect and UX-008 BrandedAccordion suggested Radix UI under the hood. Project has no Radix dep, so both were built native (custom-styled `<select>` w/ background-image chevron; custom `<button aria-expanded>` accordion). Functional behavior matches; menu / panel animation is slightly simpler than the Radix-mounted equivalent.
+- **Type scale token namespace.** Used `--text-fs-1..9` → generates `text-fs-1..9` Tailwind utilities. Chose a new namespace rather than overriding Tailwind's built-in `text-xs..6xl` because the CRM routes (`/kunden`, `/pipeline`, `/dashboard`) still use the defaults; renaming there was out of scope.
+- **Lint warnings (4).** Pre-existing `@typescript-eslint/no-unused-vars` on `_as` destructure pattern in `primary-cta.tsx` / its generated twin. Warnings only, not errors; build passes.
+
