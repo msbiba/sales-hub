@@ -35,7 +35,7 @@
 - **Commits (per tier):**
   - `fa53c51` ux-audit(quick_win): UX-001..008, UX-010
   - `8f27304` ux-audit(strategic_bet): UX-009, UX-011
-  - *(this tier)* ux-audit(incremental): UX-012, UX-013
+  - `bc74a81` ux-audit(incremental): UX-012, UX-013
 
 ### Generated components (`components/_generated/`) — Magic-spec drafts kept for review
 
