@@ -1,6 +1,5 @@
 import Counter from "./counter-client";
 import SectionEyebrow from "./section-eyebrow";
-import DemoTag from "./demo-tag";
 import BentoMetric, { BentoGrid } from "./bento-metric";
 
 const CASES = [
@@ -39,11 +38,11 @@ export default function SocialProof() {
   return (
     <section className="border-b border-[var(--line)] bg-white">
       <div className="mx-auto max-w-6xl px-6 py-24">
-        <div className="reveal max-w-3xl">
+        <div className="reveal">
           <SectionEyebrow tone="steel" dot>
             Was zählt: belegbare Zahlen
           </SectionEyebrow>
-          <h2 className="mt-4 text-fs-6 font-semibold leading-tight tracking-[-0.01em] text-[var(--ink)] sm:text-fs-7">
+          <h2 className="mt-4 text-fs-6 font-semibold leading-tight tracking-[-0.01em] text-[var(--ink)] sm:text-fs-7 lg:whitespace-nowrap">
             480 Anlagen. 142 MWp installiert.{" "}
             <span className="solar-underline">Ø 7,4 Jahre</span> Amortisation.
           </h2>
@@ -73,18 +72,13 @@ export default function SocialProof() {
               key={c.firma}
               className="reveal card-lift flex flex-col gap-5 rounded-lg border border-[var(--line)] bg-white p-7 sm:p-8"
             >
-              <header className="flex items-baseline justify-between gap-3">
-                <div>
-                  <p className="text-fs-3 font-semibold text-[var(--ink)]">
-                    {c.firma}
-                  </p>
-                  <p className="font-mono-data text-fs-1 uppercase tracking-wider text-[var(--steel)]">
-                    {c.standort}
-                  </p>
-                </div>
-                <DemoTag tone="muted" dot>
-                  Demo
-                </DemoTag>
+              <header>
+                <p className="text-fs-3 font-semibold text-[var(--ink)]">
+                  {c.firma}
+                </p>
+                <p className="font-mono-data text-fs-1 uppercase tracking-wider text-[var(--steel)]">
+                  {c.standort}
+                </p>
               </header>
               <div className="flex gap-10 border-y border-[var(--line)] py-5">
                 <div>
@@ -130,12 +124,6 @@ export default function SocialProof() {
               </li>
             ))}
           </ul>
-          <p className="mt-4 inline-flex items-center gap-2 text-fs-1 text-[var(--muted)]">
-            <DemoTag tone="muted" dot>
-              Demo
-            </DemoTag>
-            Daten zur Illustration des Lehr-Repos.
-          </p>
         </div>
       </div>
     </section>
