@@ -133,9 +133,9 @@ export default function Hero({ variant }: { variant?: string }) {
         </div>
       </div>
 
-      {/* Satelliten-Preview als Card im Hero */}
+      {/* Satelliten-Preview als Card im Hero — linksbündig unter dem Text */}
       <div className="relative mx-auto max-w-6xl px-6 pb-20">
-        <div className="ml-auto max-w-lg">
+        <div className="max-w-lg">
           <SatellitePreview />
         </div>
       </div>

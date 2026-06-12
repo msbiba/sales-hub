@@ -32,7 +32,7 @@ export default function LandingLayout({ children }: { children: ReactNode }) {
       <header className="sticky top-0 z-30 border-b border-[var(--line)] bg-[var(--paper)]/85 backdrop-blur">
         <div className="mx-auto flex max-w-6xl items-center justify-between px-6 py-4">
           <Logo />
-          <nav className="hidden items-center gap-2 sm:flex">
+          <nav className="flex items-center gap-2">
             <a href="/login" className="btn-ghost focus-ring text-fs-2">
               Kundenlogin
             </a>
@@ -41,13 +41,6 @@ export default function LandingLayout({ children }: { children: ReactNode }) {
               <span aria-hidden>→</span>
             </a>
           </nav>
-          <a
-            href="#termin"
-            className="btn-secondary focus-ring text-fs-2 sm:hidden"
-            style={{ padding: "0.5rem 0.75rem" }}
-          >
-            Termin
-          </a>
         </div>
       </header>
       <main id="main">{children}</main>
