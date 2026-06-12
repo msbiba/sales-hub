@@ -341,9 +341,11 @@ export default function KundeDetailClient({
             </button>
           </div>
 
-          {showEmailGenerator && (
+          {/* Eingebunden bleibt gemountet — nur ein-/ausgeblendet, damit
+              Eingaben beim Zuklappen nicht verloren gehen. */}
+          <div className={showEmailGenerator ? "" : "hidden"}>
             <FollowupEmailClient kundeId={kunde.id} />
-          )}
+          </div>
         </div>
       )}
 

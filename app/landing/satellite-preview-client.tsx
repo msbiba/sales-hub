@@ -81,7 +81,7 @@ export default function SatellitePreview() {
           placeholder="PLZ"
           aria-label="Postleitzahl"
           autoComplete="postal-code"
-          className="rounded-md border border-[var(--line)] bg-white px-3 py-2.5 text-fs-2 text-[var(--ink)] outline-none focus:border-[var(--steel)]"
+          className="min-w-0 rounded-md border border-[var(--line)] bg-white px-3 py-2.5 text-fs-2 text-[var(--ink)] outline-none focus:border-[var(--steel)]"
         />
         <input
           type="text"
@@ -90,7 +90,7 @@ export default function SatellitePreview() {
           placeholder="Nr."
           aria-label="Hausnummer (optional)"
           autoComplete="address-line2"
-          className="rounded-md border border-[var(--line)] bg-white px-3 py-2.5 text-fs-2 text-[var(--ink)] outline-none focus:border-[var(--steel)]"
+          className="min-w-0 rounded-md border border-[var(--line)] bg-white px-3 py-2.5 text-fs-2 text-[var(--ink)] outline-none focus:border-[var(--steel)]"
         />
         <input
           type="email"
@@ -100,7 +100,7 @@ export default function SatellitePreview() {
           placeholder="E-Mail für Rückmeldung"
           aria-label="E-Mail-Adresse"
           autoComplete="email"
-          className="col-span-2 rounded-md border border-[var(--line)] bg-white px-3 py-2.5 text-fs-2 text-[var(--ink)] outline-none focus:border-[var(--steel)] sm:col-span-1"
+          className="col-span-2 min-w-0 rounded-md border border-[var(--line)] bg-white px-3 py-2.5 text-fs-2 text-[var(--ink)] outline-none focus:border-[var(--steel)] sm:col-span-1"
         />
       </div>
       <button
