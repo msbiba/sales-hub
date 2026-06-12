@@ -19,10 +19,10 @@ export default function LandingFooter() {
           <ul className="mt-4 space-y-1 text-fs-2 text-[var(--ink)]">
             <li>
               <a
-                href="tel:+49821000000"
+                href="tel:+498217696083"
                 className="inline-block py-1.5 leading-6 hover:underline"
               >
-                0821 XXX XXX
+                0821 769 6083
               </a>
             </li>
             <li>
@@ -64,8 +64,7 @@ export default function LandingFooter() {
       </div>
       <div className="border-t border-[var(--line)]">
         <div className="mx-auto max-w-6xl px-6 py-5 text-fs-1 text-[var(--muted)]">
-          © {new Date().getFullYear()} Solarwerk-Süd GmbH · Demo-Landing-Page
-          des Sales-Hub-Lehr-Repos
+          © {new Date().getFullYear()} Solarwerk-Süd GmbH
         </div>
       </div>
     </footer>

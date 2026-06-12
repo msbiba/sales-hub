@@ -44,11 +44,11 @@ export default function Comparison() {
   return (
     <section className="border-y border-[var(--line)] bg-white">
       <div className="mx-auto max-w-6xl px-6 py-24">
-        <div className="reveal max-w-3xl">
+        <div className="reveal">
           <SectionEyebrow tone="steel" dot>
             Vergleich
           </SectionEyebrow>
-          <h2 className="mt-4 text-fs-6 font-semibold leading-tight tracking-[-0.01em] text-[var(--ink)] sm:text-fs-7">
+          <h2 className="mt-4 text-fs-6 font-semibold leading-tight tracking-[-0.01em] text-[var(--ink)] sm:text-fs-7 lg:whitespace-nowrap">
             Was Sie woanders{" "}
             <span className="solar-underline">nicht zugesichert</span> bekommen.
           </h2>

@@ -27,11 +27,11 @@ export default function Benefits() {
   return (
     <section className="bg-[var(--paper)]">
       <div className="mx-auto max-w-6xl px-6 py-24">
-        <div className="reveal max-w-3xl">
+        <div className="reveal">
           <SectionEyebrow tone="steel" dot>
             Was uns unterscheidet
           </SectionEyebrow>
-          <h2 className="mt-4 text-fs-6 font-semibold leading-tight tracking-[-0.01em] text-[var(--ink)] sm:text-fs-7">
+          <h2 className="mt-4 text-fs-6 font-semibold leading-tight tracking-[-0.01em] text-[var(--ink)] sm:text-fs-7 lg:whitespace-nowrap">
             Fünf Dinge, die im{" "}
             <span className="solar-underline">Vertrag</span> stehen — nicht nur
             im Pitch.

@@ -101,11 +101,11 @@ export default function Rechner() {
       className="border-y border-[var(--line)] bg-white scroll-mt-16"
     >
       <div className="mx-auto max-w-6xl px-6 py-20">
-        <div className="reveal max-w-3xl">
+        <div className="reveal">
           <SectionEyebrow tone="steel" dot>
             Selbst nachrechnen
           </SectionEyebrow>
-          <h2 className="mt-4 text-fs-6 font-semibold leading-tight tracking-tight text-[var(--ink)] sm:text-fs-7">
+          <h2 className="mt-4 text-fs-6 font-semibold leading-tight tracking-tight text-[var(--ink)] sm:text-fs-7 lg:whitespace-nowrap">
             Was kann Ihr Hallendach? In 30 Sekunden.
           </h2>
           <p className="mt-4 text-fs-3 leading-relaxed text-[var(--ink)]/75">
